@@ -1,0 +1,68 @@
+<%-include('../admin/layout/admin-header-layout.ejs') -%>
+
+
+  <!-- Table Start -->
+  <div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-12">
+            <div class="bg-secondary rounded h-100 p-4">
+                
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Brand</th>
+                                <th scope="col">Model</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+
+                           
+                            <% products.forEach(function(product){ %>
+                              
+                                <tr>
+                                    <td scope="row">
+                                        <%= index++ %>
+                                    </td>
+                                  
+                                    <td><%= product?.brand?.brand %></td>
+                                    <td><%= product?.model %></td>
+                                    <td><%= product?.description  %></td>
+                                    <td><%= product?.price  %></td>
+                                    <td><img src="/images/product_img/<%= product?.image[0] %>" style="width: 100px"  alt=""></td>
+                                    <td>
+                                        <form action="/admin/editproducts/<%= product._id %>" method="post">
+                                            <button type="submit" class="btn btn-warning">Edit</button>
+                                        </form>
+                                        <% if (product.status== "List") { %>
+                                            <form action="/admin/deleteProduct/<%= product._id %>" method="post">
+                                                <button type="submit" class="btn btn-danger"> Unlist</button>
+                                            </form>
+                                            <% } else { %>
+                                            <form action="/admin/listProduct/<%= product._id %>" method="post">
+                                              <button type="submit" class="btn btn-success">List</button>
+                                            </form>
+                                            <% } %>
+                                        
+                                    </td>
+                                </tr>
+                                <% }) %>
+                                
+                    
+                   
+            </tbody>
+
+        </table>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+<%-include('../admin/layout/admin-footer-layout.ejs') -%>
+

@@ -1,0 +1,59 @@
+<%-include('../admin/layout/admin-header-layout.ejs') -%>
+
+
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Pro Wireless</h6>
+                <form action="/admin/editproducts" method="post">
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Brand</label>
+                        <select class="form-control" placeholder="brand" name="brand" id="basic-icon-default-fullname">
+                            <% brand.forEach(function(x) { %>
+                            <%if (x.brand==product.brand.brand){ %>
+                            <option selected value="<%= x._id %>">
+                                <%= x.brand %>
+                            </option>
+                            <% }else{ %>
+                                <option value="<%= x?._id %>">
+                                    <%= x?.brand %>
+                                </option>
+                                <% } %>
+                                <% }) %>
+
+                            }
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Model</label>
+                        <input type="text" name="model" value="<%= product.model %>" class="form-control"></div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Description</label>
+                            <input type="text" value="<%=product.description %>"name="description" class="form-control"></div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Price</label>
+                                <input type="number"  value="<%=product.price %>" name="price" class="form-control"></div>
+                                <div class="mb-3">
+                                  <label for="formFile" class="form-label">Image</label>
+                                 <input class="form-control bg-dark"  name="image" type="file" id="formFile">
+                                  </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+<%-include('../admin/layout/admin-footer-layout.ejs') -%>
