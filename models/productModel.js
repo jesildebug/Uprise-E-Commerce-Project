@@ -5,7 +5,7 @@ const productSchema = new mongoose.Schema({
         type: Objectid,
         required: true,
         ref:"BrandData"
-    },
+    },   
 
     model : {
         type: String,

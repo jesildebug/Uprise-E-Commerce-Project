@@ -18,6 +18,17 @@ router.get('/logout', controller.logout )
 router.get('/products',controller.userSession,controller.products);
 router.get('/single/:id',controller.userSession,controller.single);
 
+//cart
+
+ router.get('/cart', controller.userSession, controller.cart);
+ router.get('/cart/:id', controller.userSession, controller.addToCart)
+
+
+ //wishlist
+
+ router.get('/wishlist',controller.userSession,controller.wishlist)
+
+ router.get('/add-to-wishlist/:id', controller.userSession, controller.addtowishlist)
 
 // POST METHOD
 
