@@ -1,0 +1,52 @@
+<!-- Header Section Begin -->
+<header class="header-section">
+    <div class="container-fluid">
+        <div class="inner-header">
+            <div class="logo">
+                <!-- <a href="./index.html"><img src="/images/user/img/logo.png" alt=""></a> -->
+            </div>
+            <div class="header-right">
+                <img src="/images/user/img/icons/search.png" alt="" class="search-trigger">
+                <a href="/user/profile"><img src="/images/user/img/icons/man.png" alt="" > </a>
+            
+                <a href="/wishList">
+                  <img src="/images/user/img/icons/heart.png" style="height:18px;" alt="">
+                <a href="/cart">
+                    <img src="/images/user/img/icons/bag.png" alt="">
+                    
+                </a>
+            </div>
+
+
+            <% if(!login) { %>
+                <div class="user-access">
+                    <a href="/signuppage">Register</a>
+                    <a href="/login" class="in">Sign in</a>
+                </div>
+            <% } %>
+
+            <% if(login) { %>
+                <div class="user-access">
+                    <a href="/logout" class="in">Log Out</a>
+                </div>
+            <% } %>
+
+
+            <nav class="main-menu mobile-menu">
+                <ul>
+                    <li><a class="active" href="/homepage">Home</a></li>
+                    <li><a href="/products">Shop</a>
+                        <ul class="sub-menu">
+                            
+                            <li><a href="/cart">Shopping Card</a></li>
+                            <li><a href="check-out.html">Check out</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="./product-page.html">About</a></li>
+                    <li><a href="./check-out.html">Blog</a></li>
+                    <li><a href="./contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>

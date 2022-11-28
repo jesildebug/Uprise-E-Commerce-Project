@@ -4,12 +4,12 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-:root {
+ :root {
     --bs-blue: #0d6efd;
     --bs-indigo: #6610f2;
     --bs-purple: #6f42c1;
     --bs-pink: #d63384;
-    --bs-red: #adadad;
+    --bs-red: #dc3545;
     --bs-orange: #fd7e14;
     --bs-yellow: #ffc107;
     --bs-green: #198754;
@@ -18,14 +18,14 @@
     --bs-white: #fff;
     --bs-gray: #6c757d;
     --bs-gray-dark: #343a40;
-    --bs-primary: #6c757d;
-    --bs-secondary: #6c757d;
+    --bs-primary: #EB1616;
+    --bs-secondary: #191C24;
     --bs-success: #198754;
     --bs-info: #0dcaf0;
     --bs-warning: #ffc107;
-    --bs-danger: #fbd9dd;
+    --bs-danger: #dc3545;
     --bs-light: #6C7293;
-    --bs-dark: #fff;
+    --bs-dark: #000;
     --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0))
@@ -49,10 +49,10 @@ body {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #d4d5e0;
-    background-color: rgb(79, 74, 74);
+    color: #6C7293;
+    background-color: #000;
     -webkit-text-size-adjust: 100%;
-    -webkit-tap-highlight-color: rgba(173, 173, 173, 0)
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
 }
 
 hr {
@@ -84,7 +84,7 @@ h6,
     font-family: "Roboto", sans-serif;
     font-weight: 700;
     line-height: 1.2;
-    color: rgb(0, 0, 0)
+    color: #fff
 }
 
 h1,
@@ -212,7 +212,7 @@ small,
 mark,
 .mark {
     padding: .2em;
-    background-color: #eae9e8
+    background-color: #fcf8e3
 }
 
 sub,
@@ -232,12 +232,12 @@ sup {
 }
 
 a {
-    color: #6c6a6a;
+    color: #EB1616;
     text-decoration: none
 }
 
 a:hover {
-    color: #5f5656
+    color: #bc1212
 }
 
 a:not([href]):not([class]),
@@ -274,7 +274,7 @@ pre code {
 
 code {
     font-size: .875em;
-    color:#5f5656;
+    color: #d63384;
     word-wrap: break-word
 }
 
@@ -610,7 +610,7 @@ progress {
 
 .img-thumbnail {
     padding: .25rem;
-    background-color: #b3bbc3(53, 53, 53);
+    background-color: #000;
     border: 1px solid #dee2e6;
     border-radius: 5px;
     max-width: 100%;
@@ -1993,18 +1993,18 @@ progress {
 }
 
 .table {
-    --bs-table-bg: rgba(209, 209, 209, 0);
+    --bs-table-bg: rgba(0, 0, 0, 0);
     --bs-table-striped-color: #6C7293;
-    --bs-table-striped-bg: rgb(250, 245, 245);
-    --bs-table-active-color: #d5d5d5;
-    --bs-table-active-bg: rgba(245, 245, 245, 0.921);
+    --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
+    --bs-table-active-color: #6C7293;
+    --bs-table-active-bg: rgba(0, 0, 0, 0.1);
     --bs-table-hover-color: #6C7293;
     --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
     width: 100%;
     margin-bottom: 1rem;
-    color: #000000;
+    color: #6C7293;
     vertical-align: top;
-    border-color: black
+    border-color: #000
 }
 
 .table>:not(caption)>*>* {
@@ -2488,7 +2488,7 @@ textarea.form-control-lg {
     height: 1em;
     margin-top: .25em;
     vertical-align: top;
-    background-color: #dbe1e2;
+    background-color: #000;
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -2516,7 +2516,7 @@ textarea.form-control-lg {
 }
 
 .form-check-input:checked {
-    background-color: #848080;
+    background-color: #EB1616;
     border-color: #EB1616
 }
 
@@ -3127,7 +3127,7 @@ fieldset:disabled .btn {
 
 .btn-secondary {
     color: #fff;
-    background-color: #fff;
+    background-color: #191C24;
     border-color: #191C24
 }
 
@@ -3453,7 +3453,7 @@ fieldset:disabled .btn {
 
 .btn-check:focus+.btn-outline-primary,
 .btn-outline-primary:focus {
-    box-shadow: 0 0 0 .25rem rgba(246, 240, 240, 0.5)
+    box-shadow: 0 0 0 .25rem rgba(235, 22, 22, 0.5)
 }
 
 .btn-check:checked+.btn-outline-primary,
@@ -3462,7 +3462,7 @@ fieldset:disabled .btn {
 .btn-outline-primary.active,
 .btn-outline-primary.dropdown-toggle.show {
     color: #fff;
-    background-color: #e6d7d7;
+    background-color: #EB1616;
     border-color: #EB1616
 }
 
@@ -4395,7 +4395,7 @@ fieldset:disabled .btn {
 .nav-pills .nav-link.active,
 .nav-pills .show>.nav-link {
     color: #fff;
-    background-color: grey;
+    background-color: #EB1616
 }
 
 .nav-fill>.nav-link,
@@ -4726,7 +4726,7 @@ fieldset:disabled .btn {
 
 .navbar-light .navbar-brand:hover,
 .navbar-light .navbar-brand:focus {
-    color: rgba(242, 231, 231, 0.963)
+    color: rgba(0, 0, 0, 0.9)
 }
 
 .navbar-light .navbar-nav .nav-link {
@@ -8349,7 +8349,7 @@ fieldset:disabled .btn {
 }
 
 .bg-secondary {
-    background-color: #e3e3e3 !important
+    background-color: #191C24 !important
 }
 
 .bg-success {

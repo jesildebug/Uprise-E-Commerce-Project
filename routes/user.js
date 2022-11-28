@@ -18,14 +18,25 @@ router.get('/logout', controller.logout )
 router.get('/products',controller.userSession,controller.products);
 router.get('/single/:id',controller.userSession,controller.single);
 
+router.get('/user/profile',controller.userSession,controller.profile)
+router.get('/address',controller.addAddressPage)
+
+
+
 //cart
 
  router.get('/cart', controller.userSession, controller.cart);
  router.get('/cart/:id', controller.userSession, controller.addToCart)
+ router.get('/user/deleteCart/:id',controller.userSession, controller.deleteCart)
+ router.get("/user/button-increment/:id", controller.userSession,controller.incQuantity);
+ router.get("/user/button-decrement/:id", controller.userSession,controller.decQuantity)
 
 
+
+ 
  //wishlist
 
+ 
  router.get('/wishlist',controller.userSession,controller.wishlist)
 
  router.get('/add-to-wishlist/:id', controller.userSession, controller.addtowishlist)
@@ -37,6 +48,11 @@ router.post('/otp', controller.sendOtp);
 router.post('/verify',controller.verify);
 router.post('/signin',controller.signin);
 router.post('/resendOtp',controller.resendOtp)
+
+
+router.post('/newAddress', controller.newAddress)
+
+
 
 
 

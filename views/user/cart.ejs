@@ -24,7 +24,7 @@
         <div class="container-fluid">
             <div class="inner-header">
                 <div class="logo">
-                    <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                    <!-- <a href="./index.html"><img src="img/logo.png" alt=""></a> -->
                 </div>
 
                 <div class="header-right">
@@ -73,13 +73,13 @@
                 <div class="col-md-4 text-left text-lg-center">
                     <div class="header-item">
                         <img src="img/icons/voucher.png" alt="">
-                        <p>20% Student Discount</p>
+                        <p>20% Diwaali sale</p>
                     </div>
                 </div>
                 <div class="col-md-4 text-left text-xl-right">
                     <div class="header-item">
                     <img src="img/icons/sales.png" alt="">
-                    <p>30% off on dresses. Use code: 30OFF</p>
+                    <p>30% off on Oppo. Use code: 30OFF</p>
                 </div>
                 </div>
             </div>
@@ -95,13 +95,13 @@
                 <div class="col-lg-4">
                     <div class="page-breadcrumb">
                         <h2>Cart<span>.</span></h2>
-                        <a href="#">Home</a>
+                        <!-- <a href="#">Home</a>
                         <a href="#">Dresses</a>
-                        <a class="active" href="#">Night Dresses</a>
+                        <a class="active" href="#">Night Dresses</a> -->
                     </div>
                 </div>
                 <div class="col-lg-8">
-                    <img src="img/add.jpg" alt="">
+                    <img src="/images/product_img/oneplus.jpg" alt="">
                 </div>
             </div>
         </div>
@@ -129,20 +129,33 @@
                                 <td class="product-col">
                                     <img src="/images/product_img/<%= data.productId.image[0] %>" alt="">
                                     <div class="p-title">
-                                        <h5><%= data.productId.brand %> <%= data.productId. model  %>
+                                        <h5><%= data.productId.model  %>
                                         </h5>
                                     </div>
                                 </td>
                                 <td class="price-col">₹<%= data.productId.price %></td>
-                                <td class="quantity-col">
-                                    <div class="pro-qty">
-                                        <input type="text" value="1">
-                                    </div>
-                                </td>
-                                <td class="total">Rs 54,999</td>
-                                <td class="product-close">x</td>
-                            <% }) %>
+                                <td>
+                             <div class="qty-label">
+                                <div class="input-number">  
+                                        Qty:
+                                        <a class="qty-up" href="user/button-increment/<%=data.productId._id %>"
+                                            onclick="addToCart('<%=data.productId.id%>','<%=data.productId.model%>','<%=data.productId.price %>',1)">+</a>
+                                                        <input id="itemQty-<%= data.productId.id %>" type="text"
+                                                            value="<%= data.quantity %>"
+                                                            style="height: 40px; width: 30px; border: none;">
+                                                        <a class="qty-down" href="user/button-decrement/<%= data.productId._id %>"
+                                                            onclick="addToCart('<%=data.productId.id%>','<%=data.productId.model%>','<%=data.productId.price %>',-1)">-</a>
+                                 </div>
+                             </div>
+                             </td>
+
+                             
+                              
+                                <td class="total"><%= cartTotal %> </td>
+                                <!-- <td class="product-close">x</td> -->
+                                <td class="text-center align-middle px-0"><a href="user/deleteCart/<%= data.productId._id %>" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">×</a></td>
                             </tr>
+                            <% }) %>
                     </tbody>
                 </table>
             </div>
