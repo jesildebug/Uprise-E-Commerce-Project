@@ -253,8 +253,8 @@ module.exports = {
     addToCart: async (req, res) => {
         let productId = req.params.id;
         let userId = req.session.userId;
-        // let quantity = req.params.quantity;
         let product = await productModel.findById(productId)
+        let total = product.price
         console.log(product);
 
         const carts = await cartModel.findOne({ user: userId });
@@ -264,7 +264,7 @@ module.exports = {
                 .then(async() => {
                     const cartProduct = await cartModel.findOneAndUpdate({user: userId}, {
                         $push: {
-                            products: [{ productId }],
+                            products: [{ productId, total }],
                         }});
                     cartProduct.save()
                     .then(()=>{
@@ -277,6 +277,18 @@ module.exports = {
                 .catch(() => {
                     console.log("Error in cart saving");
                 })
+        }else{
+            const cartProduct = await cartModel.findOneAndUpdate({user: userId}, {
+                $push: {
+                    products: [{ productId, total }],
+                }});
+            cartProduct.save()
+            .then(()=>{
+                res.redirect("back")
+            })
+            .catch(() => {
+                console.log("Error in product saving");
+            })
         }
     },
 
@@ -311,7 +323,7 @@ module.exports = {
             'products.productId': productId
         }, {
             $inc: {
-                'products.$.quanity': -1,
+                'products.$.quantity': -1,
                 'products.$.total': -price
             }
         })
