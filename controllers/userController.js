@@ -10,7 +10,7 @@ const brandModel = require('../models/brandModel');
 const addressModel = require('../models/addressModel');
 // const orderModel = require("../../model/orderModel");
 const {response} = require('express');
-const { findOneAndUpdate } = require('../models/userModel');
+const {findOneAndUpdate} = require('../models/userModel');
 
 
 var fullname;
@@ -255,38 +255,50 @@ module.exports = {
         let userId = req.session.userId;
         let product = await productModel.findById(productId)
         let total = product.price
-        console.log(product);
 
-        const carts = await cartModel.findOne({ user: userId });
-        if (!carts) {
-            const newCart = new cartModel({user: userId});
-            await newCart.save()
-                .then(async() => {
-                    const cartProduct = await cartModel.findOneAndUpdate({user: userId}, {
-                        $push: {
-                            products: [{ productId, total }],
-                        }});
-                    cartProduct.save()
-                    .then(()=>{
-                        res.redirect("back")
-                    })
-                    .catch(() => {
-                        console.log("Error in product saving");
-                    })
+        console.log(total);
+
+        const carts = await cartModel.findOne({user: userId});
+        if (! carts) {
+            const newCart = new cartModel({user: userId, cartTotal: total});
+            await newCart.save().then(async () => {
+                const cartProduct = await cartModel.findOneAndUpdate({
+                    user: userId
+                }, {
+                    $push: {
+                        products: [
+                            {
+                                productId,
+                                total
+                            }
+                        ]
+                    }
+                });
+                cartProduct.save().then(() => {
+                    res.redirect("back")
+                }).catch(() => {
+                    console.log("Error in product saving");
                 })
-                .catch(() => {
-                    console.log("Error in cart saving");
-                })
-        }else{
-            const cartProduct = await cartModel.findOneAndUpdate({user: userId}, {
-                $push: {
-                    products: [{ productId, total }],
-                }});
-            cartProduct.save()
-            .then(()=>{
-                res.redirect("back")
+            }).catch(() => {
+                console.log("Error in cart saving");
             })
-            .catch(() => {
+        } else {
+            const cartProduct = await cartModel.findOneAndUpdate({
+                user: userId
+            }, {
+                $push: {
+                    products: [
+                        {
+                            productId,
+                            total
+                        }
+                    ]
+                },
+                $inc:{cartTotal:total}
+            });
+            cartProduct.save().then(() => {
+                res.redirect("back")
+            }).catch(() => {
                 console.log("Error in product saving");
             })
         }
@@ -324,7 +336,7 @@ module.exports = {
         }, {
             $inc: {
                 'products.$.quantity': -1,
-                'products.$.total': -price
+                'products.$.total': - price
             }
         })
         res.redirect('/cart')
@@ -338,8 +350,8 @@ module.exports = {
         const cart = await cartModel.findOne({userId})
         const itemIndex = cart.products.findIndex(product => product.productId == productId);
         cart.products.splice(itemIndex, 1)
-        cart.total = cart.products.reduce((acc, curr) => {
-            return acc + curr.price;
+        cart.cartTotal = cart.products.reduce((acc, curr) => {
+            return acc + curr.total;
         }, 0)
         await cart.save().then(() => {
             res.redirect("/cart");
