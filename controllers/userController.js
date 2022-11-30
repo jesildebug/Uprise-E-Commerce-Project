@@ -216,6 +216,7 @@ module.exports = {
         }
 
     },
+    
 
 
     cart: async (req, res) => {
@@ -426,19 +427,26 @@ module.exports = {
 
     },
 
-    // checkout: async(req,res) => {
-    //     let userId = req.session.userId;
-    //     let profile = await addressModel.findOne({ userId })
-    //     const user = await userModel.findById( { userId})
-    //     const cart = await cartModel.findOne({ userId }).populate( 'products.productId')
-    //     const carts = cart.products
-    //     const cartTotal = cart.cartTotal
-    //     if(profile!=null){
-    //         profile =
-    //     }
+    checkout: async(req,res) => {
+        let userId = req.session.userId;
+        let profile = await addressModel.findOne({ userId })
+        const user = await userModel.findById( { _id:userId})
+        const cart = await cartModel.findOne({ userId }).populate( 'products.productId')
+        const carts = cart.products
+        const cartTotal = cart.cartTotal
+        if(profile!=null){
+            profile = profile.address
+            let num = profile.length -1
+            const addIndex = req.body.indexs? req.body.indexs: num
+            console.log(req.body)
+            res.render('user/checkout' , { user, addIndex, profile, carts, cart, cartTotal, index:1 }) 
+        }
+        else{
+            res.render('user/checkout', { user, profile })
+        }
 
 
-    // },
+    },
 
 
     // orderSuccess: async (req, res) => {

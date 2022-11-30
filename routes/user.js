@@ -36,10 +36,13 @@ router.get('/address',controller.addAddressPage)
  
  //wishlist
 
- 
  router.get('/wishlist',controller.userSession,controller.wishlist)
 
  router.get('/add-to-wishlist/:id', controller.userSession, controller.addtowishlist)
+
+ //checkout
+
+ router.get('/checkout' ,controller.userSession, controller.checkout)
 
 // POST METHOD
 

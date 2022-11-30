@@ -1,4 +1,6 @@
-<%-include('../user/layout/user-header-layout.ejs') -%>
+<%-include('../user/layout/user-header-layout.ejs')-%>
+
+
 
 
 
@@ -29,7 +31,9 @@
 
                 <div class="header-right">
                     <img src="/images/user/img/icons/search.png" alt="" class="search-trigger">
-                    <img src="/images/user/img/icons/man.png" alt="">
+                    
+                    <a href="/user/profile"><img src="/images/user/img/icons/man.png" alt="" > </a>
+                    
                     <a href="/wishlist">
                             <img src="/images/user/img/icons/heart.png" style="height:18px;" alt="">
                     <a href="/cart"> 
@@ -188,7 +192,7 @@
                                                 <hr>
                                             </td>
                                                
-                                    <a href="#" class="primary-btn chechout-btn">Proceed to checkout</a>
+                                    <a href="/checkout" class="primary-btn chechout-btn">Proceed to checkout</a>
                                 </div>
                             </div>
                         </div>
