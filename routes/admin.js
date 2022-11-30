@@ -19,6 +19,13 @@ router.get('/viewproducts',controller.viewproducts);
 
 
 
+router.get("/addbanner",controller.addBannerpage);
+router.get("/bannerview",controller.viewBannerpage);
+
+
+
+
+
 
 //POST METHOD
 router.post('/login',controller.adminlogin);
@@ -37,6 +44,10 @@ router.post('/addproduct',controller.addproducts)
 
 router.post('/updateproduct/:id',controller.updateproduct);
 router.post('/editproducts/:id',controller.editproduct);
+router.post('/addbanner',controller.addbanner)
+
+
+
 
 
 

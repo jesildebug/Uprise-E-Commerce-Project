@@ -1,7 +1,7 @@
 const AdminModel = require("../models/adminModel");
 const UserModel = require('../models/userModel');
 const BrandModel = require('../models/brandModel');
-
+const bannerModel = require("../models/banner");
 
 const bcrypt = require("bcrypt");
 const {signuppage} = require("./userController");
@@ -39,6 +39,16 @@ module.exports = {
         req.session.adminLogin = true;
         res.redirect('/admin/adminhome');
     },
+
+
+    // adminSession: (req, res, next) => {
+    //     if (req.session.adminlogin) {
+    //         next();
+    //     } else {
+    //         res.redirect("/admin/signin");
+    //     }
+    // },
+
 
 
     // view all user
@@ -79,12 +89,7 @@ module.exports = {
     },
 
 
-    // view all products
-
-    productpage: async (req, res) => {
-        let brand = await BrandModel.find();
-        res.render('admin/addProducts', {brand})
-    },
+   
 
     // BRAND(CATEGORY)
 
@@ -119,6 +124,14 @@ module.exports = {
     viewproducts: async (req, res) => {
         const products = await productModel.find({}).populate('brand')
         res.render('admin/viewproducts', {products, index: 1})
+    },
+     
+    
+    // view all products
+
+     productpage: async (req, res) => {
+        let brand = await BrandModel.find();
+        res.render('admin/addProducts', {brand})
     },
 
     // Add products with image
@@ -224,38 +237,50 @@ module.exports = {
         })
     },
 
-    // product
 
+    //Add banner
 
-    // newProduct: async (req, res) => {
-    //     console.log(req.body)
-    //     const {category, productName, description, price} = req.body;
-    //     const image = req.file;
-    //     console.log(image);
+    addBannerpage: async (req,res) => {
+        const banners = await bannerModel.find()
+        console.log(banners)
+        res.render('admin/addbanner',{banners,index:1})
 
-    //     const newProduct = productModel ({
+    },
 
-    //         brand,
-    //         model,
-    //         description,
-    //         price,
-    //         image: image.path,
+    viewBannerpage: async (req,res) => {
+        const banners = await bannerModel.find({})
+        console.log(banners)
+        res.render('admin/bannerview', {banners,index:1})
+    },
 
+    addbanner: async (req, res) => {
+        const {bannerName,description} = req.body;
+        console.log(description);
+        req.files.forEach(img => {});
+        console.log(req.files);
+        const bannerImages = req.files != null ? req.files.map((img) => img.filename) : null
+        console.log(bannerImages);
+        const newBanner =  bannerModel({
+            bannerName,
+            description,
+            image: bannerImages
+        });
+        await newBanner.save().then(() => {
+            console.log("Image has uploaded");
+            res.redirect('/admin/bannerview')
+        }).catch((err) => {
+            console.log(err.message);
+            res.redirect("/admin/banner")
+           
+        })
+    },
 
-    //     });
+    // listBanner: async(req,res) =>{
 
-
-    //     await newProduct
-    //        .save()
-    //        .then(() => {
-    //         console.log(" new product added successfully");
-    //         res.redirect("/admin/addProducts");
-    //     })
-    //         .catch(() => {
-    //         console.log("Error");
-    //     });
 
     // },
+
+  
 
 
 }

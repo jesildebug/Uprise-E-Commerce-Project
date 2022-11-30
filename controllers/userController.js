@@ -361,44 +361,6 @@ module.exports = {
     },
 
 
-    // quantityIncrement: async (req, res) => {
-    //     let userId = req.session.userId;
-    //     console.log(userId)
-    //     let productId = req.params.id;
-    //     let product = await productModel.findById(productId)
-    //     const cart = await cartModel.findOneAndUpdate({
-    //         userId,
-    //         'products.productId': productId
-    //     }, {
-    //         $inc: {
-    //             "products.$.quantity": 1,
-    //             "products.$.total": product.price,
-    //             cartTotal: product.price
-    //         }
-    //     })
-
-    //     res.redirect("back")
-    // },
-
-    // quantityDecrement: async (req, res) => {
-    //     let userId = req.session.userId;
-    //     console.log(userId)
-    //     let productId = req.params.id;
-    //     let product = await productModel.findById(productId)
-    //     const cart = await cartModel.findOneAndUpdate({
-    //         userId,
-    //         'products.productId': productId
-    //     }, {
-    //         $inc: {
-    //             "products.$.quantity": -1,
-    //             "products.$.total": product.price * -1,
-    //             cartTotal: product.price * -1
-    //         }
-    //     })
-
-    //     res.redirect("back")
-    // },
-
 
     wishlist: async (req, res) => {
         let userId = req.session.userId;
@@ -595,31 +557,6 @@ module.exports = {
 
     },
 
-
-    // signup: async (req, res) => {
-    //     const newuser = userModel(req.body);
-    //     console.log(req.body);
-    //     bcrypt.genSalt(10, (err, salt) => {
-    //         bcrypt.hash(newuser.Password, salt, (err, hash) => {
-    //             if (err)
-    //                 throw err;
-
-
-    //             newuser.Password = hash;
-    //             newuser.save().then(() => {
-    //                 res.redirect("/login");
-
-    //             }).catch((err) => {
-    //                 console.log(err);
-    //                 res.redirect("/login")
-
-    //             })
-    //         })
-    //     })
-
-
-    // },
-
     // LOGIN
 
     signin: async (req, res) => {
@@ -644,21 +581,6 @@ module.exports = {
         req.session.user = user.UserName
         req.session.userId = user._id
         req.session.userLogin = true;
-
-
-        // const wish = await wishlistModel.findOne({ user: req.session.userId });
-        //     if (!wish) {
-        //         const newWishList = new wishlistModel({
-        //             user: req.session.userId
-        //         });
-        //         await newWishList.save()
-        //             .then(() => {
-
-        //             })
-        //             .catch(() => {
-        //                 console.log("Error");
-        //             })
-        //         }
         res.render('user/home', {
             login: true,
             user: user.UserName

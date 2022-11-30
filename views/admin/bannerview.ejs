@@ -1,0 +1,65 @@
+<%-include('../admin/layout/admin-header-layout.ejs') -%>
+
+
+  <!-- Table Start -->
+  <div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-12">
+            <div class="bg-secondary rounded h-100 p-4">
+                
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Banner Name</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Image</th>
+                               
+                            </tr>
+                        </thead>
+                        <tbody >
+
+                           
+                            <% banners.forEach(function(banner){ %>
+                              
+                                <tr>
+                                    <td scope="row">
+                                        <%= index++ %>
+                                    </td>
+                                  
+                                    <td><%= banner?.bannerName%></td>
+                                    <td><%= banner?.description  %></td>
+                                    
+                                    <td><img src="/images/product_img/<%= banner?.image[0] %>" style="width: 100px"  alt=""></td>
+                                    <td>
+                                        <form action="/admin/editproducts/<%= banner._id %>" method="post">
+                                            <button type="submit" class="btn btn-warning">Edit</button>
+                                        </form>
+                                        <% if (banner.status== "List") { %>
+                                            <form action="/admin/deleteProduct/<%= banner._id %>" method="post">
+                                                <button type="submit" class="btn btn-danger"> Unlist</button>
+                                            </form>
+                                            <% } else { %>
+                                            <form action="/admin/listProduct/<%= banner._id %>" method="post">
+                                              <button type="submit" class="btn btn-success">List</button>
+                                            </form>
+                                            <% } %>
+                                        
+                                    </td>
+                                </tr>
+                                <% }) %>
+                                
+                    
+                   
+            </tbody>
+
+        </table>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+<%-include('../admin/layout/admin-footer-layout.ejs') -%>
+
