@@ -317,7 +317,9 @@ module.exports = {
         }, {
             $inc: {
                 'products.$.quantity': 1,
-                'products.$.total': price
+                'products.$.total': price,
+                cartTotal: price
+                
             }
         })
         res.redirect('/cart')
@@ -336,7 +338,8 @@ module.exports = {
         }, {
             $inc: {
                 'products.$.quantity': -1,
-                'products.$.total': - price
+                'products.$.total': - price,
+                cartTotal: -price
             }
         })
         res.redirect('/cart')
@@ -422,6 +425,20 @@ module.exports = {
 
 
     },
+
+    // checkout: async(req,res) => {
+    //     let userId = req.session.userId;
+    //     let profile = await addressModel.findOne({ userId })
+    //     const user = await userModel.findById( { userId})
+    //     const cart = await cartModel.findOne({ userId }).populate( 'products.productId')
+    //     const carts = cart.products
+    //     const cartTotal = cart.cartTotal
+    //     if(profile!=null){
+    //         profile =
+    //     }
+
+
+    // },
 
 
     // orderSuccess: async (req, res) => {
