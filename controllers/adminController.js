@@ -50,7 +50,6 @@ module.exports = {
     // },
 
 
-
     // view all user
 
     alluser: async (req, res) => {
@@ -89,13 +88,11 @@ module.exports = {
     },
 
 
-   
-
     // BRAND(CATEGORY)
 
     brand: async (req, res) => {
         const brand = await BrandModel.find({});
-        res.render('admin/addbrand', {brand,index:1})
+        res.render('admin/addbrand', {brand, index: 1})
     },
 
 
@@ -104,8 +101,7 @@ module.exports = {
     addbrand: (req, res) => {
         const brand = req.body.brand;
         const newBrand = BrandModel({brand});
-        newBrand.save().then
-        (res.redirect('/admin/brand'))
+        newBrand.save().then(res.redirect('/admin/brand'))
 
 
     },
@@ -125,11 +121,11 @@ module.exports = {
         const products = await productModel.find({}).populate('brand')
         res.render('admin/viewproducts', {products, index: 1})
     },
-     
-    
+
+
     // view all products
 
-     productpage: async (req, res) => {
+    productpage: async (req, res) => {
         let brand = await BrandModel.find();
         res.render('admin/addProducts', {brand})
     },
@@ -154,7 +150,7 @@ module.exports = {
             res.redirect('/admin/viewproducts')
         }).catch((err) => {
             console.log(err.message);
-           
+
         })
     },
 
@@ -238,49 +234,66 @@ module.exports = {
     },
 
 
-    //Add banner
+    // Add banner
 
-    addBannerpage: async (req,res) => {
+    addBannerpage: async (req, res) => {
         const banners = await bannerModel.find()
         console.log(banners)
-        res.render('admin/addbanner',{banners,index:1})
+        res.render('admin/addbanner', {banners, index: 1})
 
     },
 
-    viewBannerpage: async (req,res) => {
+    viewBannerpage: async (req, res) => {
         const banners = await bannerModel.find({})
         console.log(banners)
-        res.render('admin/bannerview', {banners,index:1})
+        res.render('admin/bannerview', {banners, index: 1})
     },
 
     addbanner: async (req, res) => {
-        const {bannerName,description} = req.body;
+        const {bannerName, description} = req.body;
         console.log(description);
         req.files.forEach(img => {});
         console.log(req.files);
         const bannerImages = req.files != null ? req.files.map((img) => img.filename) : null
         console.log(bannerImages);
-        const newBanner =  bannerModel({
-            bannerName,
-            description,
-            image: bannerImages
-        });
+        const newBanner = bannerModel({bannerName, description, image: bannerImages});
         await newBanner.save().then(() => {
             console.log("Image has uploaded");
             res.redirect('/admin/bannerview')
         }).catch((err) => {
             console.log(err.message);
             res.redirect("/admin/banner")
-           
+
         })
     },
 
-    // listBanner: async(req,res) =>{
+    listBanner: async (req, res) => {
+        const id = req.params.id
+        await bannerModel.findByIdAndUpdate({
+            _id: id
+        }, {
+            $set: {
+                status: 'List'
+            }
+        }).then(() => {
+            res.redirect("/admin/bannerview")
+        })
 
+    },
 
-    // },
+    unlistBanner: async (req, res) => {
+        const id = req.params.id
+        await bannerModel.findByIdAndUpdate({
+            _id: id
+        }, {
+            $set: {
+                status: 'Unlist'
+            }
+        }).then(() => {
+            res.redirect('/admin/bannerview')
+        })
 
-  
+    }
 
 
 }

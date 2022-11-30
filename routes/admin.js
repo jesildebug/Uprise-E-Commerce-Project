@@ -44,7 +44,10 @@ router.post('/addproduct',controller.addproducts)
 
 router.post('/updateproduct/:id',controller.updateproduct);
 router.post('/editproducts/:id',controller.editproduct);
-router.post('/addbanner',controller.addbanner)
+
+router.post('/addbanner',controller.addbanner);
+router.post('/listBanner/:id',controller.listBanner);
+router.post('/unlistBanner/:id',controller.unlistBanner);
 
 
 
