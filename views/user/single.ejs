@@ -7,7 +7,7 @@
     <meta name="keywords" content="Yoga, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Prowireless</title>
+    <title>iPro</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
@@ -52,12 +52,12 @@
 
                 <div class="header-right">
                     <img src="/images/user/img/icons/search.png" alt="" class="search-trigger">
-                    <img src="/images/user/img/icons/man.png" alt="">
+                    <img src="/images/user/img/icons/man.png" alt="" style="margin-left: 22px;">
                    
                     <a href="/wishList">
-                        <img src="/images/user/img/icons/heart.png" style="height:18px;" alt="">
+                        <img src="/images/user/img/icons/heart.png" style="height:18px;margin-left: 25px;" alt="">
                      <a href="/cart">
-                     <img src="/images/user/img/icons/bag.png" alt="">
+                     <img src="/images/user/img/icons/bag.png" alt="" style="margin-left: 25px;">
                      <span>2</span>
                     </a>
                 </div>
@@ -87,7 +87,30 @@
     </header>
    
     <!-- Header End -->
-
+    <div class="header-info">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="header-item">
+                        <img src="img/icons/delivery.png" alt="">
+                        <p>Free shipping on orders over $30 in USA</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-left text-lg-center">
+                    <div class="header-item">
+                        <img src="img/icons/voucher.png" alt="">
+                        <p>20% Student Discount</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-left text-xl-right">
+                    <div class="header-item">
+                        <img src="img/icons/sales.png" alt="">
+                        <p>30% off on dresses. Use code: 30OFF</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Page Add Section Begin -->
     <section class="page-add">
         <div class="container">
@@ -100,13 +123,14 @@
                         <a class="active" href="#">Night Dresses</a> -->
                     </div>
                 </div>
-                <div class="col-lg-8">
-                    <img src="/public/images/user/img/add.jpg" alt="">
-                </div>
+                <!-- <div class="col-lg-8">
+                    <img src="/public/images/product_img/image-1669800514023-600873897iphone13.jpg" alt="">
+                </div> -->
             </div>
         </div>
     </section>
     <!-- Page Add Section End -->
+    
 
      <!-- Product Page Section Beign -->
      <section class="product-page">
@@ -140,9 +164,9 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="product-content">
-                        <h2>iPhone11</h2>
+                        <h2><%= product?.brand?.brand %> <%= product.model %> </h2>
                         <div class="pc-meta">
-                            <h5>Rs.54,999</h5>
+                            <h5>Rs: <%=product.price %> </h5>
                             <div class="rating">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -151,24 +175,22 @@
                                 <i class="fa fa-star"></i>
                             </div>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
-                            viverra maecenas accumsan lacus vel facilisis.</p>
-                        <ul class="tags">
+                        <p><%=product.description %> </p>
+                        <!-- <ul class="tags">
                             <li><span>Brand :</span> Apple</li>
                             <li><span>Model :</span> Apple iPhone 11 Green</li>
-                        </ul>
+                        </ul> -->
                         <div class="product-quantity">
                             <div class="pro-qty">
                                 <input type="text" value="1">
                             </div>
                         </div>
                         <a href="/cart/<%= product._id %>" class="primary-btn pc-btn">Add to cart</a>
-                        <ul class="p-info">
+                        <!-- <ul class="p-info">
                             <li>Product Information</li>
                             <li>Reviews</li>
                             <li>Product Care</li>
-                        </ul>
+                        </ul> -->
                     </div>
                 </div>
             </div>

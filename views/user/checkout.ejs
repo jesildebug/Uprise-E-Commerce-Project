@@ -1,4 +1,48 @@
 <%-include('../user/layout/user-header-layout.ejs') -%>
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Male_Fashion Template" />
+    <meta name="keywords" content="Male_Fashion, unica, creative, html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Male-Fashion | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet" />
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="../stylesheets/user/cssM/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../stylesheets/user/cssM/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="../stylesheets/user/cssM/elegant-icons.css" type="text/css" />
+    <link rel="stylesheet" href="../stylesheets/user/cssM/magnific-popup.css" type="text/css" />
+    <link rel="stylesheet" href="../stylesheets/user/cssM/nice-select.css" type="text/css" />
+    <link rel="stylesheet" href="../stylesheets/user/cssM/owl.carousel.min.css" type="text/css" />
+    <link rel="stylesheet" href="../stylesheets/user/cssM/slicknav.min.css" type="text/css" />
+    <link rel="stylesheet" href="../stylesheets/user/cssM/style.css" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <!-- Nucleo Icons -->
+    <link href="../stylesheets/user/cssL/nucleo-icons.css" rel="stylesheet" />
+    <link href="../stylesheets/user/cssL/nucleo-svg.css" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <link href="../stylesheets/user/cssL/nucleo-svg.css" rel="stylesheet" />
+    <!-- CSS Files -->
+    <link id="pagestyle" href="../stylesheets/user/cssL/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
+
+</head>
 
 <!-- Header Section Begin -->
 <header class="header-section">
@@ -72,146 +116,271 @@
 <!-- Header End -->
 
 <!-- Page Add Section Begin -->
-<section class="page-add">
+<section class="checkout spad">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="page-breadcrumb">
-                    <h2>Checkout<span>.</span></h2>
-                </div>
-            </div>
-            <div class="col-lg-8">
-                <img src="img/add.jpg" alt="">
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Page Add Section End -->
-
-<!-- Cart Total Page Begin -->
-<section class="cart-total-page spad">
-    <div class="container">
-        <form action="#" class="checkout-form">
+        <div class="checkout__form">
             <div class="row">
-                <div class="col-lg-12">
-                    <h3>Your Information</h3>
-                </div>
-                <div class="col-lg-9">
-                    <div class="row">
-                        <div class="col-lg-2">
-                            <p class="in-name">Name*</p>
-                        </div>
-                        <div class="col-lg-5">
-                            <input type="text" placeholder="First Name">
-                        </div>
-                        <div class="col-lg-5">
-                            <input type="text" placeholder="Last Name">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-2">
-                            <p class="in-name">Street Address*</p>
-                        </div>
-                        <div class="col-lg-10">
-                            <input type="text">
-                            <input type="text">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-2">
-                            <p class="in-name">Country*</p>
-                        </div>
-                        <div class="col-lg-10">
-                            <select class="cart-select country-usa">
-                                <option>USA</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-2">
-                            <p class="in-name">City*</p>
-                        </div>
-                        <div class="col-lg-10">
-                            <input type="text">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-2">
-                            <p class="in-name">Country</p>
-                        </div>
-                        <div class="col-lg-10">
-                            <input type="text">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-2">
-                            <p class="in-name">Post Code/ZIP*</p>
-                        </div>
-                        <div class="col-lg-10">
-                            <input type="text">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-2">
-                            <p class="in-name">Phone*</p>
-                        </div>
-                        <div class="col-lg-10">
-                            <input type="text">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12 text-right">
-                            <div class="diff-addr">
-                                <input type="radio" id="one">
-                                <label for="one">Ship to different address</label>
+                <div class="col-lg-8 col-md-6">
+                    <h6 class="coupon__code">
+                        <span class="icon_tag_alt"></span> Want to change Address?
+
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-dark mt-3 ms-2" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+                            CLICK HERE
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Change Address
+                                        </h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <form action="/changeAddress" method="post">
+                                        <div class="modal-body">
+                                            <% profile.forEach(function(add, indexs){ %>
+                                                <div class="frb-group">
+                                                    <div class="frb frb-default">
+                                                        <input type="radio" id="<%= indexs %>" class="radio-button"
+                                                            name="indexs" value="<%= indexs %>">
+                                                        <label for="<%= indexs %>">
+                                                            <span class="ms-5 mb-1 mt-3">
+                                                                <%= add.fullName %>, <%= add.currentAddress %>
+                                                            </span>
+                                                            <span class="ms-5 mb-3">
+                                                                <%= add.city %>, <%= add.state %>, <%= add.country
+                                                                            %>, <%= add.pincode %>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <% }) %>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-dark">Update Address</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="order-table">
-                        <div class="cart-item">
-                            <span>Product</span>
-                            <p class="product-name">Blue Dotted Shirt</p>
-                        </div>
-                        <div class="cart-item">
-                            <span>Price</span>
-                            <p>$29</p>
-                        </div>
-                        <div class="cart-item">
-                            <span>Quantity</span>
-                            <p>1</p>
-                        </div>
-                        <div class="cart-item">
-                            <span>Shipping</span>
-                            <p>$10</p>
-                        </div>
+                        </h6>
+                        <h6 class="checkout__title">Billing Details</h6>
 
-                        <div class="cart-total">
-                            <span>Total</span>
-                            <p>$39</p>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Full Name<span>*</span></p>
+                                        <input type="text" name="fullName" value="<%= profile[addIndex].fullName %>" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Email<span>*</span></p>
+                                        <input type="text" name="email" value="<%= user.email %>" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="checkout__input">
+                                <p>Country<span>*</span></p>
+                                <input type="text" name="country" value="<%= profile[addIndex].country %>" />
+                            </div>
+                            <div class="checkout__input">
+                                <p>Address<span>*</span></p>
+                                <input type="text" name="currentAddress" class="checkout__input__add"
+                                    value="<%= profile[addIndex].currentAddress %>" />
+                            </div>
+                            <div class="checkout__input">
+                                <p>Town/City<span>*</span></p>
+                                <input type="text" name="city" value="<%= profile[addIndex].city %>" />
+                            </div>
+                            <div class="checkout__input">
+                                <p>Country/State<span>*</span></p>
+                                <input type="text" name="state" value="<%= profile[addIndex].state %>" />
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Phone<span>*</span></p>
+                                        <input type="text" name="phone" value="<%= user.phone %>" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="checkout__input">
+                                        <p>Postcode / ZIP<span>*</span></p>
+                                        <input type="text" name="pincode" value="<%= profile[addIndex].pincode %>" />
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="cart__discount">
+                            <h6 class="">Discount codes</h6>
+
+                            <form class="row g-3">
+                                <div class="col-auto">
+                                </div>
+                                <div class="col-auto">
+                                </div>
+                            </form>
+
+                            <form action="#">
+                                <div class="col-12 mb-3 text-end">
+                                    <input type="email" class="form-control outline-dark"
+                                        placeholder="Enter Coupon Code">
+                                    <button type="submit" class="btn btn-dark btn-sm mt-0">Apply</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="checkout__order">
+                            <h4 class="order__title">Your order</h4>
+                            <div class="checkout__order__products font-weight-bold">
+                                Product <span>Total</span>
+                            </div>
+                            <ul class="checkout__total__products">
+                                <% carts.forEach(function(cart){ %>
+                                    <li>
+                                        <%= index++ %>. <%= cart.productId.name %><span>₹<%= cart.total %></span>
+                                    </li>
+                                    <% }) %>
+                            </ul>
+                            <ul class="checkout__total__all font-weight-bold">
+                                <li>Subtotal <span>₹ <%= cartTotal %></span></li>
+                                <li>Discount <span class="text-success">₹ 500 </span></li>
+                                <hr />
+                                <li>Total <span>₹ <%= cartTotal - 500 %> </span></li>
+                            </ul>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adip elit, sed do
+                                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                            </p>
+                            <form id="checkout-form" action="">
+                                <input type="radio" class="btn-check" name="paymentMethod" id="success-outlined"
+                                    value="Razorpay" />
+                                <label class="btn btn-outline-dark" for="success-outlined">Razorpay</label>
+
+                                <input type="radio" class="btn-check" name="paymentMethod" id="danger-outlined"
+                                    value="Cash on Delivery" />
+                                <label   class="btn btn-outline-dark" for="danger-outlined">Cash on Delivery</label>
+
+                                <input name="addIndex" id="danger-outlined" value="<%= addIndex %>" hidden />
+
+                                <button type="submit" class="site-btn">PLACE ORDER</button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="payment-method">
-                        <h3>Payment</h3>
-                        <ul>
-                            <li>Paypal <img src="img/paypal.jpg" alt=""></li>
-                            <li>Credit / Debit card <img src="img/mastercard.jpg" alt=""></li>
-                            <li>
-                                <label for="two">Pay when you get the package</label>
-                                <input type="radio" id="two">
-                            </li>
-                        </ul>
-                        <button type="submit">Place your order</button>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-</section>
-<!-- Cart Total Page End -->
+        </div>
+    </section>
+
+    <style>
+    .frb-group {
+        margin: 15px 0;
+    }
+    .frb~.frb {
+        margin-top: 15px;
+    }
+    .frb input[type="radio"]:empty,
+    .frb input[type="checkbox"]:empty {
+        display: none;
+    }
+    .frb input[type="radio"]~label:before,
+    .frb input[type="checkbox"]~label:before {
+        font-family: FontAwesome;
+        content: '\f096';
+        position: absolute;
+        top: 50%;
+        margin-top: -11px;
+        left: 15px;
+        font-size: 22px;
+    }
+    .frb input[type="radio"]:checked~label:before,
+    .frb input[type="checkbox"]:checked~label:before {
+        content: '\f046';
+    }
+    .frb input[type="radio"]~label,
+    .frb input[type="checkbox"]~label {
+        position: relative;
+        cursor: pointer;
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f2f2f2;
+    }
+    .frb input[type="radio"]~label:focus,
+    .frb input[type="radio"]~label:hover,
+    .frb input[type="checkbox"]~label:focus,
+    .frb input[type="checkbox"]~label:hover {
+        box-shadow: 0px 0px 3px #333;
+    }
+    .frb input[type="radio"]:checked~label,
+    .frb input[type="checkbox"]:checked~label {
+        color: #fafafa;
+    }
+    .frb input[type="radio"]:checked~label,
+    .frb input[type="checkbox"]:checked~label {
+        background-color: #f2f2f2;
+    }
+    .frb.frb-default input[type="radio"]:checked~label,
+    .frb.frb-default input[type="checkbox"]:checked~label {
+        color: #333;
+    }
+    .frb.frb-primary input[type="radio"]:checked~label,
+    .frb.frb-primary input[type="checkbox"]:checked~label {
+        background-color: #337ab7;
+    }
+    .frb.frb-success input[type="radio"]:checked~label,
+    .frb.frb-success input[type="checkbox"]:checked~label {
+        background-color: #5cb85c;
+    }
+    .frb.frb-info input[type="radio"]:checked~label,
+    .frb.frb-info input[type="checkbox"]:checked~label {
+        background-color: #5bc0de;
+    }
+    .frb.frb-warning input[type="radio"]:checked~label,
+    .frb.frb-warning input[type="checkbox"]:checked~label {
+        background-color: #f0ad4e;
+    }
+    .frb.frb-danger input[type="radio"]:checked~label,
+    .frb.frb-danger input[type="checkbox"]:checked~label {
+        background-color: #d9534f;
+    }
+    .frb input[type="radio"]:empty~label span,
+    .frb input[type="checkbox"]:empty~label span {
+        display: inline-block;
+    }
+    .frb input[type="radio"]:empty~label span.frb-title,
+    .frb input[type="checkbox"]:empty~label span.frb-title {
+        font-size: 16px;
+        font-weight: 700;
+        margin: 5px 5px 5px 50px;
+    }
+    .frb input[type="radio"]:empty~label span.frb-description,
+    .frb input[type="checkbox"]:empty~label span.frb-description {
+        font-weight: normal;
+        font-style: italic;
+        color: #999;
+        margin: 5px 5px 5px 50px;
+    }
+    .frb input[type="radio"]:empty:checked~label span.frb-description,
+    .frb input[type="checkbox"]:empty:checked~label span.frb-description {
+        color: #fafafa;
+    }
+    .frb.frb-default input[type="radio"]:empty:checked~label span.frb-description,
+    .frb.frb-default input[type="checkbox"]:empty:checked~label span.frb-description {
+        color: #999;
+    }
+</style>
+
+</html>
+
+
 <%-include('../user/layout/user-footer-layout.ejs') -%>

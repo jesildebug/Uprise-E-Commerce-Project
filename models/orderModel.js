@@ -4,7 +4,7 @@ const ObjectId = mongoose.Schema.Types.ObjectId
 
 const orderSchema = new mongoose.Schema ({
     userId : {
-        type:ObjectId,
+        type: ObjectId,
         required: true
     },
     products : [{
@@ -12,30 +12,62 @@ const orderSchema = new mongoose.Schema ({
                 type:ObjectId, 
                 ref: 'Product'
             },
-            quantity: {type: Number},
-            total : { type: Number} 
-    }],
-    total : {
-        type: Number,
-        required:true
-    },
-    address : {
-        type: ObjectId,
-        required: true,
-        ref : 'userAddress'
-    },
-    paymentMethod : {
-        type: String,
-        default: "Pending"
-    },
-    orderStatus : {
-        type : String,
-        default : 'Order placed'
-    },
-    date : {
-        type: Date ,
-        default : Date.now()
-    }
 
+            orderStatus: {
+                type: String,
+                default: 'Order Placed'
+
+            },
+            quantity: Number,
+            total :  Number
+    }],
+    paymentStatus: {
+        type: String,
+        default: 'Pending'
+    }, 
+    cartTotal: Number,
+    phone: {
+        type: Number,
+    },
+    address: {
+        fullName: {
+            type: String,
+            required: true
+        },
+        pincode: {
+            type: Number,
+            required: true
+        },
+        country: {
+            type: String,
+            required: true
+        },
+        currentAddress: {
+            type: String,
+            required: true
+        },
+        city: {
+            type: String,
+            required: true
+        },
+        state: {
+            type: String,
+            required: true
+        },
+    },
+    paymentMethod: {
+        type: String,
+    },
+    deliveryDate: {
+        type: Date
+    },
+    date: {
+        type: Date,
+        default: Date.now()
+    }
 })
-module.exports= order = mongoose.model('Order',orderSchema)
+
+
+const Order = mongoose.model('Order', orderSchema)
+
+module.exports = Order

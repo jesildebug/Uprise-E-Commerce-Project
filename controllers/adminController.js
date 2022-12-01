@@ -41,13 +41,7 @@ module.exports = {
     },
 
 
-    // adminSession: (req, res, next) => {
-    //     if (req.session.adminlogin) {
-    //         next();
-    //     } else {
-    //         res.redirect("/admin/signin");
-    //     }
-    // },
+   
 
 
     // view all user

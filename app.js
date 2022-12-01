@@ -72,7 +72,9 @@ app.use("/admin", adminRoute);
 // const {error}=require('console');
 app.use("/", userRoute);
 
-
+app.use("*",(req,res) => {
+    res.json("404")
+})
 
 
 // start server

@@ -8,9 +8,11 @@ const wishlistModel = require("../models/wishlistModel");
 const userModel = require('../models/userModel');
 const brandModel = require('../models/brandModel');
 const addressModel = require('../models/addressModel');
+const orderModel =require('../models/orderModel');
 // const orderModel = require("../../model/orderModel");
 const {response} = require('express');
 const {findOneAndUpdate} = require('../models/userModel');
+
 
 
 var fullname;
@@ -76,7 +78,8 @@ module.exports = {
 
 
     products: async (req, res) => {
-        let products = await productModel.find().populate('brand');
+        try{
+        let products = await productModel.find().populate('brand',);
         // let brand = await BrandModel.find();
         // res.render('user/products', {products, category})
         if (req.session.userLogin) {
@@ -84,15 +87,20 @@ module.exports = {
         } else {
             res.render("user/products", {products, login: false});
         }
+      }catch(error){
+        console.log(error)
+        res.redirect('/')
+      }
     },
 
 
     single: async (req, res) => {
+        try{
         let id = req.params.id;
         console.log(req.params.id);
         let brand = await BrandModel.find();
         let single = await productModel.findOne({_id: id});
-        let product = await productModel.findOne({_id: id});
+        let product = await productModel.findOne({_id: id}).populate('brand');
 
         // res.render('user/single' ,{single,category});
         if (req.session.userLogin) {
@@ -100,44 +108,33 @@ module.exports = {
         } else {
             res.render("user/single", {single, brand, product, login: false});
         }
+    }catch(error){
+        console.log(error)
+        res.redirect('/')
+    }
     },
 
     profile: async (req, res) => {
         let userId = req.session.userId;
-
         let brand = await brandModel.find();
         let user = await userModel.findOne({_id: userId});
         let address = await addressModel.findOne({userId: userId})
-        console.log(user)
+        console.log(address)
 
-
-        if (address) {
-            let address1 = address.address[0];
-            let address2 = address.address[1];
+         if (address) {
+           
             let address3 = address.address;
-            if (req.session.userLogin) {
+            
                 res.render("user/profile", {
                     user,
                     brand,
-                    address1,
-                    address2,
                     address3,
                     address,
                     index: 1,
                     login: true
                 });
-            } else {
-                res.render("user/profile", {
-                    user,
-                    brand,
-                    address1,
-                    address2,
-                    address,
-                    address3,
-                    index: 1,
-                    login: false
-                });
-            }
+            
+                
 
         } else {
             if (req.session.userLogin) {
@@ -147,7 +144,6 @@ module.exports = {
             }
         }
     },
-
 
     addAddressPage: async (req, res) => {
         let brand = await brandModel.find();
@@ -215,6 +211,30 @@ module.exports = {
             });
         }
 
+    },
+
+    changeAddress: async(req,res) => {
+        const addressId = req.params.id
+        const currrentAdd = await profile.findOne( { 'address._Id': addressId })
+        console.log(currrentAdd);
+        res.render('user/checkout', {currrentAdd})
+
+
+    },
+
+
+    //delete an address
+
+    deleteAddress: async(req,res) => {
+        let userId = req.session.userId;
+        let addressId = req.params.id
+
+        let address = await addressModel.findOneAndUpdate(
+            {userId:userId},
+            { $pull:{ address: {_id: addressId}}},
+        ).then( () => {
+            res.redirect('/user/profile')
+        })
     },
     
 
@@ -371,13 +391,13 @@ module.exports = {
         console.log(userId);
         let count = 0;
         let counts = 0;
-        const wishlist = await wishlistModel.findOne({user: userId});
+        const wishlist = await wishlistModel.findOne({user: userId})
 
         if (wishlist) {
             count = wishlist.products.length;
         }
         const User = await userModel.findById(userId)
-        wishlistModel.findOne({user: userId}).populate("products").exec((err, data) => {
+        wishlistModel.findOne({user: userId}).populate({path:"products", populate:{path:'brand'}}).exec((err, data) => {
             if (err) {
                 return console.log(err);
 
@@ -449,53 +469,49 @@ module.exports = {
     },
 
 
-    // orderSuccess: async (req, res) => {
-    //     let address = req.body.addressId
-    //     let paymentMethod = req.body.paymentMethod
-    //     let userData = req.session.user;
-    //     let userId = req.session.userId;
-    //     let cart = await cartModel.findOne({userId})
-    //     let total = cart.cartTotal
-    //     let products = cart.products
+    //verify payment
+     
+    verifyPayment: async(req,res) =>{
+        const userId = req.session.userId;
+        const cart =await cartModel.findOne({  userId });
+        const cartTotal = cart.cartTotal;
+        const product = cart.products;
+        const details = req.body;
+        const now = new Date()
+        const deliveryDate = now.setDate(now.getDate() +7)
+        const addIndex = parseInt(add[1])
+        let profile = await addressModel.findOne({ userId })
+        profile = profile.address[addIndex]
+        console.log(addIndex)
 
-    //     const newOrder = new orderModel ({
-    //         userId,
-    //         products,
-    //         total,
-    //         address,
-    //         paymentMethod,
-    //         orderStatus: "order placed"
-    //     })
+         const crypto = require("crypto");
+         let hmac = crypto.createHmac("sha256", );
+        
 
-    //     newOrder.save()
-    //     .then(async()=> {
-    //         await cartModel.findByIdAndDelete({_id:cart._id})
-    //         let orderId = newOrder._id
-    //         let total =cartTotal
-    //         console.log(paymentMethod);
-    //         if (paymentMethod==='COD') {
-    //             res.json({codesuccess:true})
-    //         }else{
+        
 
-    //             return new Promise (async(resolve,reject)=>{
-    //                 instance.orders.create({
-    //                     amount:total * 100,
-    //                     currency:"INR",
-    //                     reciept:" " + orderId,
 
-    //                 },function(err,order){
-    //                     console.log("New order" , order)
-    //                     resolve(order)
-    //                 })
-    //             }).then((response)=>{
-    //                 res.json(response)
-    //             })
-    //         }
+},
 
-    //     })
 
-    // },
+    //order Page
 
+    orderPage: async(req,res) => {
+        let sort =  { date:-1}
+        let userId = req.session.userId;
+        const order = await orderModel.find( {userId}).populate('product.productId').sort(sort)
+        res.render('user/orderPage', { order, user, moment , index: 1})
+
+
+    },
+
+    orderSuccess: async (req,res) => {
+        let userId = req.session.userId;
+        const orders = await orderModel.find({ userId }).populate('product.productId').sort({_id: -1}).limit(1)
+        res.render('user/ordersucces',{ orders,index: 1 })
+        
+
+    },
 
     sendOtp: async (req, res) => {
         fullname = req.body.FullName;

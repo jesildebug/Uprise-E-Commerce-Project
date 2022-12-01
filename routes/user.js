@@ -18,8 +18,11 @@ router.get('/logout', controller.logout )
 router.get('/products',controller.userSession,controller.products);
 router.get('/single/:id',controller.userSession,controller.single);
 
+// user profile address
+
 router.get('/user/profile',controller.userSession,controller.profile)
 router.get('/address',controller.addAddressPage)
+router.get('/deleteAddress/:id', controller.userSession,controller.deleteAddress)
 
 
 
@@ -44,6 +47,10 @@ router.get('/address',controller.addAddressPage)
 
  router.get('/checkout' ,controller.userSession, controller.checkout)
 
+ router
+   .route('/ordersuccess')
+   .get(controller.userSession,controller.orderSuccess)
+
 // POST METHOD
 
 // router.post('/signup', controller.signup);
@@ -54,6 +61,15 @@ router.post('/resendOtp',controller.resendOtp)
 
 
 router.post('/newAddress', controller.newAddress)
+
+router
+    .route('/changeAddress')
+    .post(controller.userSession,controller.checkout)
+
+
+
+
+
 
 
 
