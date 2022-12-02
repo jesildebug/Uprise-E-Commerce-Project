@@ -261,19 +261,36 @@
                                 Lorem ipsum dolor sit amet, consectetur adip elit, sed do
                                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
                             </p>
-                            <form id="checkout-form" action="">
-                                <input type="radio" class="btn-check" name="paymentMethod" id="success-outlined"
+                            <form id="checkout-form">
+                                <!-- <input type="radio" class="btn-check" name="paymentMethod" id="success-outlined"
                                     value="Razorpay" />
                                 <label class="btn btn-outline-dark" for="success-outlined">Razorpay</label>
 
                                 <input type="radio" class="btn-check" name="paymentMethod" id="danger-outlined"
                                     value="Cash on Delivery" />
-                                <label   class="btn btn-outline-dark" for="danger-outlined">Cash on Delivery</label>
+                                <label   class="btn btn-outline-dark"  for="danger-outlined">Cash on Delivery</label> -->
 
-                                <input name="addIndex" id="danger-outlined" value="<%= addIndex %>" hidden />
+                                <div class="form-check">
+                                    <label for="cod">
+                                        <input class="form-check-input" type="radio" id="cod" name="paymentType" checked
+                                            value="cod">
+                                        Cash on delivery </i>
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <label for="online-payment">
+                                        <input class="form-check-input" id="online-payment" type="radio"
+                                            name="paymentType" value="razorpay">
+                                        Online Payment </i>
+                                    </label>
+                                </div>
+
+                                
 
                                 <button type="submit" class="site-btn">PLACE ORDER</button>
                             </form>
+
+                            <input name="addIndex" id="danger-outlined" value="<%= addIndex %>" hidden />
                         </div>
                     </div>
                 </div>
@@ -287,7 +304,7 @@
             $.ajax ({
                 url: '/order',
                 method: 'post',
-                data:$('#checkout-form').serialize,
+                data:$('#checkout-form').serialize(),
                 success:(response) =>{
                     // alert(response)
                     if (response.status) {
@@ -300,7 +317,42 @@
             });
 
 
-        })
+        //  function razorpayment(order) {
+        //     console.log(order.order.id)
+        //    let options = {
+        //     "key":'rzp_test_X3YzIfgkfukV1B',
+        //     "amount":order.amount,
+        //     "currency": "INR",
+        //     "name": "iPro",
+        //     "description": "Order Transaction",
+        //     // "image":"",
+        //     "order_id": order.order.id,
+        //     "handler": function (response){
+        //         verifypayment(response,order)
+        //     },
+        //     "prefill": {
+        //         "name":"iPro",
+        //         "email":"ipromobiles@gmail.com",
+        //         "contact":9876543344,
+        //     },
+        //     "notes":{
+        //         "address":"Razorpay corporate office",
+        //     },
+            
+        //     "theme": {
+        //         "color":"#3399cc",
+        //     },
+             
+        //    } ; 
+        // function verifypayment(Payment,order) {
+        //     $.ajax({
+        //         url:'/verifypayment'
+        //     })
+        // }
+           
+        // }
+
+        // })
     </script>
 
     <style>

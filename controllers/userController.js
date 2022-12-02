@@ -244,7 +244,7 @@ module.exports = {
         let userId = req.session.userId;
         let list = await cartModel.findOne({user: userId}).populate("products.productId")
         console.log(list);
-        if (list) {
+        if (list != null) {
             let cartProducts = list.products;
             let cartTotal = list.cartTotal
             console.log(cartProducts);
@@ -267,7 +267,7 @@ module.exports = {
                 });
             }
         } else {
-            res.render("user/cart");
+            res.redirect("/");
         }
     },
 
@@ -500,7 +500,7 @@ module.exports = {
     orderPage: async(req,res) => {
         let sort =  { date:-1}
         let userId = req.session.userId;
-        const order = await orderModel.find( {userId}).populate('product.productId').sort(sort)
+        const order = await orderModel.find( {userId}).populate('products.productId').sort(sort)
         res.render('user/orderPage', { order, user, moment , index: 1})
 
 
@@ -508,8 +508,8 @@ module.exports = {
 
     orderSuccess: async (req,res) => {
         let userId = req.session.userId;
-        const orders = await orderModel.find({ userId }).populate('product.productId').sort({_id: -1}).limit(1)
-        res.render('user/ordersucces',{ orders,index: 1 })
+        const orders = await orderModel.find({ userId }).populate('products.productId').sort({_id: -1}).limit(1)
+        res.render('user/ordersuccess',{ orders,index: 1 })
         
 
     },

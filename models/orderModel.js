@@ -10,7 +10,7 @@ const orderSchema = new mongoose.Schema ({
     products : [{
             productId: { 
                 type:ObjectId, 
-                ref: 'Product'
+                ref: 'productData'
             },
 
             orderStatus: {
@@ -32,27 +32,27 @@ const orderSchema = new mongoose.Schema ({
     address: {
         fullName: {
             type: String,
-            required: true
+            
         },
         pincode: {
             type: Number,
-            required: true
+            
         },
         country: {
             type: String,
-            required: true
+           
         },
         currentAddress: {
             type: String,
-            required: true
+           
         },
         city: {
             type: String,
-            required: true
+            
         },
         state: {
             type: String,
-            required: true
+           
         },
     },
     paymentMethod: {
