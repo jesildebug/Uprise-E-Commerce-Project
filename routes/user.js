@@ -1,8 +1,9 @@
 const express = require('express')
 const router = express.Router()
-
+const auth=require('../middleware/authentication')
 
 const controller = require('../controllers/userController')
+const { addOrder } = require('../middleware/authentication')
 
 
 // GET METHOD
@@ -15,7 +16,7 @@ router.get('/logout', controller.logout )
 
 //product listing
 
-router.get('/products',controller.userSession,controller.products);
+router.get('/products',auth.userSession,controller.products);
 router.get('/single/:id',controller.userSession,controller.single);
 
 // user profile address
@@ -28,7 +29,7 @@ router.get('/deleteAddress/:id', controller.userSession,controller.deleteAddress
 
 //cart
 
- router.get('/cart', controller.userSession, controller.cart);
+ router.get('/cart', auth.userSession, controller.cart);
  router.get('/cart/:id', controller.userSession, controller.addToCart)
  router.get('/user/deleteCart/:id',controller.userSession, controller.deleteCart)
  router.get("/user/button-increment/:id", controller.userSession,controller.incQuantity);
@@ -50,6 +51,12 @@ router.get('/deleteAddress/:id', controller.userSession,controller.deleteAddress
  router
    .route('/ordersuccess')
    .get(controller.userSession,controller.orderSuccess)
+
+
+
+   router
+    .route('/order')
+    .post(auth.userSession,addOrder)
 
 // POST METHOD
 

@@ -281,6 +281,28 @@
         </div>
     </section>
 
+    <script>
+        $( '#checkout-form').submit((e)=>{
+            e.preventDefault()
+            $.ajax ({
+                url: '/order',
+                method: 'post',
+                data:$('#checkout-form').serialize,
+                success:(response) =>{
+                    // alert(response)
+                    if (response.status) {
+                        window.location.href ='/ordersuccess';
+                        console.log(response);
+                    }else{
+                        razorpayment(response);
+                    }
+                }
+            });
+
+
+        })
+    </script>
+
     <style>
     .frb-group {
         margin: 15px 0;
