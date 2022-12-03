@@ -1,0 +1,70 @@
+<%-include('../admin/layout/admin-header-layout.ejs') -%>
+
+<div class="container-fluid pt-4 px-4" style="min-height: 100vh;">
+    <div class="row g-4">
+        <div class="col-12">
+            <div class="bg-secondary rounded h-100 p-4">
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Discount</th>
+                                <th scope="col">Created Date</th>
+                                <th scope="col">Last Modified Date</th>
+                                <th scope="col">Options</th>
+                                <th scope="col" class="text-center">More Info</th>
+
+                            </tr>
+                        </thead>
+                        <tbody id="adminCoupon">
+
+
+                            <% coupons.forEach(function(coupon){ %>
+
+                                <tr>
+                                    <th scope="row">
+                                        <%=index++ %></th>
+
+                                    <td><%= coupon?.name%></td>
+                                    <td><%= coupon?.discount %></td>
+                                    <td><%= coupon?.created_date %></td>
+                                    <% if(coupon.modified_date != null) { %>
+                                        <td><%= coupon?.modified_date %>
+                                        </td>
+                                    <% }else{ %>
+                                        <td>No modificattions made</td>
+                                    <% } %>
+                                    <td>
+                                        <% if(coupon.disable === false) {%>
+                                         
+                                            <form action="/admin/disable/<%= coupon._id %>" method="post">
+                                                <button type="submit" class="btn btn-sm btn-outline-danger">Disable</button>
+                                            </form>
+                                        <% }else{ %>
+                                            <form action="/admin/enable/<%= coupon._id %>" method="post">
+                                                <button type="submit" class="btn btn-sm btn-outline-success">Enable</button>
+                                            </form>
+                                            
+                                          
+                                        <% } %>
+
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-sm btn-light w-100 shadow" href="/admin/coupons/<%=coupon._id%> ">
+                                            More Info</a>
+                                    </td>
+                                </tr>
+                                <% }) %></tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%-include('../admin/layout/admin-footer-layout.ejs') -%>

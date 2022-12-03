@@ -2,7 +2,7 @@ const AdminModel = require("../models/adminModel");
 const UserModel = require('../models/userModel');
 const BrandModel = require('../models/brandModel');
 const bannerModel = require("../models/banner");
-
+const couponModel = require("../models/coupon")
 const bcrypt = require("bcrypt");
 const {signuppage} = require("./userController");
 const userModel = require("../models/userModel");
@@ -287,7 +287,53 @@ module.exports = {
             res.redirect('/admin/bannerview')
         })
 
-    }
+    },
+
+    addCouponPage:async (req,res) =>{
+        const coupons = await couponModel.find();
+        res.render("admin/addcoupon",{ coupons,index: 1});
+
+    },
+    viewCoupon:async(req,res) => {
+        const coupons = await couponModel.find();
+        res.render("admin/couponview",{ coupons,index: 1} )
+    },
+    
+    addcoupons:async(req,res) =>{
+        const { name, discount}=req.body;
+        const created_date = new Date();
+        const newCoupon = new couponModel({
+            name,
+            discount,
+            users: [],
+            created_date,
+            modified_date: null,
+        });
+        await newCoupon.save();
+        res.redirect("/admin/couponview")
+
+    },
+
+    disable_coupon: async(req,res) =>{
+        let couponId = req.params.id;
+        const coupon = await couponModel
+        .findOneAndUpdate({ _id: couponId}, {$set: { disable: true , upsert : true}} );
+        await coupon.save().then((response)=> {
+            res.redirect("back");
+        });
+
+    },
+
+    enable_coupon: async (req,res) => {
+        let couponId = req.params.id;
+        await  couponModel
+        .findOneAndUpdate({ _id: couponId},{ disable: false}, { upsert: true})
+        .then((response) => {
+            res.redirect("back");
+        })
+    },
+
 
 
 }
+

@@ -1,0 +1,53 @@
+<%-include('../admin/layout/admin-header-layout.ejs') -%>
+
+
+<!-- FORM STARTS -->
+
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">iPro</h6>
+                <form action="/admin/addcoupon" method="post" enctype="multipart/form-data">
+
+
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Coupon Name</label>
+                        <input type="text" name="name" class="form-control"></div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Discount</label>
+                        <input type="text" name="discount" class="form-control"></div>
+
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">created_date</label>
+                            <input type="text" name="created_date" class="form-control"></div>
+                        <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">modified_date</label>
+                                <input type="text" name="modified_date" class="form-control"></div>
+
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            
+        </div>
+
+        <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">Add new Coupon</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Close
+                        </button>
+
+                        <button type="submit" class="btn btn-success">
+                            Save changes
+                        </button>
+                        </div> -->
+
+
+                        <%-include('../admin/layout/admin-footer-layout.ejs') -%>

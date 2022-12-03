@@ -27,6 +27,15 @@ const CartSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+    grandTotal: {
+        type: Number,
+        default:0,
+
+    },
+    discount: {
+        couponId: Objectid,
+        percentage: { type:Number, default:0}
+    }
 });
 
 

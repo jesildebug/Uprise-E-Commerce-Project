@@ -23,6 +23,15 @@ router.get("/addbanner",controller.addBannerpage);
 router.get("/bannerview",controller.viewBannerpage);
 
 
+router.get("/couponview",controller.viewCoupon);
+router.get('/addcoupon',controller. addCouponPage);
+// router.get('/disable:id',controller.disable_coupon);
+// router.get('/enable:id',controller.enable_coupon)
+   
+   
+ 
+
+
 
 
 
@@ -48,6 +57,15 @@ router.post('/editproducts/:id',controller.editproduct);
 router.post('/addbanner',controller.addbanner);
 router.post('/listBanner/:id',controller.listBanner);
 router.post('/unlistBanner/:id',controller.unlistBanner);
+
+router.post('/addcoupon',controller.addcoupons)
+router.post('/disable/:id',controller.disable_coupon);
+router.post('/enable/:id',controller.enable_coupon)
+
+
+
+
+
 
 
 
