@@ -1,7 +1,6 @@
 const UserModel = require('../models/userModel');
 const nodemailer = require("nodemailer");
 const bcrypt = require('bcrypt');
-const BrandModel = require('../models/brandModel');
 const productModel = require("../models/productModel");
 const cartModel = require("../models/cartModel");
 const wishlistModel = require("../models/wishlistModel");
@@ -480,13 +479,45 @@ module.exports = {
         const details = req.body;
         const now = new Date()
         const deliveryDate = now.setDate(now.getDate() +7)
-        const addIndex = parseInt(add[1])
-        let profile = await addressModel.findOne({ userId })
-        profile = profile.address[addIndex]
-        console.log(addIndex)
+        // const addIndex = parseInt(add[1])
+        // let profile = await addressModel.findOne({ userId })
+        // profile = profile.address[addIndex]
+        console.log(details)
 
          const crypto = require("crypto");
-         let hmac = crypto.createHmac("sha256", );
+         let hmac = crypto.createHmac("sha256","MHq03BJw6Ya0xylomnUvIseA" );
+         hmac.update(
+            details["Payment[razorpay_order_id]"]+
+            "|"+
+            details["Payment[razorpay_payment_id]"]
+         );
+         hmac = hmac.digest("hex");
+         console.log(hmac);
+         console.log(details["Payment[razorpay_signature]"]);
+          
+         if (hmac == details["Payment[razorpay_signature]"]) {
+            console.log("order successfull");
+
+            const newOrder = await orderModel.create({
+                userId:userId,
+                product:product,
+                cartTotal:cartTotal,
+                paymentMethod: "Razorpay",
+                paymentStatus: "paid" ,
+                deliveryDate: deliveryDate,
+
+            })
+            .then(async(data) =>{
+                await cartModel.findByIdAndDelete({ _id:cart._id});
+                res.json({status: true , data});
+            })
+            .catch((err) =>{
+                res.json({ status: false,err})
+            });
+         }else {
+            res.json({status: false });
+            console.log("payment failed");
+         }
         
 
         

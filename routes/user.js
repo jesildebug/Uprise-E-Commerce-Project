@@ -74,6 +74,9 @@ router
     .post(controller.userSession,controller.checkout)
 
 
+router
+   .route('/verifypayment')
+   .post(auth.userSession,controller.verifyPayment)
 
 
 

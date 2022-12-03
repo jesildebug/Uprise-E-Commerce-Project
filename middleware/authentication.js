@@ -47,13 +47,14 @@ module.exports = {
             instance.orders.create({
                 amount: cartTotal * 100,
                 currency: "INR",
-                reciept: cartId
+                // reciept: String(cartId)
 
             }, function (err, order) {
                 if (err) {
                     console.log(err);
 
                 } else {
+                    console.log(order)
                     res.json({status: false, order})
                 }
             });

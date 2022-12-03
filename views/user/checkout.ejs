@@ -4,11 +4,11 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Male_Fashion Template" />
-    <meta name="keywords" content="Male_Fashion, unica, creative, html" />
+    <meta name="description" content="iPro" />
+    <meta name="keywords" content="phone, unica, creative, html" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Male-Fashion | Template</title>
+    <title>iPro</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
@@ -297,6 +297,7 @@
             </div>
         </div>
     </section>
+    <script src="http://checkout.razorpay.com/v1/checout.js"></script>
 
     <script>
         $( '#checkout-form').submit((e)=>{
@@ -317,42 +318,61 @@
             });
 
 
-        //  function razorpayment(order) {
-        //     console.log(order.order.id)
-        //    let options = {
-        //     "key":'rzp_test_X3YzIfgkfukV1B',
-        //     "amount":order.amount,
-        //     "currency": "INR",
-        //     "name": "iPro",
-        //     "description": "Order Transaction",
-        //     // "image":"",
-        //     "order_id": order.order.id,
-        //     "handler": function (response){
-        //         verifypayment(response,order)
-        //     },
-        //     "prefill": {
-        //         "name":"iPro",
-        //         "email":"ipromobiles@gmail.com",
-        //         "contact":9876543344,
-        //     },
-        //     "notes":{
-        //         "address":"Razorpay corporate office",
-        //     },
+         function razorpayment(order) {
+            console.log(order.order.id)
+           let options = {
+            "key":'rzp_test_X3YzIfgkfukV1B',
+            "amount":order.order.amount,
+            "currency": "INR",
+            "name": "iPro",
+            "description": "Order Transaction",
+            // "image":"",
+            "order_id": order.order.id,
+            "handler": function (response){
+                console.log(response)
+                verifypayment(response,order)
+            },
+            "prefill": {
+                "name":"iPro",
+                "email":"ipromobiles@gmail.com",
+                "contact":9876543344,
+            },
+            "notes":{
+                "address":"Razorpay corporate office",
+            },
             
-        //     "theme": {
-        //         "color":"#3399cc",
-        //     },
+            "theme": {
+                "color":"#3399cc",
+            },
              
-        //    } ; 
-        // function verifypayment(Payment,order) {
-        //     $.ajax({
-        //         url:'/verifypayment'
-        //     })
-        // }
-           
-        // }
+           } ; 
 
-        // })
+           var rzp1 = new Razorpay(options);
+           rzp1.open()
+
+        function verifypayment(Payment,order) {
+            $.ajax({
+                url:'/verifypayment',
+                data: {
+                    Payment,
+                    order,
+                    address: $("#checkout-form").serialize()
+                },
+                method: "post",
+                sucess: (response) => {
+                    if(response.status) {
+                        location.href = "/ordersuccess";
+                    
+                    }else {
+                        alert("payment failed");
+                    }
+                },
+            });
+        }
+          
+        }
+
+        })
     </script>
 
     <style>
