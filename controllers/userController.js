@@ -79,7 +79,7 @@ module.exports = {
 
     products: async (req, res) => {
         try{
-        let products = await productModel.find().populate('brand',);
+        let products = await productModel.find({status:"List"}).populate('brand',);
         // let brand = await BrandModel.find();
         // res.render('user/products', {products, category})
         if (req.session.userLogin) {

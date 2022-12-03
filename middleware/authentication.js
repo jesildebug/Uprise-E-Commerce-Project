@@ -27,7 +27,7 @@ module.exports = {
         const paymentMethod = req.body.paymentType
         console.log(paymentMethod);
         if (paymentMethod === "cod") {
-            const cartModels = await orderModel.create({
+            const orderModels = await orderModel.create({
                 userId: userId,
                 // products: productId,
                 cartTotal: cartTotal,
@@ -35,7 +35,7 @@ module.exports = {
                 paymentStatus: "Pending",
                 deliveryDate: deliveryDate
             });
-            cartModels.save()
+            orderModels.save()
             .then(async()=>{
                 await cartModel.findByIdAndDelete({_id: cart._id});
                 res.json({status: true});
