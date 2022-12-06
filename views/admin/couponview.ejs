@@ -12,8 +12,9 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Discount</th>
-                                <th scope="col">Created Date</th>
-                                <th scope="col">Last Modified Date</th>
+                                <th scope="col">Maximum Lmt</th>
+                                <th scope="col">Minimum Lmt</th>
+                                <th scope="col">Expiration Dt</th>
                                 <th scope="col">Options</th>
                                 <th scope="col" class="text-center">More Info</th>
 
@@ -28,15 +29,11 @@
                                     <th scope="row">
                                         <%=index++ %></th>
 
-                                    <td><%= coupon?.name%></td>
+                                    <td><%= coupon?.couponCode%></td>
                                     <td><%= coupon?.discount %></td>
-                                    <td><%= coupon?.created_date %></td>
-                                    <% if(coupon.modified_date != null) { %>
-                                        <td><%= coupon?.modified_date %>
-                                        </td>
-                                    <% }else{ %>
-                                        <td>No modificattions made</td>
-                                    <% } %>
+                                    <td><%= coupon?.maxLimit %></td>
+                                    <td><%= coupon?.minLimit %></td>
+                                    <td><%= coupon?.expDate %></td>
                                     <td>
                                         <% if(coupon.disable === false) {%>
                                          

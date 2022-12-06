@@ -4,6 +4,7 @@ const auth=require('../middleware/authentication')
 
 const controller = require('../controllers/userController')
 const { addOrder } = require('../middleware/authentication')
+const { orderPage } = require('../controllers/userController')
 
 
 // GET METHOD
@@ -58,6 +59,13 @@ router.get('/deleteAddress/:id', controller.userSession,controller.deleteAddress
     .route('/order')
     .post(auth.userSession,addOrder)
 
+    router
+      .route('/orderPage')
+      .get(auth.userSession,orderPage)
+
+  
+    
+
 // POST METHOD
 
 // router.post('/signup', controller.signup);
@@ -77,6 +85,14 @@ router
 router
    .route('/verifypayment')
    .post(auth.userSession,controller.verifyPayment)
+
+router
+    .route('/coupon')
+    .post(auth.userSession,controller.checkCoupon)
+
+router
+   .route('cancelOrder/:id')
+   .post(auth.userSession,controller.cancelOrder)
 
 
 

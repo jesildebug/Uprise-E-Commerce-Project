@@ -300,14 +300,16 @@ module.exports = {
     },
     
     addcoupons:async(req,res) =>{
-        const { name, discount}=req.body;
-        const created_date = new Date();
+        const {couponCode, discount,maxLimit,minLimit,expDate}=req.body;
         const newCoupon = new couponModel({
-            name,
+            couponCode,
             discount,
-            users: [],
-            created_date,
-            modified_date: null,
+            // limit,
+            // created_date,
+            // modified_date: null,
+            maxLimit,
+            minLimit,
+            expDate
         });
         await newCoupon.save();
         res.redirect("/admin/couponview")

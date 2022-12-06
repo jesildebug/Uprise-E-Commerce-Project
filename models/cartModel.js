@@ -41,4 +41,3 @@ const CartSchema = new mongoose.Schema({
 
 
 module.exports = cartModel = mongoose.model('Cart' , CartSchema)
-

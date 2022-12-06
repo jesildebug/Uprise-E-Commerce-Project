@@ -1,25 +1,30 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-
-var couponSchema = new Schema ({
-    name:{
-       type: String,
- },
- discount: {
+var couponSchema = new Schema({
+  couponCode: {
+    type: String,
+  },
+  discount: {
     type: Number,
- },
- users:{
+  },
+  users:{
     type:[Schema.Types.ObjectId],
-},
- disable: {
+  },
+  disable:{
     type: Boolean,
-    default: false,                                                                                                                       
+    default: false,
+  },
+ maxLimit: {
+  type:Number
  },
- created_date: Date,
- modified_date: Date,
+ minLimit: {
+  type:Number
+ },
+ expDate: {
+  type: Date
 
-
+ }
 });
 
 module.exports = mongoose.model("coupon", couponSchema);

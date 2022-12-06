@@ -31,6 +31,11 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="/user/js/sweatAlert.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Nucleo Icons -->
@@ -231,14 +236,50 @@
                                 </div>
                             </form>
 
-                            <form action="#">
+                            <form action="/coupon">
                                 <div class="col-12 mb-3 text-end">
-                                    <input type="email" class="form-control outline-dark"
+                                    <input type="text" name="couponCode" id="couponCode"  class="form-control outline-dark"
                                         placeholder="Enter Coupon Code">
-                                    <button type="submit" class="btn btn-dark btn-sm mt-0">Apply</button>
+                                    <button type="button" onclick="coupon() " class="btn btn-dark btn-sm mt-0">Apply</button>
                                 </div>
                             </form>
-                        </div>
+                            <script>
+                                function coupon(){
+                                    const code = document.querySelector('#couponCode').value
+                                    axios
+                                    .post("/coupon", { code })
+                                    .then((response) =>{
+                                        if(response.data.used){
+                                            Swal.fire({
+                                                icon: "error",
+                                                title: "Already Applied",
+                                                text: "Coupon already used Once"
+                                            })
+                                        } else if(response.data.exist) {
+                                                Swal.fire({
+                                                    icon: "error",
+                                                    title: "Invalid Coupon",
+                                                    text: "Enter a valid coupon"
+                                                })
+                                            } else if(response.data.expired){
+                                                Swal.fire({
+                                                    icon: "error",
+                                                    title: "Coupon Expired",
+                                                    text: "Use another one"
+                                                })
+                                            } else {
+                                                Swal.fire({
+                                                    icon: "success",
+                                                    title: "Success",
+                                                    text: "Coupon applied Successfully"
+                                                })
+                                                $('#couponReload').load(' #couponReload > *')
+                                            }
+                                        })
+                                }
+                                        
+                            </script>
+                            </div>
                         <div class="checkout__order">
                             <h4 class="order__title">Your order</h4>
                             <div class="checkout__order__products font-weight-bold">
@@ -253,9 +294,9 @@
                             </ul>
                             <ul class="checkout__total__all font-weight-bold">
                                 <li>Subtotal <span>₹ <%= cartTotal %></span></li>
-                                <li>Discount <span class="text-success">₹ 500 </span></li>
+                                <li>Discount <span class="text-success"><%=  cart.discount.percentage%>%</span></li>
                                 <hr />
-                                <li>Total <span>₹ <%= cartTotal - 500 %> </span></li>
+                                <li>Total <span>₹ <%= cart.grandTotal %> </span></li>
                             </ul>
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adip elit, sed do

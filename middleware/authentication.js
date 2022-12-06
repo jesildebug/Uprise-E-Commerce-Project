@@ -3,6 +3,7 @@ const addressModel = require("../models/addressModel");
 const cartModel = require("../models/cartModel");
 const orderModel = require("../models/orderModel")
 const Razorpay = require("razorpay");
+const couponModel = require('../models/coupon');
 
 module.exports = {
 
@@ -19,6 +20,7 @@ module.exports = {
         let userId = req.session.userId;
         let cart = await cartModel.findOne({userId});
         const cartTotal = cart.cartTotal;
+        const productId = cart.products; 
         let addIndex = req.body.addIndex
         let profile = await  addressModel.findOne({ userId })
         let cartId = cart._id.toString();
@@ -29,7 +31,7 @@ module.exports = {
         if (paymentMethod === "cod") {
             const orderModels = await orderModel.create({
                 userId: userId,
-                // products: productId,
+                products: productId,
                 cartTotal: cartTotal,
                 paymentMethod: req.body.paymentType,
                 paymentStatus: "Pending",
