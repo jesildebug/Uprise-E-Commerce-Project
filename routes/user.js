@@ -26,6 +26,15 @@ router.get('/user/profile',controller.userSession,controller.profile)
 router.get('/address',controller.addAddressPage)
 router.get('/deleteAddress/:id', controller.userSession,controller.deleteAddress)
 
+router
+    .route('/updateAddress/:id')
+    .get(auth.userSession, controller.updateAddress)
+    // .post(auth.userSession, controller.updateUserAddress)
+
+
+
+
+
 
 
 //cart
@@ -44,6 +53,7 @@ router.get('/deleteAddress/:id', controller.userSession,controller.deleteAddress
  router.get('/wishlist',controller.userSession,controller.wishlist)
 
  router.get('/add-to-wishlist/:id', controller.userSession, controller.addtowishlist)
+ router.post ('/deleteWishlist/:id',controller.userSession,controller.deleteWishlist)
 
  //checkout
 
@@ -62,6 +72,10 @@ router.get('/deleteAddress/:id', controller.userSession,controller.deleteAddress
     router
       .route('/orderPage')
       .get(auth.userSession,orderPage)
+
+    router
+      .route('/cancelOrder/:id')  
+      .post(auth.userSession,controller.cancelOrder)
 
   
     

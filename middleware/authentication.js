@@ -22,20 +22,26 @@ module.exports = {
         const cartTotal = cart.cartTotal;
         const productId = cart.products; 
         let addIndex = req.body.addIndex
-        let profile = await  addressModel.findOne({ userId })
+        console.log(addIndex);
+        let profile = await addressModel.findOne({ userId })
+        profile = profile.address[addIndex]
+        console.log(profile,'asdfghjk');
         let cartId = cart._id.toString();
         const now = new Date()
         const deliveryDate = now.setDate(now.getDate() + 7)
         const paymentMethod = req.body.paymentType
         console.log(paymentMethod);
+
         if (paymentMethod === "cod") {
             const orderModels = await orderModel.create({
                 userId: userId,
                 products: productId,
                 cartTotal: cartTotal,
+                address: profile,
                 paymentMethod: req.body.paymentType,
                 paymentStatus: "Pending",
                 deliveryDate: deliveryDate
+
             });
             orderModels.save()
             .then(async()=>{

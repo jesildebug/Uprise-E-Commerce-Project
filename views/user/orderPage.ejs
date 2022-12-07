@@ -168,7 +168,7 @@
                         </div>
                         <div class="col-md-2  border-0 ps-0 pt-4 text-sm text-center">
                             <p class="text-dark font-weight-bold">
-                                <%= product.productId.name %>
+                                <%= product.productId.model %>
                             </p>
                             <p class="text-dark">Quantity: <%= product.quantity %>
                             </p>
@@ -184,10 +184,15 @@
                                                     order.address.pincode %>
                             </p>
                         </div>
+                        <div class="col-md-1  border-0 ps-0 pt-4 text-sm text-center">
+                            <p class="text-dark">
+                                <%= moment(order.deliveryDate).format('MMMM D') %>
+                            </p>
+                        </div>
                        
                         <div class="col-md-2  border-0 ps-0 pt-4 text-sm text-center">
                             <p class="text-dark">
-                                <%= user %>
+                                <%= phone %>
                             </p>
                         </div>
                         <div class="col-md-1  border-0 ps-0 pt-4 text-sm text-center">
@@ -206,7 +211,7 @@
                             </p>
                         </div>
                         <div class="col-md-1  border-0 ps-0 pt-4 text-sm text-center">
-                            <form action="cancelOrder/<%= product._id %>" method="post">
+                            <form action="/cancelOrder/<%= product._id %>" method="post">
                                 <button type="submit" value="Cancelled" name="orderStatus"
                                     class="btn btn-outline-dark">Cancel</button>
                             </form>

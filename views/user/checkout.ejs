@@ -159,7 +159,7 @@
                                                                 <%= add.fullName %>, <%= add.currentAddress %>
                                                             </span>
                                                             <span class="ms-5 mb-3">
-                                                                <%= add.city %>, <%= add.state %>, <%= add.country
+                                                                <%= add.city %>, <%= add.state%>, 
                                                                             %>, <%= add.pincode %>
                                                             </span>
                                                         </label>
@@ -170,7 +170,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-dark">Update Address</button>
+                                            <button  href="updateAddress/:id"  type="submit" class="btn btn-dark">Update Address</button>
                                         </div>
                                     </form>
                                 </div>
@@ -189,18 +189,15 @@
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Email<span>*</span></p>
-                                        <input type="text" name="email" value="<%= user.email %>" />
+                                        <input type="text" name="Email" value="<%= user.Email%>" />
                                     </div>
                                 </div>
                             </div>
-                            <div class="checkout__input">
-                                <p>Country<span>*</span></p>
-                                <input type="text" name="country" value="<%= profile[addIndex].country %>" />
-                            </div>
+                            
                             <div class="checkout__input">
                                 <p>Address<span>*</span></p>
-                                <input type="text" name="currentAddress" class="checkout__input__add"
-                                    value="<%= profile[addIndex].currentAddress %>" />
+                                <input type="text" name="houseName " class="checkout__input__add"
+                                    value="<%= profile[addIndex].houseName  %>" />
                             </div>
                             <div class="checkout__input">
                                 <p>Town/City<span>*</span></p>
@@ -214,7 +211,7 @@
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Phone<span>*</span></p>
-                                        <input type="text" name="phone" value="<%= user.phone %>" />
+                                        <input type="text" name="phone" value="<%=profile[addIndex].phone%>" />
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -326,12 +323,12 @@
                                     </label>
                                 </div>
 
+                                <input name="addIndex" id="danger-outlined" value="<%= addIndex %>" hidden />
                                 
 
                                 <button type="submit" class="site-btn">PLACE ORDER</button>
                             </form>
 
-                            <input name="addIndex" id="danger-outlined" value="<%= addIndex %>" hidden />
                         </div>
                     </div>
                 </div>

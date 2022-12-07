@@ -1,4 +1,4 @@
-const UserModel = require('../models/userModel');
+
 const nodemailer = require("nodemailer");
 const bcrypt = require('bcrypt');
 const productModel = require("../models/productModel");
@@ -10,6 +10,7 @@ const addressModel = require('../models/addressModel');
 const orderModel = require('../models/orderModel');
 const couponModel = require('../models/coupon')
 const {response} = require('express')
+const moment = require('moment')
 const {findOneAndUpdate} = require('../models/userModel');
 
 
@@ -96,7 +97,7 @@ module.exports = {
         try {
             let id = req.params.id;
             console.log(req.params.id);
-            let brand = await BrandModel.find();
+            let brand = await brandModel.find();
             let single = await productModel.findOne({_id: id});
             let product = await productModel.findOne({_id: id}).populate('brand');
 
@@ -216,6 +217,18 @@ module.exports = {
         console.log(currrentAdd);
         res.render('user/checkout', {currrentAdd})
 
+
+    },
+
+    updateAddress:async (req,res) => {
+        let userId= req.session.userId;
+        let addIndex = req.params.id
+        const profile = await addressModel.findOne({ userId: user})
+        const addressId = profile.address[addIndex]._id
+        const user = await userModel.findById(userId)
+        let profiles = profile.address
+        console.log(profiles);
+        res.render('user/updateAddress', {profiles, user, addIndex , addressId})
 
     },
 
@@ -453,6 +466,15 @@ module.exports = {
 
     },
 
+    deleteWishlist:async(req,res)=>{
+        let userId = req.session.userId;
+        const productId = req.params.id;
+        await wishlistModel.findOneAndUpdate({userId}, {$pull: {products:productId}})
+        res.redirect('back')
+        
+
+    },
+
     checkout: async (req, res) => {
         let userId = req.session.userId;
         let profile = await addressModel.findOne({userId})
@@ -465,7 +487,7 @@ module.exports = {
             profile = profile.address
             let num = profile.length - 1
             const addIndex = req.body.indexs ? req.body.indexs : num
-            console.log(req.body)
+            console.log(addIndex)
             res.render('user/checkout', {
                 user,
                 addIndex,
@@ -494,9 +516,10 @@ module.exports = {
         const details = req.body;
         const now = new Date()
         const deliveryDate = now.setDate(now.getDate() + 7)
-        // const addIndex = parseInt(add[1])
-        // let profile = await addressModel.findOne({ userId })
-        // profile = profile.address[addIndex]
+        const addIndex = parseInt([1])
+        let profile = await addressModel.findOne({ userId })
+        profile = profile.address[addIndex]
+        console.log(profile);
         console.log(details)
 
         const crypto = require("crypto");
@@ -514,6 +537,7 @@ module.exports = {
                 product: product,
                 cartTotal: cartTotal,
                 paymentMethod: "Razorpay",
+                address:profile,
                 paymentStatus: "paid",
                 deliveryDate: deliveryDate
 
@@ -587,9 +611,11 @@ module.exports = {
             date: -1
         }
         let userId = req.session.userId;
+        const user = await userModel.findOne({userId})
         const order = await orderModel.find({userId}).populate('products.productId').sort(sort)
-        let user = userId.phone
-        res.render('user/orderPage', {order, user, index: 1})
+        let phone = user.Phone
+        console.log(phone);
+        res.render('user/orderPage', {order, phone,moment, index: 1})
 
 
     },
@@ -653,7 +679,7 @@ module.exports = {
 
     resendOtp: (req, res) => {
         let mailOptions = {
-            to: Email,
+            to:email,
             subject: "Otp for registration is: ",
             html: "<h3>OTP for account verification is </h3>" + "<h1 style='font-weight:bold;'>" + otp + "</h1>" // html body
         };
