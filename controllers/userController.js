@@ -514,6 +514,7 @@ module.exports = {
         const cart = await cartModel.findOne({userId});
         const cartTotal = cart.cartTotal;
         const product = cart.products;
+        console.log(product+"------proid");
         const details = req.body;
         const now = new Date()
         const deliveryDate = now.setDate(now.getDate() + 7)
@@ -535,7 +536,7 @@ module.exports = {
 
             const newOrder = await orderModel.create({
                 userId: userId,
-                product: product,
+                products: product,
                 cartTotal: cartTotal,
                 paymentMethod: "Razorpay",
                 address:profile,
@@ -614,6 +615,7 @@ module.exports = {
         let userId = req.session.userId;
         const user = await userModel.findOne({userId})
         const order = await orderModel.find({userId}).populate('products.productId').sort(sort)
+        console.log(order)
         let phone = user.Phone
         res.render('user/orderPage', {order, phone,moment, index: 1})
 
@@ -633,17 +635,16 @@ module.exports = {
        cancelOrder:async(req, res, next) => {
             const userId = req.session.userId
             const productId = req.params.id
-            const order = await orderModel.findOne({userId}) 
-            for(let pro of order){
-                const products = pro.products
-                let orders= await orderModel.findOneAndUpdate({ userId, 'products.productId': productId }, { $set: { 'product.$.orderStatus': 'Cancelled' } })
-             }
-             await orders.save()
-             .then(()=>{
-                res.redirect("back")
-             }).catch((err)=>{
-                console.log(err);
-             })
+            // const order = await orderModel.find({userId}) 
+            await orderModel.findOneAndUpdate({ userId, 'products.productId': productId }, { $set: { 'product.$.orderStatus': 'Cancelled' } })
+            res.redirect("back")
+
+            // for(let pro of order){
+            //     const products = pro.products
+            //     console.log(products);
+
+            //  }
+             
             
         },
 
