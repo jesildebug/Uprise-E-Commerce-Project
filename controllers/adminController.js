@@ -4,9 +4,11 @@ const BrandModel = require('../models/brandModel');
 const bannerModel = require("../models/banner");
 const couponModel = require("../models/coupon")
 const bcrypt = require("bcrypt");
+const orderModel = require('../models/orderModel');
 const {signuppage} = require("./userController");
 const userModel = require("../models/userModel");
 const productModel = require("../models/productModel");
+const moment = require('moment')
 
 
 module.exports = {
@@ -20,6 +22,11 @@ module.exports = {
         res.render("admin/adminhome")
 
     },
+    logout: (req, res) => {
+     
+        res.redirect('admin/signin');
+    },
+
 
 
     // LOGIN
@@ -333,6 +340,62 @@ module.exports = {
         .then((response) => {
             res.redirect("back");
         })
+    },
+
+    manageOrder:async(req,res) => {
+        const orders = await orderModel.find().populate('products.productId')
+        const days = parseInt((orders. deliveryDate?.getTime() - orders.date?.getTime()) / (1000 * 60 * 60 * 24))
+        console.log(orders)
+        res.render('admin/orderManagement', { orders, days, moment })
+
+
+    },
+
+    changeOrderStatus:async(req, res) => {
+        const orderId = req.params.id;
+        const productId = req.params.prod
+        const orderStatus = req.params.status;
+        console.log(orderStatus);
+    
+        if (orderStatus == 'Order Placed') {
+            await orderModel.findOneAndUpdate({_id: orderId, 'products.productId': productId },
+                {
+                    $set:
+                        { 'products.$.orderStatus': "Processed" }
+                })
+        } else if (orderStatus == "Processed") {
+            await orderModel.findOneAndUpdate({_id: orderId, 'products.productId': productId },
+                {
+                    $set:
+                        { 'products.$.orderStatus': "Shipped" }
+                })
+        } else if (orderStatus == "Shipped") {
+            await orderModel.findOneAndUpdate({_id: orderId, 'products.productId': productId },
+                {
+                    $set:
+                        { 'products.$.orderStatus': "Delivered" }
+                })
+        }
+         else if(orderStatus == "Cancelled") {
+            await orderModel.findOneAndUpdate({_id: orderId, 'products.productId': productId },
+                {
+                    $set:
+                        { 'products.$.orderStatus': "Cancelled" }
+                })
+        }
+        res.redirect("back");
+    },
+
+    invoice:async(req,res)=> {
+        const orderId = req.params.id
+        const orders =  await orderModel.findOne({ _id:orderId}).populate('products.productId').populate({path:'products.productId', populate: {path:'brand'}}).populate({path:'products.productId', populate: {path:'model'}})
+        console.log(orders);
+        const userId = orders.userId
+        const user = await userModel.findOne({ _id:userId})
+        console.log(user);
+        res.render('admin/invoice', { orders,user,orderId,index:1,moment})
+
+
     },
 
 

@@ -11,6 +11,7 @@ const controller = require('../controllers/adminController');
 //GET METHOD
 router.get('/signin',controller.loginpage)
 router.get('/adminhome',controller.homepage)
+router.get('/logout', controller.logout )
 
 router.get('/alluser', controller.alluser)
 router.get('/addProductpage', controller.productpage);
@@ -61,6 +62,18 @@ router.post('/unlistBanner/:id',controller.unlistBanner);
 router.post('/addcoupon',controller.addcoupons)
 router.post('/disable/:id',controller.disable_coupon);
 router.post('/enable/:id',controller.enable_coupon);
+
+router 
+  .route('/manageOrder')
+  .get(controller. manageOrder);
+
+router
+  .route('/invoice/:id')
+  .get(controller.invoice)
+
+router
+  .route('/changeStatus/:id/:prod/:status')
+  .post(controller.changeOrderStatus)  
 
 
 

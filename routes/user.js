@@ -105,7 +105,7 @@ router
     .post(auth.userSession,controller.checkCoupon)
 
 router
-   .route('cancelOrder/:id')
+   .route('/cancelOrder/:id')
    .post(auth.userSession,controller.cancelOrder)
 
 

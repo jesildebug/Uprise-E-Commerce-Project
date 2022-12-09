@@ -9,8 +9,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="Laralink">
   <!-- Site Title -->
-  <title>General Invoice</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <title>iPro</title>
+  <link rel="stylesheet" href="/public/assets /css/style.css">
 </head>
 
 <body>
@@ -20,7 +20,7 @@
         <div class="tm_invoice_in">
           <div class="tm_invoice_head tm_align_center tm_mb20">
             <div class="tm_invoice_left">
-              <div class="tm_logo"><img src="assets/img/logo.svg" alt="Logo"></div>
+              <div class="tm_logo"><img src="/public/assets /img/logo.svg" alt="Logo"></div>
             </div>
             <div class="tm_invoice_right tm_text_right">
               <div class="tm_primary_color tm_f50 tm_text_uppercase">Invoice</div>
@@ -29,26 +29,25 @@
           <div class="tm_invoice_info tm_mb20">
             <div class="tm_invoice_seperator tm_gray_bg"></div>
             <div class="tm_invoice_info_list">
-              <p class="tm_invoice_number tm_m0">Invoice No: <b class="tm_primary_color">#LL93784</b></p>
-              <p class="tm_invoice_date tm_m0">Date: <b class="tm_primary_color">01.07.2022</b></p>
+              <p class="tm_invoice_number tm_m0">Invoice No: <b>#<%= orderId.slice(0,8)%></b></p>
+              <p class="tm_invoice_date tm_m0">Date:<b>#<%= moment(Date.now()).format('L') %></b> </p>
             </div>
           </div>
           <div class="tm_invoice_head tm_mb10">
             <div class="tm_invoice_left">
               <p class="tm_mb2"><b class="tm_primary_color">Invoice To:</b></p>
               <p>
-                Lowell H. Dominguez <br>
-                84 Spilman Street, London <br>United Kingdom <br>
-                lowell@gmail.com
+               <%= orders.address.fullName %> <br>
+               <%= orders.address.city %>,<%= orders.address.state %>,<% orders.address.pincode %> <br><%= user.Email  %>   
               </p>
             </div>
             <div class="tm_invoice_right tm_text_right">
               <p class="tm_mb2"><b class="tm_primary_color">Pay To:</b></p>
               <p>
-                Laralink Ltd <br>
+                iPro Mobile Venture <br>
                 86-90 Paul Street, London<br>
                 England EC2A 4NE <br>
-                demo@gmail.com
+                ipro@gmail.com
               </p>
             </div>
           </div>
@@ -59,68 +58,49 @@
                   <thead>
                     <tr>
                       <th class="tm_width_3 tm_semi_bold tm_primary_color tm_gray_bg">Item</th>
-                      <th class="tm_width_4 tm_semi_bold tm_primary_color tm_gray_bg">Description</th>
                       <th class="tm_width_2 tm_semi_bold tm_primary_color tm_gray_bg">Price</th>
                       <th class="tm_width_1 tm_semi_bold tm_primary_color tm_gray_bg">Qty</th>
                       <th class="tm_width_2 tm_semi_bold tm_primary_color tm_gray_bg tm_text_right">Total</th>
                     </tr>
                   </thead>
                   <tbody>
+                    <% orders.products.forEach(function(product){%> 
                     <tr class="tm_table_baseline">
-                      <td class="tm_width_3 tm_primary_color">Men Sunglasses</td>
-                      <td class="tm_width_4">High quality Ray-ban Wayfarer Sunglasses</td>
-                      <td class="tm_width_2">$350</td>
-                      <td class="tm_width_1">1</td>
-                      <td class="tm_width_2 tm_text_right">$350</td>
+                      <td class="tm_width_3 tm_primary_color"><%=product.productId.brand.brand%> <%=product.productId.model%> </td>
+                      <td class="tm_width_4"><%=product.productId.price %> </td>
+                      <td class="tm_width_1"><%=product.quantity %> </td>
+                      <td class="tm_width_2 tm_text_right"><%=product.total %> </td>
                     </tr>
-                    <tr class="tm_table_baseline">
-                      <td class="tm_width_3 tm_primary_color">Half Shirt</td>
-                      <td class="tm_width_4">Half Sleeve Casual Shirt for Woman shat</td>
-                      <td class="tm_width_2">$600</td>
-                      <td class="tm_width_1">1</td>
-                      <td class="tm_width_2 tm_text_right">$600</td>
-                    </tr>
-                    <tr class="tm_table_baseline">
-                      <td class="tm_width_3 tm_primary_color">Realme Phone</td>
-                      <td class="tm_width_4">Realme c25s - 4gb / 128gb 6000mah battery</td>
-                      <td class="tm_width_2">$200</td>
-                      <td class="tm_width_1">2</td>
-                      <td class="tm_width_2 tm_text_right">$400</td>
-                    </tr>
-                    <tr class="tm_table_baseline">
-                      <td class="tm_width_3 tm_primary_color">In-Ear Headphone</td>
-                      <td class="tm_width_4">Uiisii HM13 Wired Noise Cancelling Heavy Bass Music In-Ear with Mic Earphone</td>
-                      <td class="tm_width_2">$100</td>
-                      <td class="tm_width_1">3</td>
-                      <td class="tm_width_2 tm_text_right">$300</td>
-                    </tr>
+                 <% }) %>
+                  
                   </tbody>
                 </table>
               </div>
             </div>
             <div class="tm_invoice_footer tm_border_left tm_border_left_none_md">
               <div class="tm_left_footer tm_padd_left_15_md">
-                <p class="tm_mb2"><b class="tm_primary_color">Payment info:</b></p>
-                <p class="tm_m0">Credit Card - 236***********928 <br>Amount: $1815</p>
+                <p class="tm_mb2"><b class="tm_primary_color">Payment info:</b><%= orders.paymentMethod %> </p>
+                
               </div>
               <div class="tm_right_footer">
                 <table>
                   <tbody>
                     <tr class="tm_gray_bg tm_border_top tm_border_left tm_border_right">
                       <td class="tm_width_3 tm_primary_color tm_border_none tm_bold">Subtoal</td>
-                      <td class="tm_width_3 tm_primary_color tm_text_right tm_border_none tm_bold">$1650</td>
+                      <td class="tm_width_3 tm_primary_color tm_text_right tm_border_none tm_bold"><%= orders.cartTotal %> </td>
                     </tr>
                     <tr class="tm_gray_bg tm_border_left tm_border_right">
-                      <td class="tm_width_3 tm_primary_color tm_border_none tm_pt0">Discount <span class="tm_ternary_color">(10%)</span></td>
-                      <td class="tm_width_3 tm_text_right tm_border_none tm_pt0 tm_danger_color">-$165</td>
+                      <td class="tm_width_3 tm_primary_color tm_border_none tm_pt0">Discount <span class="tm_ternary_color"></span></td>
+                      <td class="tm_width_3 tm_text_right tm_border_none tm_pt0 tm_danger_color"><%= orders.discount %> </td>
                     </tr>
-                    <tr class="tm_gray_bg tm_border_left tm_border_right">
-                      <td class="tm_width_3 tm_primary_color tm_border_none tm_pt0">Tax <span class="tm_ternary_color">(5%)</span></td>
-                      <td class="tm_width_3 tm_primary_color tm_text_right tm_border_none tm_pt0">+$82</td>
+                    <tr class="tm_gray_bg">
+                      <td class="tm_width_3 tm_primary_color">Tax <span class="tm_ternary_color">(5%)</span></td>
+                      <td class="tm_width_3 tm_primary_color tm_text_right">+₹82</td>
                     </tr>
+                   
                     <tr class="tm_border_top tm_gray_bg tm_border_left tm_border_right">
                       <td class="tm_width_3 tm_border_top_0 tm_bold tm_f16 tm_primary_color">Grand Total	</td>
-                      <td class="tm_width_3 tm_border_top_0 tm_bold tm_f16 tm_primary_color tm_text_right">$1815</td>
+                      <td class="tm_width_3 tm_border_top_0 tm_bold tm_f16 tm_primary_color tm_text_right">₹<%= orders.cartTotal %>  </td>
                     </tr>
                   </tbody>
                 </table>
@@ -150,9 +130,9 @@
       </div>
     </div>
   </div>
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/jspdf.min.js"></script>
-  <script src="assets/js/html2canvas.min.js"></script>
-  <script src="assets/js/main.js"></script>
+  <script src="/public/assets /js/jquery.min.js"></script>
+  <script src="/public/assets /js/jspdf.min.js"></script>
+  <script src="/public/assets /js/html2canvas.min.js"></script>
+  <script src="/public/assets /js/main.js"></script>
 </body>
 </html>

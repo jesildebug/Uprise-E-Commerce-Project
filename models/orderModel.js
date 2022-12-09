@@ -24,7 +24,7 @@ const orderSchema = new mongoose.Schema ({
     paymentStatus: {
         type: String,
         default: 'Pending'
-    }, 
+    },
     cartTotal: Number,
     phone: {
         type: Number,
@@ -58,9 +58,11 @@ const orderSchema = new mongoose.Schema ({
     paymentMethod: {
         type: String,
     },
+    
     deliveryDate: {
         type: Date
     },
+   
     date: {
         type: Date,
         default: Date.now()

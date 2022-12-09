@@ -426,6 +426,7 @@ module.exports = {
                 data,
                 count,
                 counts
+
             });
         })
 
@@ -614,7 +615,6 @@ module.exports = {
         const user = await userModel.findOne({userId})
         const order = await orderModel.find({userId}).populate('products.productId').sort(sort)
         let phone = user.Phone
-        console.log(phone);
         res.render('user/orderPage', {order, phone,moment, index: 1})
 
 
@@ -628,22 +628,27 @@ module.exports = {
 
     },
 
-    cancelOrder: async (req, res) => {
-        let userId = req.session.userId;
-        const productId = req.params.id;
-        console.log(productId)
-        await orderModel.findOneAndUpdate({
-            userId,
-            'product_id': productId
-        }, {
-            $set: {
-                'product.$.orderStatus': 'Cancelled'
-            }
-        })
-        res.redirect('back')
+  
+
+       cancelOrder:async(req, res, next) => {
+            const userId = req.session.userId
+            const productId = req.params.id
+            const order = await orderModel.findOne({userId}) 
+            for(let pro of order){
+                const products = pro.products
+                let orders= await orderModel.findOneAndUpdate({ userId, 'products.productId': productId }, { $set: { 'product.$.orderStatus': 'Cancelled' } })
+             }
+             await orders.save()
+             .then(()=>{
+                res.redirect("back")
+             }).catch((err)=>{
+                console.log(err);
+             })
+            
+        },
 
 
-    },
+    
 
     sendOtp: async (req, res) => {
         fullname = req.body.FullName;
@@ -651,7 +656,7 @@ module.exports = {
         email = req.body.Email;
         phone = req.body.Phone;
         password = req.body.Password;
-        const user = await UserModel.findOne({Email: req.body.Email});
+        const user = await userModel.findOne({Email: req.body.Email});
 
         // send mail with defined transport object
         if (! user) {
