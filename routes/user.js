@@ -67,11 +67,11 @@ router
 
    router
     .route('/order')
-    .post(auth.userSession,addOrder)
+    .post(auth.userSession,controller.addOrder)
 
     router
       .route('/orderPage')
-      .get(auth.userSession,orderPage)
+      .get(auth.userSession,controller.orderPage)
 
     router
       .route('/cancelOrder/:id')  

@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const express = require('express');
 const router =express.Router();
+const auth=require('../middleware/authentication')
 
 
 const controller = require('../controllers/adminController');
@@ -13,10 +14,10 @@ router.get('/signin',controller.loginpage)
 router.get('/adminhome',controller.homepage)
 router.get('/logout', controller.logout )
 
-router.get('/alluser', controller.alluser)
-router.get('/addProductpage', controller.productpage);
-router.get('/brand',controller.brand);
-router.get('/viewproducts',controller.viewproducts);
+router.get('/alluser',auth.adminSession, controller.alluser)
+router.get('/addProductpage',auth.adminSession, controller.productpage);
+router.get('/brand',auth.adminSession,controller.brand);
+router.get('/viewproducts',auth.adminSession,controller.viewproducts);
 
 
 
@@ -26,8 +27,7 @@ router.get("/bannerview",controller.viewBannerpage);
 
 router.get("/couponview",controller.viewCoupon);
 router.get('/addcoupon',controller. addCouponPage);
-// router.get('/disable:id',controller.disable_coupon);
-// router.get('/enable:id',controller.enable_coupon)
+
    
    
  
@@ -45,7 +45,7 @@ router.post("/blockUser/:id",controller.blockUser);
 
 router.post('/addbrand' ,controller.addbrand);
 
-router.post('/deletebrand/:id', controller.deletebrand)
+router.post('/deletebrand/:id',auth.adminSession, controller.deletebrand)
 
 router.post('/deleteProduct/:id',controller.deleteProduct);
 router.post('/listProduct/:id',controller.listProduct)
@@ -69,7 +69,7 @@ router
 
 router
   .route('/invoice/:id')
-  .get(controller.invoice)
+  .get( controller.invoice)
 
 router
   .route('/changeStatus/:id/:prod/:status')

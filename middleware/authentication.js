@@ -16,59 +16,15 @@ module.exports = {
         }
     },
 
-    addOrder: async (req, res, next) => {
-        let userId = req.session.userId;
-        let cart = await cartModel.findOne({userId});
-        const cartTotal = cart.cartTotal;
-        const productId = cart.products; 
-        let addIndex = req.body.addIndex
-        console.log(addIndex);
-        let profile = await addressModel.findOne({ userId })
-        profile = profile.address[addIndex]
-        console.log(profile,'asdfghjk');
-        let cartId = cart._id.toString();
-        const now = new Date()
-        const deliveryDate = now.setDate(now.getDate() + 7)
-        const paymentMethod = req.body.paymentType
-        console.log(paymentMethod);
-
-        if (paymentMethod === "cod") {
-            const orderModels = await orderModel.create({
-                userId: userId,
-                products: productId,
-                cartTotal: cartTotal,
-                address: profile,
-                paymentMethod: req.body.paymentType,
-                paymentStatus: "Pending",
-                deliveryDate: deliveryDate
-
-            });
-            orderModels.save()
-            .then(async()=>{
-                await cartModel.findByIdAndDelete({_id: cart._id});
-                res.json({status: true});
-            })
+    adminSession:(req,res,next) => {
+        if(req.session.adminLogin){
+            next()
         } else {
-            console.log("Reached Online")
-            var instance = new Razorpay({key_id: "rzp_test_X3YzIfgkfukV1B", key_secret: "MHq03BJw6Ya0xylomnUvIseA"});
-
-            instance.orders.create({
-                amount: cartTotal * 100,
-                currency: "INR",
-                // reciept: String(cartId)
-
-            }, function (err, order) {
-                if (err) {
-                    console.log(err);
-
-                } else {
-                    console.log(order)
-                    res.json({status: false, order})
-                }
-            });
+            res.redirect("/admin/signin");
         }
 
+    },
 
-    }
+
 
 }
