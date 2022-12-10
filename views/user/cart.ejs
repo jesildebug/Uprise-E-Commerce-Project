@@ -98,7 +98,6 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="page-breadcrumb">
-                        <h2>Cart<span>.</span></h2>
                         <!-- <a href="#">Home</a>
                         <a href="#">Dresses</a>
                         <a class="active" href="#">Night Dresses</a> -->
@@ -152,7 +151,15 @@
                              </td>
                               <td class="total">₹<%= data.total %> </td>
                                 <!-- <td class="product-close">x</td> -->
-                                <td class="text-center align-middle px-0"><a href="user/deleteCart/<%= data.productId._id %>" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">×</a></td>
+                                
+                                <td class="text-center align-middle px-0">
+                                    <form action="user/deleteCart/<%= data.productId._id %>">
+                                        <button type="submit"  class="btn btn-danger" . style="
+                                        width: 100px;" onclick="return confirm ('Are you sure want to delete ?')">
+                                      
+                                    Remove </button>
+                                    </form>
+                                </td>
 
                         </tr>
                         
@@ -180,19 +187,28 @@
                     <div class="col-lg-12 text-lg-right">
                         <div class="total-info">
                             <div class="row">
-                                <div class="col-lg-12 text-right">
+                                <div class="col-lg-12  d-flex justify-content-end align-items-end">
                                     <div class="col-lg-4">
-                                        <div class="col-lg-12 text-right">
-                                            <h6>Cart total</h6>
+                                        <div class="col-lg-12 ">
+                                            <div class=" d-flex justify-content-between"  style="font-size: 16;">
+                                            <h5 class="text-left">Price Details</h5>
+                                            </div>
+                                            <br>
                                             <td>
-                                                <h6>Subtotal <span>₹ <%= cartTotal %> </span></h6>
-                                                <h6>Discount <span class="text-success"></span></h6>
+                                                <div class=" d-flex justify-content-between">
+                                                <h5 class="text-left" style="color:red;">Subtotal </h5><h5 class="text-right">₹ <%= cartTotal %></h5>
+                                               </div>
+                                               <div class=" d-flex justify-content-between">
+                                                <h6 class="text-left" style="color:green;">Discount <h5 class="text-success"></h6>
+                                                </div>
                                                 <hr>
-                                                <h6>Total <span>₹ <%= cartTotal %> </span></h6>
+                                                <div class=" d-flex justify-content-between">
+                                                    <h6 class="text-left" style="color: rgb(19, 19, 115);">Total </h5><h5 class="text-right">₹ <%= cartTotal %></h6>
+                                                </div>
                                                 <hr>
                                             </td>
                                                
-                                    <a href="/checkout" class="primary-btn chechout-btn">Proceed to checkout</a>
+                                    <a href="/checkout" class="btn btn-secondary btn-rounded " style="border-radius: 20px;">Proceed to checkout</a>
                                 </div>
                             </div>
                         </div>

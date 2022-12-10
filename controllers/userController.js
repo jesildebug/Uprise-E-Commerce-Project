@@ -690,17 +690,17 @@ module.exports = {
 
   
 
-       cancelOrder:async(req, res, next) => {
-            const userId = req.session.userId
-            const productId = req.params.id
-            const orderId = req.params.orderId
-            await orderModel.findOneAndUpdate({_id:orderId, 'products.productId': productId },
-                {
-                    $set:
-                        { 'products.$.orderStatus': "Cancelled" }
-                })
-            res.redirect("back")
-        },
+    cancelOrder:async(req, res, next) => {
+         const userId = req.session.userId
+         const productId = req.params.id
+         const orderId = req.params.orderId
+         await orderModel.findOneAndUpdate({_id:orderId, 'products._id': productId },
+             {
+                 $set:
+                     { 'products.$.orderStatus': "Cancelled" }
+             })
+         res.redirect("back")
+     },
 
 
     sendOtp: async (req, res) => {
