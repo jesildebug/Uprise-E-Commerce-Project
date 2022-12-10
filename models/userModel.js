@@ -27,6 +27,10 @@ const userSchema = new mongoose.Schema({
     status: {
         type: String,
         default: 'Unblocked'
+    },
+    date : {
+        type: Date,
+        default: Date.now() 
     }
 
 })

@@ -8,7 +8,8 @@ const orderModel = require('../models/orderModel');
 const {signuppage} = require("./userController");
 const userModel = require("../models/userModel");
 const productModel = require("../models/productModel");
-const moment = require('moment')
+const moment = require('moment');
+const brandModel = require("../models/brandModel");
 
 
 module.exports = {
@@ -18,8 +19,16 @@ module.exports = {
         res.render("admin/signin")
     },
 
-    homepage: (req, res) => {
-        res.render("admin/adminhome")
+    homepage: async (req, res) => {
+        const totalOrder = await orderModel.find({}).count()
+        const totalProducts = await productModel.find({}).count()
+        const totalBrand = await brandModel.find({}).count()
+        const totalUser = await UserModel.find({}).count()
+        const user = await UserModel.find({}).sort({ date: -1 }).limit(5)
+        const order = await orderModel.find({}).sort({ date: -1}).limit(5).populate('products.productId').populate({path:'products.productId', populate: {path:'brand'}}) 
+        const days = parseInt((order. deliveryDate?.getTime() - order.date?.getTime()) / (1000 * 60 * 60 * 24))
+
+        res.render("admin/adminhome", { totalUser,totalProducts,totalOrder,totalBrand,user,index:1,order,days,moment,orderindex:1})
 
     },
     logout: (req, res) => {
@@ -343,7 +352,7 @@ module.exports = {
     },
 
     manageOrder:async(req,res) => {
-        const orders = await orderModel.find().populate('products.productId')
+        const orders = await orderModel.find().populate('products.productId').populate({path:'products.productId', populate: {path:'brand'}})
         const days = parseInt((orders. deliveryDate?.getTime() - orders.date?.getTime()) / (1000 * 60 * 60 * 24))
         console.log(orders)
         res.render('admin/orderManagement', { orders, days, moment })

@@ -226,11 +226,11 @@
                                         </p>
                                     </div>
                                     <div class="col-md-1  border-0 ps-0 pt-4 text-sm text-center">
-                                        <%if(product.orderStatus != 'Canceled'){%>
-                                            <form action="/cancelOrder/<%= product._id %>" method="post">
+                                        <% if(product.orderStatus != 'Cancelled'){ %> 
+                                            <form action="/cancelOrder/<%= product._id %>/<%= orders._id %>" method="post">
                                                 <button type="submit" value="Cancelled" name="orderStatus" class="btn btn-outline-dark">Cancel</button>
                                             </form>
-                                            <%}%>
+                                            <% } %> 
                                     </div>
                                 <% }) %>
                             <% }) %>
