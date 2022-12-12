@@ -99,7 +99,7 @@ module.exports = {
             console.log(req.params.id);
             let brand = await brandModel.find();
             let single = await productModel.findOne({_id: id});
-            let product = await productModel.findOne({_id: id}).populate('brand');
+            let product = await productModel.findOne({_id: id}).populate('product');
 
             // res.render('user/single' ,{single,category});
             if (req.session.userLogin) {

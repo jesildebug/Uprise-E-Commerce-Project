@@ -17,7 +17,7 @@ router.get('/logout', controller.logout )
 
 //product listing
 
-router.get('/products',auth.userSession,controller.products);
+router.get('/products',controller.products);
 router.get('/single/:id',controller.userSession,controller.single);
 
 // user profile address

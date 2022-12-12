@@ -128,8 +128,17 @@ module.exports = {
     // Viewproducts
 
     viewproducts: async (req, res) => {
-        const products = await productModel.find({}).populate('brand')
-        res.render('admin/viewproducts', {products, index: 1})
+        const page = parseInt(req.query.page) || 1;
+        const items_per_page = 2;
+        const totalproducts = await productModel.find().countDocuments()
+        const products = await productModel.find({}).populate('brand').skip((page - 1) * items_per_page).limit(items_per_page)
+        res.render('admin/viewproducts', {products, index: 1,page,
+            hasNextPage: items_per_page * page < totalproducts,
+            hasPreviousPage: page > 1,
+            PreviousPage: page - 1
+        })
+        
+    
     },
 
 
