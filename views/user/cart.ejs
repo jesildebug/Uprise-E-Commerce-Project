@@ -1,64 +1,74 @@
 <%-include('../user/layout/user-header-layout.ejs')-%>
 
 
+<!-- Page Preloder -->
+<div id="preloder">
+    <div class="loader"></div>
+</div>
 
-
-
-
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
+<!-- Search model -->
+<div class="search-model">
+    <div class="h-100 d-flex align-items-center justify-content-center">
+        <div class="search-close-switch">+</div>
+        <form class="search-model-form">
+            <input type="text" id="search-input" placeholder="Search here.....">
+        </form>
     </div>
-    
-    <!-- Search model -->
-	<div class="search-model">
-		<div class="h-100 d-flex align-items-center justify-content-center">
-			<div class="search-close-switch">+</div>
-			<form class="search-model-form">
-				<input type="text" id="search-input" placeholder="Search here.....">
-			</form>
-		</div>
-	</div>
-	<!-- Search model end -->
+</div>
+<!-- Search model end -->
 
-    <!-- Header Section Begin -->
-    <header class="header-section">
-        <div class="container-fluid">
-            <div class="inner-header">
-                <div class="logo">
-                    <!-- <a href="./index.html"><img src="img/logo.png" alt=""></a> -->
-                </div>
+<!-- Header Section Begin -->
+<header class="header-section">
+    <div class="container-fluid">
+        <div class="inner-header">
+            <div
+                class="logo"><!-- <a href="./index.html"><img src="img/logo.png" alt=""></a> -->
+            </div>
 
-                <div class="header-right">
-                    <img src="/images/user/img/icons/search.png" alt="" class="search-trigger">
-                    
-                    <a href="/user/profile"><img src="/images/user/img/icons/man.png" alt="" style="margin-left: 26px;" > </a>
-                    
-                    <a href="/wishlist">
-                            <img src="/images/user/img/icons/heart.png" style="height:18px; margin-left: 25px;" alt="">
-                    <a href="/cart"> 
-                     <img src="/images/user/img/icons/bag.png" alt="" style="margin-left: 25px;">
-                     <span>2</span>
+            <div class="header-right">
+                <img src="/images/user/img/icons/search.png" alt="" class="search-trigger">
+
+                <a href="/user/profile"><img src="/images/user/img/icons/man.png" alt="" style="margin-left: 26px;">
+                </a>
+
+                <a href="/wishlist">
+                    <img src="/images/user/img/icons/heart.png" style="height:18px; margin-left: 25px;" alt="">
+                    <a href="/cart">
+                        <img src="/images/user/img/icons/bag.png" alt="" style="margin-left: 25px;">
+                        <span>2</span>
                     </a>
                 </div>
-               
+
                 <div class="user-access">
                     <a href="#">Register</a>
                     <a href="#" class="in">Sign in</a>
                 </div>
                 <nav class="main-menu mobile-menu">
                     <ul>
-                        <li><a class="active" href="./index.html">Home</a></li>
-                        <li><a href="/products">Shop</a>
+                        <li>
+                            <a class="active" href="./index.html">Home</a>
+                        </li>
+                        <li>
+                            <a href="/products">Shop</a>
                             <ul class="sub-menu">
-                                
-                                <li><a href="/cart">Shopping Card</a></li>
-                                <li><a href="/checkout">Check out</a></li>
+
+                                <li>
+                                    <a href="/cart">Shopping Card</a>
+                                </li>
+                                <li>
+                                    <a href="/checkout">Check out</a>
+                                </li>
                             </ul>
                         </li>
-                        <li><a href="./product-page.html">About</a></li>
-                        <li><a href="./check-out.html">Blog</a></li>
-                        <li><a href="./contact.html">Contact</a></li>
+                        <li>
+                            <a href="./product-page.html">About</a>
+                        </li>
+                        <li>
+                            <a href="./check-out.html">Blog</a>
+                        </li>
+                        <li>
+                            <a href="./contact.html">Contact</a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -82,9 +92,9 @@
                 </div>
                 <div class="col-md-4 text-left text-xl-right">
                     <div class="header-item">
-                    <img src="img/icons/sales.png" alt="">
-                    <p>30% off on Oppo. Use code: 30OFF</p>
-                </div>
+                        <img src="img/icons/sales.png" alt="">
+                        <p>30% off on Oppo phones. Use code: SAVE20 OFF</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -93,17 +103,14 @@
     <!-- Header End -->
 
     <!-- Page Add Section Begin -->
-    <section class="page-add cart-page-add">
-        <div class="container">
+        <section class="page-add cart-page-add"> <div class="container">
             <div class="row">
                 <div class="col-lg-4">
-                    <div class="page-breadcrumb">
-                        <!-- <a href="#">Home</a>
-                        <a href="#">Dresses</a>
-                        <a class="active" href="#">Night Dresses</a> -->
+                    <div
+                        class="page-breadcrumb">
                     </div>
                 </div>
-               
+
             </div>
         </div>
     </section>
@@ -136,79 +143,109 @@
                                 </td>
                                 <td class="price-col">₹<%= data.productId.price %></td>
                                 <td>
-                             <div class="qty-label">
-                                <div class="input-number">  
-                                        Qty:
-                                        <a class="qty-up" href="user/button-increment/<%=data.productId._id %>"
-                                            onclick="addToCart('<%=data.productId.id%>','<%=data.productId.model%>','<%=data.productId.price %>',1)">+</a>
-                                                        <input id="itemQty-<%= data.productId.id %>" type="text"
-                                                            value="<%= data.quantity %>"
-                                                            style="height: 40px; width: 30px; border: none;">
-                                                        <a class="qty-down" href="user/button-decrement/<%= data.productId._id %>"
-                                                            onclick="addToCart('<%=data.productId.id%>','<%=data.productId.model%>','<%=data.productId.price %>',-1)">-</a>
-                                 </div>
-                             </div>
-                             </td>
-                              <td class="total">₹<%= data.total %> </td>
-                                <!-- <td class="product-close">x</td> -->
-                                
+                                    <div class="qty-label">
+                                        <div class="input-number">
+                                            Qty:
+                                            <a class="qty-up" href="user/button-increment/<%=data.productId._id %>" onclick="addToCart('<%=data.productId.id%>','<%=data.productId.model%>','<%=data.productId.price %>',1)">+</a>
+                                            <input id="itemQty-<%= data.productId.id %>" type="text" value="<%= data.quantity %>" style="height: 40px; width: 30px; border: none;">
+                                            <a class="qty-down" href="user/button-decrement/<%= data.productId._id %>" onclick="addToCart('<%=data.productId.id%>','<%=data.productId.model%>','<%=data.productId.price %>',-1)">-</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="total">₹<%= data.total %>
+                                </td>
+                               <td>  
+                                 <div class="product-btns">
+                                <% if(user){ %>
+                                    <% let flag=false; if(wishList.products){%>
+                                        <%for(let pro of wishList.products){%>
+                                            <% if(pro.toString()==data.productId._id.toString()){
+                                                flag=true;%>
+                                                <%}}%>
+                                                    <%if(flag==true){%>
+                                                        <button class="btn btn-light" type="" 
+                                                         ><a
+                                                                href="/add-to-wishlist/<%= data.productId._id %>"><i
+                                                                    class="fa-solid fa-heart"
+                                                                    style="color: red;"></i><span
+                                                                    class="tooltipp">add
+                                                                    to
+                                                                    wishlist</span></a></button>
+                                                        <%}else{%>
+                                                            <button class="btn btn-light" type="" 
+                                                        ><a
+                                                                    href="/add-to-wishlist/<%= data.productId._id %>"><i
+                                                                        class="fa fa-heart-o"></i><span
+                                                                        class="tooltipp">add
+                                                                        to
+                                                                        wishlist</span></a></button>
+                                                            <%}%>
+                                                                <%}}else{%>
+                                                                    <button class="btn btn-light"
+                                                                        type=""><a href="/login"><i
+                                                                                class="fa fa-heart-o"></i><span
+                                                                                class="tooltipp">move
+                                                                                to
+                                                                                wishlist</span></a></button>
+                                                                    <%}%>
+                                                                    </td>
+
                                 <td class="text-center align-middle px-0">
                                     <form action="user/deleteCart/<%= data.productId._id %>">
-                                        <button type="submit"  class="btn btn-danger" . style="
-                                        width: 100px;" onclick="return confirm ('Are you sure want to delete ?')">
-                                      
-                                    Remove </button>
+                                        <button type="submit" class="btn btn-danger" style="
+                                     width: 100px;" onclick="return confirm ('Are you sure want to delete ?')">
+
+                                            Remove
+                                        </button>
                                     </form>
                                 </td>
 
-                        </tr>
-                        
-                            <% }) %>
+                            </tr>
+
+                        <% }) %>
                     </tbody>
                 </table>
             </div>
-            <!-- <div class="cart-btn">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="coupon-input">
-                            <input type="text" placeholder="Enter cupone code">
-                        </div>
-                    </div>
-                    <div class="col-lg-5 offset-lg-1 text-left text-lg-right">
-                        <div class="site-btn clear-btn">Clear Cart</div>
-                        <div class="site-btn update-btn">Update Cart</div>
-                    </div>
-                </div> -->
-            </div>
+          
         </div>
-        <div class="shopping-method">
-            <div class="col-md-6l ">
-                <div class="row">
-                    <div class="col-lg-12 text-lg-right">
-                        <div class="total-info">
-                            <div class="row">
-                                <div class="col-lg-12  d-flex justify-content-end align-items-end">
-                                    <div class="col-lg-4">
-                                        <div class="col-lg-12 ">
-                                            <div class=" d-flex justify-content-between"  style="font-size: 16;">
+    </div>
+    <div class="shopping-method">
+        <div class="col-md-6l ">
+            <div class="row">
+                <div class="col-lg-12 text-lg-right">
+                    <div class="total-info">
+                        <div class="row">
+                            <div class="col-lg-12  d-flex justify-content-end align-items-end">
+                                <div class="col-lg-4">
+                                    <div class="col-lg-12 ">
+                                        <div class=" d-flex justify-content-between" style="font-size: 16;">
                                             <h5 class="text-left">Price Details</h5>
+                                        </div>
+                                        <br>
+                                        <td>
+                                            <div class=" d-flex justify-content-between">
+                                                <h5 class="text-left" style="color:red;">Subtotal
+                                                </h5>
+                                                <h5 class="text-right">₹
+                                                    <%= cartTotal %></h5>
                                             </div>
-                                            <br>
-                                            <td>
-                                                <div class=" d-flex justify-content-between">
-                                                <h5 class="text-left" style="color:red;">Subtotal </h5><h5 class="text-right">₹ <%= cartTotal %></h5>
-                                               </div>
-                                               <div class=" d-flex justify-content-between">
-                                                <h6 class="text-left" style="color:green;">Discount <h5 class="text-success"></h6>
+                                            <div class=" d-flex justify-content-between">
+                                                <h6 class="text-left" style="color:green;">Discount
+                                                    <h5 class="text-success"></h6>
                                                 </div>
                                                 <hr>
                                                 <div class=" d-flex justify-content-between">
-                                                    <h6 class="text-left" style="color: rgb(19, 19, 115);">Total </h5><h5 class="text-right">₹ <%= cartTotal %></h6>
+                                                    <h6 class="text-left" style="color: rgb(19, 19, 115);">Total
+                                                    </h5>
+                                                    <h5 class="text-right">₹
+                                                        <%= cartTotal %></h6>
                                                 </div>
                                                 <hr>
                                             </td>
-                                               
-                                    <a href="/checkout" class="btn btn-secondary btn-rounded " style="border-radius: 20px;">Proceed to checkout</a>
+
+                                            <a href="/checkout" class="btn btn-secondary btn-rounded " style="border-radius: 20px;">Proceed to checkout</a>
+                                        </td>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -216,14 +253,7 @@
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Cart Page Section End -->
-
-     
+        <!-- Cart Page Section End -->
 
 
-
-
-  
-
-<%-include('../user/layout/user-footer-layout.ejs') -%>
+        <%-include('../user/layout/user-footer-layout.ejs') -%>

@@ -1,43 +1,40 @@
 <%-include('../user/layout/user-header-layout.ejs') -%>
 
 
+<!-- Page Preloder -->
+<div id="preloder">
+    <div class="loader"></div>
+</div>
 
-
-
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
+<!-- Search model -->
+<div class="search-model">
+    <div class="h-100 d-flex align-items-center justify-content-center">
+        <div class="search-close-switch">+</div>
+        <form class="search-model-form">
+            <input type="text" id="search-input" placeholder="Search here.....">
+        </form>
     </div>
+</div>
+<!-- Search model end -->
 
-    <!-- Search model -->
-    <div class="search-model">
-        <div class="h-100 d-flex align-items-center justify-content-center">
-            <div class="search-close-switch">+</div>
-            <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="Search here.....">
-            </form>
-        </div>
-    </div>
-    <!-- Search model end -->
+<!-- Header Section Begin -->
+<header class="header-section">
+    <div class="container-fluid">
+        <div class="inner-header">
+            <div
+                class="logo"><!-- <a href="./index.html"><img src="img/logo.png" alt=""></a> -->
+            </div>
 
-    <!-- Header Section Begin -->
-    <header class="header-section">
-        <div class="container-fluid">
-            <div class="inner-header">
-                <div class="logo">
-                    <!-- <a href="./index.html"><img src="img/logo.png" alt=""></a> -->
-                </div>
+            <div class="header-right">
+                <img src="/images/user/img/icons/search.png" alt="" class="search-trigger">
+                <img src="/images/user/img/icons/man.png" alt="" style="margin-left: 28px;">
 
-                <div class="header-right">
-                    <img src="/images/user/img/icons/search.png" alt="" class="search-trigger">
-                    <img src="/images/user/img/icons/man.png" alt="" style="margin-left: 28px;">
-
-                    <a href="/wishList">
-                        <img src="/images/user/img/icons/heart.png" style="height:18px; margin-left: 25px;" alt="">
-                        <a href="/cart">
-                            <img src="/images/user/img/icons/bag.png" alt="" style="margin-left: 25px;">
-                            <span>2</span>
-                        </a>
+                <a href="/wishList">
+                    <img src="/images/user/img/icons/heart.png" style="height:18px; margin-left: 25px;" alt="">
+                    <a href="/cart">
+                        <img src="/images/user/img/icons/bag.png" alt="" style="margin-left: 25px;">
+                        <span>2</span>
+                    </a>
                 </div>
 
                 <div class="user-access">
@@ -46,17 +43,30 @@
                 </div>
                 <nav class="main-menu mobile-menu">
                     <ul>
-                        <li><a class="active" href="./index.html">Home</a></li>
-                        <li><a href="/products">Shop</a>
+                        <li>
+                            <a class="active" href="./index.html">Home</a>
+                        </li>
+                        <li>
+                            <a href="/products">Shop</a>
                             <ul class="sub-menu">
 
-                                <li><a href="/cart">Shopping Card</a></li>
-                                <li><a href="check-out.html">Check out</a></li>
+                                <li>
+                                    <a href="/cart">Shopping Card</a>
+                                </li>
+                                <li>
+                                    <a href="check-out.html">Check out</a>
+                                </li>
                             </ul>
                         </li>
-                        <li><a href="./product-page.html">About</a></li>
-                        <li><a href="./check-out.html">Blog</a></li>
-                        <li><a href="./contact.html">Contact</a></li>
+                        <li>
+                            <a href="./product-page.html">About</a>
+                        </li>
+                        <li>
+                            <a href="./check-out.html">Blog</a>
+                        </li>
+                        <li>
+                            <a href="./contact.html">Contact</a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -81,7 +91,7 @@
                 <div class="col-md-4 text-left text-xl-right">
                     <div class="header-item">
                         <img src="img/icons/sales.png" alt="">
-                        <p>30% off on dresses. Use code: 30OFF</p>
+                        <p>30% off on Oppo phones. Use code: SAVE20 OFF</p>
                     </div>
                 </div>
             </div>
@@ -91,15 +101,15 @@
     <!-- Header End -->
 
     <!-- Page Add Section Begin -->
-    <section class="page-add">
-        <div class="container">
+        <section class="page-add"> <div class="container">
             <div class="row">
                 <div class="col-lg-4">
                     <div class="page-breadcrumb">
-                        <h2>iPro<span>.</span></h2>
+                        <h2>iPro<span>.</span>
+                        </h2>
                         <!-- <a href="#">Home</a>
-                        <a href="#">Dresses</a>
-                        <a class="active" href="#">Night Dresses</a> -->
+                                                <a href="#">Dresses</a>
+                                                <a class="active" href="#">Night Dresses</a> -->
                     </div>
                 </div>
                 <div class="col-lg-8">
@@ -139,9 +149,9 @@
             </div>
             <div class="row">
                 <% products.forEach(function(x) { %>
-                   
+
                     <a href="/add-to-wishlist/<%= x._id %>" style="text-decoration: none;">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width: 30px;"><path d="M244 84L255.1 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 0 232.4 0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84C243.1 84 244 84.01 244 84L244 84zM255.1 163.9L210.1 117.1C188.4 96.28 157.6 86.4 127.3 91.44C81.55 99.07 48 138.7 48 185.1V190.9C48 219.1 59.71 246.1 80.34 265.3L256 429.3L431.7 265.3C452.3 246.1 464 219.1 464 190.9V185.1C464 138.7 430.4 99.07 384.7 91.44C354.4 86.4 323.6 96.28 301.9 117.1L255.1 163.9z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512" style="width: 30px;"><path d="M244 84L255.1 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 0 232.4 0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84C243.1 84 244 84.01 244 84L244 84zM255.1 163.9L210.1 117.1C188.4 96.28 157.6 86.4 127.3 91.44C81.55 99.07 48 138.7 48 185.1V190.9C48 219.1 59.71 246.1 80.34 265.3L256 429.3L431.7 265.3C452.3 246.1 464 219.1 464 190.9V185.1C464 138.7 430.4 99.07 384.7 91.44C354.4 86.4 323.6 96.28 301.9 117.1L255.1 163.9z"/></svg>
 
                     </a>
                     <div class="col-lg-3 col-md-6">
@@ -150,15 +160,16 @@
                                 <img src="/images/product_img/<%= x.image[0] %>" alt="">
                                 <div class="p-status">new</div>
                                 <div class="hover-icon">
-                                    <a href="#" class="pop-up"><img src="img/icons/zoom-plus.png"
-                                            alt=""></a>
+                                    <a href="#" class="pop-up"><img src="img/icons/zoom-plus.png" alt=""></a>
                                 </div>
                             </figure>
                             <div class="product-text">
                                 <a href="/single/<%= x._id %>">
-                                    <h6><%= x.brand.brand %> <%= x.model %></h6>
+                                    <h6><%= x.brand.brand %>
+                                        <%= x.model %></h6>
                                 </a>
-                                <p>RS: <%= x.price %></p>
+                                <p>RS:
+                                    <%= x.price %></p>
                             </div>
                         </div>
                     </div>
@@ -174,8 +185,6 @@
             </div>
         </div>
     </section>
-
-
 
 
     <%-include('../user/layout/user-footer-layout.ejs') -%>

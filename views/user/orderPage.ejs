@@ -111,28 +111,27 @@
                                 <div class="col border-0 ps-0 pt-0 text-sm text-center">
                                     <strong class="text-dark">Delivery Date</strong>
                                 </div>
-                              
+
                                 <div class="col  border-0 ps-0 pt-0 text-sm text-center">
                                     <strong class="text-dark">Amount</strong>
                                 </div>
                                 <div class="col  border-0 ps-0 pt-0 text-sm text-center">
                                     <strong class="text-dark">Payment Method</strong>
                                 </div>
-                               
-                                
-                            </div>   
-                            <br>  
-                                   
+
+
+                            </div>
+                            <br>
 
 
                             <% order.forEach(function(orders) { %>
 
                                 <% orders.products.forEach(function(product){  %>
-                            <div class="card shadow-0 border mb-4">
-                                <div class="card-body">
-                                    <div class="row">
-                                       
-                                        
+                                    <div class="card shadow-0 border mb-4">
+                                        <div class="card-body">
+                                            <div class="row">
+
+
                                                 <div class="col">
                                                     <img src="/images/product_img/<%= product.productId.image[0] %>" alt="" class="w-80 border-radius-lg shadow-sm">
                                                 </div>
@@ -164,10 +163,11 @@
                                                         <%= moment(orders.deliveryDate).format('MMMM D') %></p>
                                                 </div>
                                                 <div class="col text-center d-flex justify-content-center align-items-center">
-                                                    <p class="text-muted mb-0 small"> <%= orders.paymentMethod %>
+                                                    <p class="text-muted mb-0 small">
+                                                        <%= orders.paymentMethod %>
                                                     </p>
                                                 </div>
-                                               
+
                                             </div>
                                             <hr class="mb-5" style="background-color: #e0e0e0; opacity: 1;">
                                             <div class="row d-flex align-items-center">
@@ -203,8 +203,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <% }) %>
                                 <% }) %>
+                            <% }) %>
 
 
                         </div>

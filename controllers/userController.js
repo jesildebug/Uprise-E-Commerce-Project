@@ -260,16 +260,24 @@ module.exports = {
         if (list != null) {
             let cartProducts = list.products;
             let cartTotal = list.cartTotal
+            let user = await userModel.findById(userId)
+            let cart = await cartModel.findOne({user:userId})
+            let wishList = await wishlistModel.findOne({user: user})
+            const viewcart = await cartModel.findOne({ user: userId }).populate("products.productId").exec()
+            if(wishList){
+                count = cart.products.length
+            }
+             
             console.log(cartProducts);
-
-            // res.render('user/cart', {cartProducts,category, index:1})
             if (req.session.userLogin) {
                 res.render("user/cart", {
                     cartProducts,
                     index: 1,
                     login: true,
                     list,
-                    cartTotal
+                    cartTotal,
+                    user,
+                    wishList
                 });
             } else {
                 res.render("user/cart", {
@@ -283,6 +291,7 @@ module.exports = {
             res.redirect("/");
         }
     },
+
 
     addToCart: async (req, res) => {
         let productId = req.params.id;
