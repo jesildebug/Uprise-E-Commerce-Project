@@ -120,13 +120,20 @@
     <div class="cart-btn">
         <div class="container">
             <div class="cart-table">
+                
+                    <% if (count==0) { %>
+                        <div class="col-12 text-center">
+                            <img src="https://ibellstore.com/images/no-item-found-here.png" alt="no order"
+                                style="width: 600px; height:400px ;">
+                        </div>
+                        <% } else { %>
                 <table>
                     <thead>
                         <tr>
-                            <th class="product-h">Product</th>
+                            <th style="text-align: center; margin-right: 5px;">Product</th>
                             <th>Price</th>
-                            <th class="quan">Quantity</th>
-                            <th>Total</th>
+                            <th tyle="text-align: center;">Quantity</th>
+                            <th style="text-align: center;">Total</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -147,12 +154,13 @@
                                         <div class="input-number">
                                             Qty:
                                             <a class="qty-up" href="user/button-increment/<%=data.productId._id %>" onclick="addToCart('<%=data.productId.id%>','<%=data.productId.model%>','<%=data.productId.price %>',1)">+</a>
-                                            <input id="itemQty-<%= data.productId.id %>" type="text" value="<%= data.quantity %>" style="height: 40px; width: 30px; border: none;">
+                                            <input id="itemQty-<%= data.productId.id %>" type="text" value="<%= data.quantity %>" style="height: 40px; width: 30px;border: none;color: crimson; text-align: center;">
                                             <a class="qty-down" href="user/button-decrement/<%= data.productId._id %>" onclick="addToCart('<%=data.productId.id%>','<%=data.productId.model%>','<%=data.productId.price %>',-1)">-</a>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="total">₹<%= data.total %>
+                                <td>
+                                 <div class="total" >₹<%= data.total %></div>
                                 </td>
                                <td>  
                                  <div class="product-btns">
@@ -205,6 +213,7 @@
                         <% }) %>
                     </tbody>
                 </table>
+                <% } %>
             </div>
           
         </div>
@@ -240,11 +249,15 @@
                                                     <h5 class="text-right">₹
                                                         <%= cartTotal %></h6>
                                                 </div>
+                                                
                                                 <hr>
                                             </td>
 
                                             <a href="/checkout" class="btn btn-secondary btn-rounded " style="border-radius: 20px;">Proceed to checkout</a>
                                         </td>
+                                    
+                                    
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -253,7 +266,8 @@
                 </div>
             </div>
         </div>
-        <!-- Cart Page Section End -->
+     
+      
 
 
         <%-include('../user/layout/user-footer-layout.ejs') -%>
