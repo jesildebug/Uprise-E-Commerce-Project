@@ -425,8 +425,7 @@ module.exports = {
                 user: User,
                 data,
                 count,
-                counts
-
+                counts,
             });
         })
 

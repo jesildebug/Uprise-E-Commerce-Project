@@ -1,4 +1,4 @@
-<%-include('/Users/jesilfawaz/Desktop/Uprise-E-Commerce Project/views/user/layout/user-header-layout.ejs') -%>
+<%-include('../user/layout/user-header-layout.ejs') -%>
 
 
 <!-- Page Preloder -->
@@ -18,13 +18,13 @@
 
     <!-- Header Section Begin -->
     <header class="header-section">
-        <div class="container-fluid" >
-            <div class="inner-header" >
+        <div class="container-fluid">
+            <div class="inner-header">
                 <div
                     class="logo"><!-- <a href="./index.html"><img src="img/logo.png" alt=""></a> -->
                 </div>
 
-                  <div class="header-right">
+                <div class="header-right">
                     <img src="/images/user/img/icons/search.png" alt="" class="search-trigger">
                         <a href="/user/profile">
                             <img src="/images/user/img/icons/man.png" alt=""></a>
@@ -112,82 +112,89 @@
 
                                             <!-- wishlist Section Begin -->
                                             <div style="min-height: 100vh;">
-                                            <div class="cart-page" >
-                                                <div class="container">
-                                                    <div class="card" >
-                                                        <table>
-                                                            <thead>
-                                                                <tr>
-                                                                    <th class="product-h">Product</th>
-                                                                    <th>Price</th>
-
-
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-
-
-                                                                <%for (let wishList of data.products){%>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <div class="media">
-                                                                                <div class="flex">
-                                                                                    <img src="/images/product_img/<%= wishList.image[0] %>" style="height: 80px;" alt=""></div>
-                                                                                    <!-- <div class="media-body"> -->
-                                                                                    <div class="product__cart__item__text mt-3">
-                                                                                        <a href="/single/<%= wishList._id %>">
-                                                                                            <h6>
-                                                                                                <%= wishList.brand.brand %>
-                                                                                                <%= wishList.model %>
-                                                                                            </h6>
-                                                                                        </div>
-
-                                                                                    </div>
-                                                                                </td>
-                                                                                <td>
-                                                                                    <h6>
-                                                                                        <%= wishList?.price %>
-                                                                                    </h6>
-                                                                                </td>
-
-                                                                                <td class="text-center align-middle px-0">
-                                                                                    <form action="/cart/<%= wishList._id %>"  method="get">
-                                                                                       <button type="submit" class="btn btn-outline-secondary" data-mdb-ripple-color="dark">Add to cart</button>                                            
-                                                                                    </form>
-                                                                                </td>
-                                                                                <td class="text-center align-middle px-0">
-                                                                                    <form action="/deleteWishlist/<%= wishList._id%>" method="post">
-                                                                                        <button type="submit"  class="btn btn-danger" . style="
-                                                                                        width: 100px;" onclick="return confirm ('Are you sure want to delete ?')">
-                                                                                      
-                                                                                    Remove </button>
-                                                                                    </form>
-                                                                                </td>
-
+                                                <div class="cart-page">
+                                                    <div class="container">
+                                                        <div class="card">
+                                                            <% if (count==0) { %>
+                                                                <div class="col-12 text-center">
+                                                                    <img src="https://ibellstore.com/images/no-item-found-here.png" alt="no order" style="width: 600px; height:400px ;"></div>
+                                                                <% } else { %>
+                                                                    <table>
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th class="product-h">Product</th>
+                                                                                <th>Price</th>
                                                                             </tr>
-                                                                        <% } %>
-                                                                       
-                                                                        
-                                                                    </tbody>
+                                                                        </thead>
 
-                                                                </table>
-                                                               
+                                                                        <tbody>
+
+
+                                                                            <%for (let wishList of data.products){%>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <div class="media">
+                                                                                            <div class="flex">
+                                                                                                <img src="/images/product_img/<%= wishList.image[0] %>" style="height: 80px;" alt=""></div>
+                                                                                                <!-- <div class="media-body"> -->
+                                                                                                <div class="product__cart__item__text mt-3">
+                                                                                                    <a href="/single/<%= wishList._id %>">
+                                                                                                        <h6>
+                                                                                                            <%= wishList.brand.brand %>
+                                                                                                            <%= wishList.model %>
+                                                                                                        </h6>
+                                                                                                    </div>
+
+                                                                                                </div>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <h6>
+                                                                                                    <%= wishList?.price %>
+                                                                                                </h6>
+                                                                                            </td>
+
+                                                                                            <td class="text-center align-middle px-0">
+                                                                                                <form action="/cart/<%= wishList._id %>" method="get">
+                                                                                                    <button type="submit" class="btn btn-outline-secondary" data-mdb-ripple-color="dark">Add to cart</button>
+                                                                                                </form>
+                                                                                            </td>
+                                                                                            <td class="text-center align-middle px-0">
+                                                                                                <form action="/deleteWishlist/<%= wishList._id%>" method="post">
+                                                                                                    <button type="submit" class="btn btn-danger" . style="
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        width: 100px;" onclick="return confirm ('Are you sure want to delete ?')">
+
+                                                                                                        Remove
+                                                                                                    </button>
+                                                                                                </form>
+                                                                                            </td>
+
+                                                                                        </tr>
+                                                                                    <% } %>
+
+
+                                                                                </tbody>
+
+                                                                            </table>
+
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                       
-                                                        
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>
-                                          
-                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            <% } %>
                         </div>
-                    </div>
 
-                    <br><br>
-                    <!-- wishlist Page Section End -->
-                    <%-include('/Users/jesilfawaz/Desktop/Uprise-E-Commerce Project/views/user/layout/user-footer-layout.ejs') -%>
+                    </div>
+                </div>
+            </div>
+                <!-- wishlist Page Section End -->
+                <%-include('../user/layout/user-footer-layout.ejs') -%>
