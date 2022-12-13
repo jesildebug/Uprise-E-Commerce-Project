@@ -1,30 +1,154 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-
-<head>
-    <meta charset="utf-8">
-    <title>َAnimated Login Form</title>
-    <link rel="stylesheet" href="/stylesheets/user/signin/style.css">
-</head>
-
-<body>
-
-    <form class="box" action="/otp" method="post">
-        <h1>Sign up</h1>
-        <h4 style="color: black;">Already have an account? <span><a href="/login" style="color:black; text-decoration: none;">Login</a> </span></h4>
-
-        <input type="text" name="FullName" placeholder="Full Name" required pattern="[A-Za-z]{3,22}">
-        <input type="text" name="UserName" placeholder="User Name" required  pattern="[A-Za-z]{3,22}">
-        <input type="email" name="Email" placeholder="Email" required  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
-        <input type="tel" name="Phone" placeholder="Phone" required   pattern="[789][0-9]{9}">
-        <input type="password" name="Password" placeholder="Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
-        <div class="alert-text signup__alert">
-            <span class="help__text">At least 8 character</span>
-        <button type="submit">Sign up</button>
-    </form>
 
 
-</body>
 
-</html>
+<div class="left">
 
+    <div class="logo">
+     <a href="/"><img src="/public/images/ipro2.logo.webp" style="height: 40px; margin-right: 400px;"></a>
+ 
+    </div>
+ 
+ 
+     <h1>Welcome</h1>
+ 
+ 
+     <form class="box" action="/otp" method="post">
+         <fieldset>
+             
+             <input type="text" name="FullName" placeholder="FullName" required  style="margin-bottom: 1px;" pattern="[A-Za-z]{3,22}"><br>
+             <input type="text" name="UserName" placeholder="User Name" required  pattern="[A-Za-z]{3,22}"><br>
+             <input type="tel" name="Phone" placeholder="Phone" required   pattern="[789][0-9]{9}"><br>
+             <input type="email" name="Email" placeholder="Email" required  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"><br>
+             <input type="password" name="Password" placeholder="Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"><br>
+             <div class="alert-text signup__alert"><br>
+                <span class="help__text" style="font-size:13px; color: rgb(173, 156, 156);;">At least 8 character</span>
+        
+        
+           
+        </form>
+    
+    
+             <button href="/signuppage" class="primaryBtn">Sign up</button>
+             <div class="separator"></div>
+             <h4 style="color: rgb(173, 156, 156);">Already have an account? </h4>
+
+           
+             <span><a href="/login" style="color:black; text-decoration: none;">Login</a> </span>
+     </fieldset>
+ </form></div><div class="right"></div>
+
+<style>
+    @import url('https://www.cnet.com/a/img/resize/56c1e8e22b3442139bb3d07bec1a590ce28b1b09/hub/2022/04/27/9ea7e4ab-02c3-438e-97c9-f72c632bcaf7/stack-of-phones-2022-rebranding-orange-03.jpg?auto=webp&fit=crop&height=675&width=1200');
+/* font-family: 'Cormorant Garamond', serif;
+   font-family: 'Italiana', serif; */
+* {
+    box-sizing: border-box;
+}
+body {
+    min-height: 100vh;
+    background-color: #F7F5F3;
+    /*flex*/
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+}
+h1 {
+    font-size: 48px;
+    font-family: 'Italiana', serif;
+    font-weight: 400;
+    margin-bottom: 64px;
+    color: #554A3D;
+}
+input,
+span,
+label,
+button,
+a {
+    font-family: 'Cormorant Garamond', serif;
+    color: #554A3D;
+}
+a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 8px;
+    /*flex*/
+    display: flex;
+    justify-content: flex-end;
+}
+fieldset {
+    border: none;
+    /*flex*/
+    display: flex;
+    flex-direction: column;
+}
+label {
+    font-size: 18px;
+    font-weight: 600;
+}
+fieldset input:first-of-type {
+    margin: 8px 0 40px;
+}
+input {
+    width: 100%;
+    height: 40px;
+    border: none;
+    background-color: #E8E3DC;
+    border-radius: 10px;
+    /*flex*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+button {
+    width: 192px;
+    height: 48px;
+    border: none;
+    background-color: transparent;
+    text-transform: capitalize;
+    font-weight: 700;
+    font-size: 20px;
+    border-radius: 10px;
+}
+.left {
+    width: 35%;
+    padding: 24px;
+}
+.right {
+    width: 60%;
+    height: 100vh;
+    background-image: url('https://static.wixstatic.com/media/b2c0a7_5fa4e6c7341640c8b4b95c48f53faa90.png/v1/fill/w_566,h_539,al_c,lg_1,q_85,enc_auto/b2c0a7_5fa4e6c7341640c8b4b95c48f53faa90.png');
+   /* background-size: cover; */
+    background-position: center; 
+}
+.primaryBtn {
+    color: #F7F5F3;
+    background-color: #85A2AB;
+    margin: 40px auto 56px;
+}
+.primaryBtn:hover {
+    background-color: #516369;
+}
+.separator {
+    width: 100%;
+    height: 1px;
+    margin: 0 auto 56px;
+    background-color: #BBB4A7;
+}
+span {
+    font-size: 18px;
+    font-weight: 700;
+    /*flex*/
+    display: flex;
+    justify-content: center;
+}
+.secondaryBtn {
+    color: #554A3D;
+    border: 1px solid #85A2AB;
+    margin: 8px auto;
+}
+.secondaryBtn:hover {
+    color: #516369;
+    border-color: #516369;
+}</style>
+</style>
