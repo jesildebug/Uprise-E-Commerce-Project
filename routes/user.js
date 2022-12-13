@@ -13,6 +13,7 @@ router.get('/', controller.homepage)
 router.get('/login', controller.loginpage)
 router.get('/signuppage', controller.signuppage)
 router.get('/logout', controller.logout )
+router.get('/contact',controller.contact)
 
 
 //product listing

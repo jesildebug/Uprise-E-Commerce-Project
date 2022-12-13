@@ -57,6 +57,7 @@ module.exports = {
         res.render("user/login")
     },
 
+
     homepage: (req, res) => {
         if (req.session.userLogin) {
             res.render("user/home", {
@@ -831,7 +832,12 @@ module.exports = {
         req.session.loggedOut = true;
         req.session.destroy();
         res.redirect('/');
-    }
+    },
+
+
+    contact: (req, res) => {
+        res.render("user/contact")
+    },
 
 
 }
