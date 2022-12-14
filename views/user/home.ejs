@@ -119,39 +119,22 @@
         <!-- Hero Slider Begin -->
         <section class="hero-slider">
             <div class="hero-items owl-carousel">
-                <div class="single-slider-item set-bg" data-setbg="/images/product_img/iphone11.jpg">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <h1>2019</h1>
-                                <h2>Lookbook.</h2>
-                                <a href="#" class="primary-btn">See More</a>
+             
+                <% banners.forEach(function(x){ %>
+                    <div class="single-slider-item set-bg" data-setbg="/images/product_img/<%= x.image[0] %>">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h1><%= x.bannerName %></h1>
+                                    <h2><%= x.description %></h2>
+                                    <a href="/products" class="primary-btn">See More</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="single-slider-item set-bg" data-setbg="/images/product_img/iphoneblue.jpg">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <h1>2019</h1>
-                                <h2>Lookbook.</h2>
-                                <a href="#" class="primary-btn">See More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="single-slider-item set-bg" data-setbg="/images/product_img/betphones.jpg">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <h1>2019</h1>
-                                <h2>Lookbook.</h2>
-                                <a href="#" class="primary-btn">See More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    
+                    <% }) %>
+               
             </div>
         </section>
         <!-- Hero Slider End -->
@@ -237,122 +220,27 @@
                             <div class="section-title">
                                 <h2>Latest Products</h2>
                             </div>
-                            <ul class="product-controls">
-                                <li data-filter="*">All</li>
-                                <li data-filter=".dresses">Dresses</li>
-                                <li data-filter=".bags">Bags</li>
-                                <li data-filter=".shoes">Shoes</li>
-                                <li data-filter=".accesories">Accesories</li>
-                            </ul>
+                           
                         </div>
                     </div>
                 </div>
                 <div class="row" id="product-list">
-                    <div class="col-lg-3 col-sm-6 mix all dresses bags">
-                        <div class="single-product-item">
-                            <figure>
-                                <a href="#">
-                                    <img src="/public/images/product_img/oneplusG.jpg" alt=""></a>
-                                <div class="p-status">new</div>
-                            </figure>
-                            <div class="product-text">
-                                <h6>Green Dress with details</h6>
-                                <p>$22.90</p>
+
+                    <% products.forEach(function(x){ %>
+                        <div class="col-lg-3 col-sm-6 mix all dresses bags">
+                            <div class="single-product-item">
+                                <figure>
+                                    <a href="#">
+                                    <img src="/images/product_img/<%= x.image[0] %> " alt=""></a>
+                                </figure>
+                                <div class="product-text">
+                                    <h6><%= x.brand.brand %> <%= x.model %>  </h6>
+                                    <p>RS: <%= x.price %> </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 mix all dresses bags">
-                        <div class="single-product-item">
-                            <figure>
-                                <a href="#">
-                                    <img src="/public/images/product_img/oppo.jpg" alt=""></a>
-                                <div class="p-status sale">sale</div>
-                            </figure>
-                            <div class="product-text">
-                                <h6>Yellow Maxi Dress</h6>
-                                <p>$25.90</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 mix all shoes accesories">
-                        <div class="single-product-item">
-                            <figure>
-                                <a href="#">
-                                    <img src="/public/images/product_img/image-1668848527057-614366496oneplus1.jpg"
-                                        alt=""></a>
-                                <div class="p-status">new</div>
-                            </figure>
-                            <div class="product-text">
-                                <h6>One piece bodysuit</h6>
-                                <p>$19.90</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 mix all shoes accesories">
-                        <div class="single-product-item">
-                            <figure>
-                                <a href="#">
-                                    <img src="/public/images/product_img/oppo.jpg" alt=""></a>
-                                <div class="p-status popular">popular</div>
-                            </figure>
-                            <div class="product-text">
-                                <h6>Blue Dress with details</h6>
-                                <p>$35.50</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 mix all dresses shoes">
-                        <div class="single-product-item">
-                            <figure>
-                                <a href="#">
-                                    <img src="/images/product_img/image-1668848659936-453987002galaxy m13-1.jpeg"
-                                        alt=""></a>
-                                <div class="p-status">new</div>
-                            </figure>
-                            <div class="product-text">
-                                <h6>Green Dress with details</h6>
-                                <p>$22.90</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 mix all accesories bags">
-                        <div class="single-product-item">
-                            <figure>
-                                <a href="#">
-                                    <img src="/images/product_img/image-1668848527057-614366496oneplus1.jpg" alt=""></a>
-                                <div class="p-status sale">sale</div>
-                            </figure>
-                            <div class="product-text">
-                                <h6>Yellow Maxi Dress</h6>
-                                <p>$25.90</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 mix all dresses bags">
-                        <div class="single-product-item">
-                            <figure>
-                                <a href="#">
-                                    <img src="/public/images/product_img/oneplusG.jpg" alt=""></a>
-                            </figure>
-                            <div class="product-text">
-                                <h6>One piece bodysuit</h6>
-                                <p>$19.90</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 mix all accesories bags">
-                        <div class="single-product-item">
-                            <figure>
-                                <a href="#">
-                                    <img src="/images/product_img/oppo.jpg" alt=""></a>
-                                <div class="p-status popular">popular</div>
-                            </figure>
-                            <div class="product-text">
-                                <h6>Blue Dress with details</h6>
-                                <p>$35.50</p>
-                            </div>
-                        </div>
-                    </div>
+                     <% }) %> 
+    
                 </div>
             </div>
         </section>

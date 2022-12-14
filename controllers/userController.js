@@ -9,9 +9,11 @@ const brandModel = require('../models/brandModel');
 const addressModel = require('../models/addressModel');
 const orderModel = require('../models/orderModel');
 const couponModel = require('../models/coupon')
+const BannerModel =  require('../models/banner')
 const {response} = require('express')
 const moment = require('moment')
 const {findOneAndUpdate} = require('../models/userModel');
+
 
 
 var fullname;
@@ -58,14 +60,27 @@ module.exports = {
     },
 
 
-    homepage: (req, res) => {
+    homepage:async (req, res) => {
+        
+        const userId= req.session.userId
+        const brand= await brandModel.find()
+        const banners = await BannerModel.find({status: "List"})
+        const products = await productModel.find().populate('brand').sort({date:-1}).limit(8)
         if (req.session.userLogin) {
+            
+
             res.render("user/home", {
                 login: true,
-                user: req.session.user
+                user: req.session.user,
+                banners,
+                products,
+                brand,
+                userId
+
             });
         } else {
-            res.render('user/home', {login: false});
+            res.render('user/home', {login: false,
+            banners,user:"",products,brand,userId});
 
         }
 

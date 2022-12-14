@@ -30,6 +30,10 @@ const productSchema = new mongoose.Schema({
     status : {
         type: String,
         default: "List"
+    },
+    date: {
+        type: Date,
+        default: Date.now()
     }
 
 

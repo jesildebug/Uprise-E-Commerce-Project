@@ -28,4 +28,4 @@ const bannerSchema = new mongoose.Schema({
     
 })
 
-module.exports = BrannerModel = mongoose.model('BannerData',bannerSchema);
+module.exports = BannerModel = mongoose.model('BannerData',bannerSchema);
