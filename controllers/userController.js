@@ -318,6 +318,7 @@ module.exports = {
         console.log(total);
 
         const carts = await cartModel.findOne({user: userId});
+        
         if (! carts) {
             const newCart = new cartModel({user: userId, cartTotal: total});
             await newCart.save().then(async () => {
@@ -342,6 +343,11 @@ module.exports = {
                 console.log("Error in cart saving");
             })
         } else {
+            const exist = await cartModel.findOne({ userId, 'products.productId': productId })
+            if (exist != null) {
+                await cartModel.findOneAndUpdate({ userId, 'products.productId': productId }, { $inc: { "products.$.quantity": 1, "products.$.total": total, cartTotal: total } })
+            }else{
+
             const cartProduct = await cartModel.findOneAndUpdate({
                 user: userId
             }, {
@@ -362,6 +368,7 @@ module.exports = {
             }).catch(() => {
                 console.log("Error in product saving");
             })
+        }
         }
     },
 
@@ -815,6 +822,10 @@ module.exports = {
     // LOGIN
 
     signin: async (req, res) => {
+        const banners = await BannerModel.find({status: "List"})
+        const products = await productModel.find().populate('brand').sort({date:-1}).limit(8)
+
+
         const {Email, Password} = req.body;
         const user = await userModel.findOne({
             $and: [
@@ -838,6 +849,8 @@ module.exports = {
         req.session.userLogin = true;
         res.render('user/home', {
             login: true,
+            banners,
+            products,
             user: user.UserName
         });
 

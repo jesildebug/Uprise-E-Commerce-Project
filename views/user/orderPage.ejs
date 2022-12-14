@@ -1,4 +1,6 @@
 <%-include('../user/layout/user-header-layout.ejs') -%>
+
+<%-include('../user/layout/nav.ejs')-%>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -13,14 +15,6 @@
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap" rel="stylesheet"/>
 
-        <link rel="stylesheet" href="/Stylesheets/user/cssM/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="/Stylesheets/user/cssM/font-awesome.min.css" type="text/css">
-        <link rel="stylesheet" href="/Stylesheets/user/cssM/elegant-icons.css" type="text/css">
-        <link rel="stylesheet" href="/Stylesheets/user/cssM/magnific-popup.css" type="text/css">
-        <link rel="stylesheet" href="/Stylesheets/user/cssM/nice-select.css" type="text/css">
-        <link rel="stylesheet" href="/Stylesheets/user/cssM/owl.carousel.min.css" type="text/css">
-        <link rel="stylesheet" href="/Stylesheets/user/cssM/slicknav.min.css" type="text/css">
-        <link rel="stylesheet" href="/Stylesheets/user/cssM/style.css" type="text/css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -32,57 +26,7 @@
     </head>
 
     <!-- Header Section Begin -->
-    <header class="header-section">
-        <div class="container-fluid">
-            <div class="inner-header">
-                <div
-                    class="logo"><!-- <a href="./index.html"><img src="/images/user/img/logo.png" alt=""></a> -->
-                </div>
-                <div class="header-right">
-                    <img src="/images/user/img/icons/search.png" alt="" class="search-trigger">
-                    <a href="/user/profile"><img src="/images/user/img/icons/man.png" alt="">
-                    </a>
-
-                    <a href="/wishList">
-                        <img src="/images/user/img/icons/heart.png" style="height:18px;" alt="">
-                        <a href="/cart">
-                            <img src="/images/user/img/icons/bag.png" alt="">
-
-                        </a>
-                    </div>
-
-
-                    <nav class="main-menu mobile-menu">
-                        <ul>
-                            <li>
-                                <a class="active" href="/homepage">Home</a>
-                            </li>
-                            <li>
-                                <a href="/products">Shop</a>
-                                <ul class="sub-menu">
-
-                                    <li>
-                                        <a href="/cart">Shopping Card</a>
-                                    </li>
-                                    <li>
-                                        <a href="/checkout">Check out</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="./product-page.html">About</a>
-                            </li>
-                            <li>
-                                <a href="./check-out.html">Blog</a>
-                            </li>
-                            <li>
-                                <a href="./contact.html">Contact</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </header>
+  
 
         <section class="h-100 gradient-custom">
             <div class="container py-5 h-100">
@@ -133,11 +77,11 @@
 
 
                                                 <div class="col">
-                                                    <img src="/images/product_img/<%= product.productId.image[0] %>" alt="" class="w-80 border-radius-lg shadow-sm">
+                                                    <img src="/images/product_img/<%= product.productId?.image[0] %>" alt="" class="w-80 border-radius-lg shadow-sm">
                                                 </div>
                                                 <div class="col text-center d-flex justify-content-center align-items-center">
                                                     <p class="text-muted mb-0">
-                                                        <%= product.productId.model %></p>
+                                                        <%= product.productId?.model %></p>
                                                 </div>
                                                 <div class="col text-center d-flex justify-content-center align-items-center">
                                                     <p class="text-muted mb-0 small">

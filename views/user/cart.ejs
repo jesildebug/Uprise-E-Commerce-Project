@@ -66,20 +66,20 @@
                                 <% cartProducts.forEach((data) => { %>
 
                                     <td class="product-col">
-                                        <img src="/images/product_img/<%= data.productId.image[0] %>" alt="">
+                                        <img src="/images/product_img/<%= data.productId?.image[0] %>" alt="">
                                         <div class="p-title">
-                                            <h5><%= data.productId.model  %>
+                                            <h5><%= data.productId?.model  %>
                                             </h5>
                                         </div>
                                     </td>
-                                    <td class="price-col">₹<%= data.productId.price %></td>
+                                    <td class="price-col">₹<%= data.productId?.price %></td>
                                     <td>
                                         <div class="qty-label">
                                             <div class="input-number">
                                                 Qty:
-                                                <a class="qty-up" href="user/button-increment/<%=data.productId._id %>" onclick="addToCart('<%=data.productId.id%>','<%=data.productId.model%>','<%=data.productId.price %>',1)">+</a>
-                                                <input id="itemQty-<%= data.productId.id %>" type="text" value="<%= data.quantity %>" style="height: 40px; width: 30px;border: none;color: crimson; text-align: center;">
-                                                <a class="qty-down" href="user/button-decrement/<%= data.productId._id %>" onclick="addToCart('<%=data.productId.id%>','<%=data.productId.model%>','<%=data.productId.price %>',-1)">-</a>
+                                                <a class="qty-up" href="user/button-increment/<%=data.productId?._id %>" onclick="addToCart('<%=data.productId?.id%>','<%=data.productId?.model%>','<%=data.productId?.price %>',1)">+</a>
+                                                <input id="itemQty-<%= data.productId?.id %>" type="text" value="<%= data.quantity %>" style="height: 40px; width: 30px;border: none;color: crimson; text-align: center;">
+                                                <a class="qty-down" href="user/button-decrement/<%= data.productId?._id %>" onclick="addToCart('<%=data.productId?.id%>','<%=data.productId?.model%>','<%=data.productId?.price %>',-1)">-</a>
                                             </div>
                                         </div>
                                     </td>
@@ -89,13 +89,13 @@
                                     <td>
                                         <div class="product-btns">
                                             <% if(user){ %>
-                                                <% let flag=false; if(wishList.products){%>
+                                                <% let flag=false; if(wishList?.products){%>
                                                     <%for(let pro of wishList.products){%>
-                                                        <% if(pro.toString()==data.productId._id.toString()){
+                                                        <% if(pro.toString()==data.productId?._id.toString()){
                                                 flag=true;%><%}}%>
                                                         <%if(flag==true){%>
                                                             <button class="btn btn-light" type="">
-                                                                <a href="/add-to-wishlist/<%= data.productId._id %>">
+                                                                <a href="/add-to-wishlist/<%= data.productId?._id %>">
                                                                     <i class="fa-solid fa-heart" style="color: red;"></i>
                                                                     <span class="tooltipp">add
                                                                                                                                             to
@@ -104,7 +104,7 @@
                                                             </button>
                                                         <%}else{%>
                                                             <button class="btn btn-light" type="">
-                                                                <a href="/add-to-wishlist/<%= data.productId._id %>">
+                                                                <a href="/add-to-wishlist/<%= data.productId?._id %>">
                                                                     <i class="fa fa-heart-o"></i>
                                                                     <span class="tooltipp">add
                                                                                                                                                 to
@@ -124,7 +124,7 @@
                                                     <%}%>
                                                 </td>
                                                 <td class="text-center align-middle px-0">
-                                                    <form action="user/deleteCart/<%= data.productId._id %>">
+                                                    <form action="user/deleteCart/<%= data.productId?._id %>">
                                                         <button type="submit" class="btn btn-danger" style="
                                                         width: 100px;" onclick="return confirm ('Are you sure want to delete ?')">
                                                         Remove

@@ -130,7 +130,7 @@ module.exports = {
 
     viewproducts: async (req, res) => {
         const page = parseInt(req.query.page) || 1;
-        const items_per_page = 2;
+        const items_per_page = 4;
         const totalproducts = await productModel.find().countDocuments()
         const products = await productModel.find({}).populate('brand').skip((page - 1) * items_per_page).limit(items_per_page)
         res.render('admin/viewproducts', {products, index: 1,page,
@@ -153,7 +153,7 @@ module.exports = {
     // Add products with image
 
     addproducts: async (req, res) => {
-        const {brand, model, description, price} = req.body;
+        const {brand, model, description, price,quantity} = req.body;
         req.files.forEach(img => {});
         console.log(req.files);
         const productImages = req.files != null ? req.files.map((img) => img.filename) : null
@@ -163,6 +163,7 @@ module.exports = {
             model,
             description,
             price,
+            quantity,
             image: productImages
         });
         await newProduct.save().then(() => {
