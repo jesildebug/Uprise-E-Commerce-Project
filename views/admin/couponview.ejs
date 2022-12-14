@@ -14,7 +14,7 @@
                                 <th scope="col">Discount</th>
                                 <th scope="col">Maximum Lmt</th>
                                 <th scope="col">Minimum Lmt</th>
-                                <th scope="col">Expiration Dt</th>
+                                <th scope="col">Expiration Date</th>
                                 <th scope="col">Options</th>
                                 <th scope="col" class="text-center">More Info</th>
 
@@ -29,11 +29,13 @@
                                     <th scope="row">
                                         <%=index++ %></th>
 
+                                        
                                     <td><%= coupon?.couponCode%></td>
                                     <td><%= coupon?.discount %></td>
                                     <td><%= coupon?.maxLimit %></td>
                                     <td><%= coupon?.minLimit %></td>
-                                    <td><%= coupon?.expDate %></td>
+                                    <td><%= moment(Date.now()).format('L') %></td>
+                                    
                                     <td>
                                         <% if(coupon.disable === false) {%>
                                          

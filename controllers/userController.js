@@ -100,7 +100,7 @@ module.exports = {
             console.log(req.params.id);
             let brand = await brandModel.find();
             let single = await productModel.findOne({_id: id});
-            let product = await productModel.findOne({_id: id}).populate('product');
+            let product = await productModel.findOne({_id: id}).populate('brand');
 
             // res.render('user/single' ,{single,category});
             if (req.session.userLogin) {
@@ -766,7 +766,7 @@ module.exports = {
     verify: (req, res) => {
         if (req.body.otp == otp) {
 
-            const newUser = UserModel({
+            const newUser = userModel({
                 FullName: fullname,
                 UserName: username,
                 Email: email,
@@ -801,7 +801,7 @@ module.exports = {
 
     signin: async (req, res) => {
         const {Email, Password} = req.body;
-        const user = await UserModel.findOne({
+        const user = await userModel.findOne({
             $and: [
                 {
                     Email: Email

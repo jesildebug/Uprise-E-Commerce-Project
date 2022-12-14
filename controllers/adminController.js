@@ -10,6 +10,7 @@ const userModel = require("../models/userModel");
 const productModel = require("../models/productModel");
 const moment = require('moment');
 const brandModel = require("../models/brandModel");
+const coupon = require("../models/coupon");
 
 
 module.exports = {
@@ -320,8 +321,9 @@ module.exports = {
 
     },
     viewCoupon:async(req,res) => {
+
         const coupons = await couponModel.find();
-        res.render("admin/couponview",{ coupons,index: 1} )
+        res.render("admin/couponview",{ coupons,index: 1,moment} )
     },
     
     addcoupons:async(req,res) =>{
