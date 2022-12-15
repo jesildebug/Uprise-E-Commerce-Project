@@ -29,7 +29,7 @@
                     
 
                 <div class="header-right">
-                    <img src="/images/user/img/icons/search.png" alt="" class="search-trigger">
+                   
                     <a href="/user/profile"><i class="fa fa-user-o"  style="color: black; margin-left: 26px;" ></i>
                     <a href="/wishList">
                        <i class="fa fa-heart-o" style="color: black; margin-left: 26px;"></i>
@@ -49,7 +49,7 @@
 
                             <% if(login) { %>
                                 <div class="user-access">
-                                    <a href="/logout" class="in">Log Out</a>
+                                    <a href="/logout" class="">Log Out</a>
                                 </div>
                                 <% } %>
 
@@ -72,12 +72,7 @@
                                                     </li>
                                                 </ul>
                                             </li>
-                                            <li>
-                                                <a href="./product-page.html">About</a>
-                                            </li>
-                                            <li>
-                                                <a href=>Blog</a>
-                                            </li>
+                                           
                                             <li>
                                                 <a href="/contact">Contact</a>
                                             </li>
@@ -224,16 +219,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="row" id="product-list">
+                <div class="row" id="product-list" >
 
                     <% products.forEach(function(x){ %>
                         <div class="col-lg-3 col-sm-6 mix all dresses bags">
                             <div class="single-product-item" >
                                 <figure>
                                     <a href="#">
-                                    <img src="/images/product_img/<%= x.image %> " alt=""></a>
+                                    <img src="/images/product_img/<%= x.image[0] %> " alt=""></a>
                                 </figure>
-                                <div class="product-text">
+                                <div class="product-text" style="align-items: center;">
                                     <h6><%= x.brand.brand %> <%= x.model %>  </h6>
                                     <p>RS: <%= x.price %> </p>
                                 </div>
