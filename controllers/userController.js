@@ -469,33 +469,18 @@ module.exports = {
         console.log(userId);
         const wishlist = await wishlistModel.findOne({user: userId});
         console.log(">>>>>>>>>" + wishlist);
-        if (! wishlist) {
-            const newWishList = new wishlistModel({user: userId});
-            await newWishList.save().then(() => {
-                res.redirect("back")
-            }).catch(() => {
-                console.log("Error");
-            })
-
-        }
-
-        const newWishList = await wishlistModel.findOneAndUpdate({
-            user: userId
-        }, {
-            $push: {
+        if(wishlist){
+            await wishlistModel.findOneAndUpdate({user: userId}, { $addToSet: {products: productId} })
+        }else {
+            const newWishList = new wishlistModel({
+                user: userId,
                 products: productId
-            }
-        });
-
-        await newWishList.save().then(() => {
-            res.redirect("back");
-        }).catch(() => {
-            console.log("Error")
-
-
-        })
-
-
+            })
+            await newWishList.save().then(() => {
+                    res.redirect("back");
+            })
+        }
+        res.redirect("back");
     },
 
     deleteWishlist:async(req,res)=>{

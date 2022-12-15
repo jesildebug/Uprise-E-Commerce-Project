@@ -1,85 +1,81 @@
-
-
 <%-include('../admin/layout/admin-header-layout.ejs') -%>
 
 
-            <!-- Table Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
-                    <div class="col-12">
-                        <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4">Responsive Table</h6>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Full Name</th>
-                                            <th scope="col">User Name</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Phone</th>
+    <!-- Table Start -->
+    <div class="container-fluid pt-4 px-4" style="min-height: 100vh;">
+        <div class="row g-4">
+            <div class="col-12">
+                <div class="bg-secondary rounded h-100 p-4">
+                    <h6 class="mb-4">Responsive Table</h6>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Full Name</th>
+                                    <th scope="col">User Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Phone</th>
 
-                                            <th scope="col">Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                                    <th scope="col">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
 
 
-                                        <% users.forEach(function(user){%>
+                                <% users.forEach(function(user){%>
 
-                                            <tr>
-                                                <th scope="row">
-                                                    <%= index++ %>
-                                                </th>
-                                                <td>
-                                                    <%= user.FullName %>
-                                                </td>
-                                                <td>
-                                                    <%= user.UserName %>
+                                    <tr>
+                                        <th scope="row">
+                                            <%= index++ %>
+                                        </th>
+                                        <td>
+                                            <%= user.FullName %>
+                                        </td>
+                                        <td>
+                                            <%= user.UserName %>
 
-                                                </td>
-                                                <td>
-                                                    <%= user.Email %>
-                                                </td>
-                                                <td>
-                                                    <%= user.Phone %>
-                                                </td>
-                                                <td>
-                                                    <%= user.status %>
-                                                </td>
+                                        </td>
+                                        <td>
+                                            <%= user.Email %>
+                                        </td>
+                                        <td>
+                                            <%= user.Phone %>
+                                        </td>
+                                        <td>
+                                            <%= user.status %>
+                                        </td>
 
-                                                <td>
-                                                    <% if (user.status=="Blocked" ) { %>
-                                                        <form action="/admin/unblockUser/<%= user._id %> "
-                                                            method="post">
-                                                            <button type="submit" class="btn btn-success"
-                                                                style="width: 100px;">UnBlock</button>
-                                                        </form>
-                                                        <% } else { %>
+                                        <td>
+                                            <% if (user.status=="Blocked" ) { %>
+                                                <form action="/admin/unblockUser/<%= user._id %> " method="post">
+                                                    <button type="submit" class="btn btn-success"
+                                                        style="width: 100px;">UnBlock</button>
+                                                </form>
+                                                <% } else { %>
 
-                                                            <form action="/admin/blockUser/<%= user._id %> "
-                                                                method="post">
-                                                                <button type="submit" class="btn btn-danger"
-                                                                    style="width: 100px;">Block</button>
-                                                            </form>
-                                                            <% } %>
-                                                </td>
-                                            </tr>
-                                            <% }) %>
-                                    </tbody>
+                                                    <form action="/admin/blockUser/<%= user._id %> " method="post">
+                                                        <button type="submit" class="btn btn-danger"
+                                                            style="width: 100px;">Block</button>
+                                                    </form>
+                                                    <% } %>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                            </tbody>
 
-                                </table>
-                            </div>
-                        </div>
+                        </table>
                     </div>
                 </div>
             </div>
-            <!-- Table End -->
+        </div>
+    </div>
+    <!-- Table End -->
 
 
-         
 
 
 
-            <%-include('../admin/layout/admin-footer-layout.ejs') -%>
+
+    <%-include('../admin/layout/admin-footer-layout.ejs') -%>
