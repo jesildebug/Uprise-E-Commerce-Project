@@ -46,7 +46,7 @@
         <div class="container">
             <div class="cart-table">
 
-                <% if (count==0 && count.length == 0) { %>
+                <% if (count==0) { %>
                     <div class="col-12 text-center">
                         <img src="https://ibellstore.com/images/no-item-found-here.png" alt="no order" style="width: 600px; height:400px ;">
                     </div>
@@ -97,7 +97,7 @@
                                                             <button class="btn btn-light" type="">
                                                                 <a href="/add-to-wishlist/<%= data.productId?._id %>">
                                                                     <i class="fa-solid fa-heart" style="color: red;"></i>
-                                                                    <span class="tooltipp">add to wishlist</span>
+                                                                    <span class="tooltipp">remove from wishlist</span>
                                                                </a>
                                                             </button>
                                                         <%}else{%>
