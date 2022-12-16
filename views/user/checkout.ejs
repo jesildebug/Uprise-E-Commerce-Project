@@ -228,11 +228,13 @@
                                 </div>
                                 <ul class="checkout__total__products">
                                     <% carts.forEach(function(cart){ %>
+                                        
                                         <li>
                                             <%= index++ %>.
-                                            <%= cart.productId.name %><span>₹<%= cart.total %></span>
+                                            <%= cart.productId.brand.brand%> <%= cart.productId.model%><span>₹<%= cart.total %></span>
                                         </li>
                                     <% }) %>
+                                    
                                 </ul>
                                 <ul class="checkout__total__all font-weight-bold">
                                     <li>Subtotal
@@ -245,7 +247,7 @@
                                     <hr/>
                                     <li>Total
                                         <span>₹
-                                            <%= cart.grandTotal %>
+                                            <%= grandTotal %>
                                         </span>
                                     </li>
                                 </ul>
@@ -348,8 +350,10 @@ $('#checkout-form').submit((e) => {
                     address: $("#checkout-form").serialize()
                 },
                 method: "post",
-                sucess: (response) => {
+                success: (response) => {
+                    
                     if (response.status) {
+                        
                         location.href = "/ordersuccess";
 
                     } else {
@@ -361,7 +365,10 @@ $('#checkout-form').submit((e) => {
 
     }
 
-})</script><style>
+})
+</script>
+
+<style>
 .frb-group {
     margin: 15px 0;
 }

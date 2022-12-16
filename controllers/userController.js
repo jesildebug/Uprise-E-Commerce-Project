@@ -10,6 +10,7 @@ const addressModel = require('../models/addressModel');
 const orderModel = require('../models/orderModel');
 const couponModel = require('../models/coupon')
 const BannerModel =  require('../models/banner')
+const Razorpay = require("razorpay")
 const {response} = require('express')
 const moment = require('moment')
 const {findOneAndUpdate} = require('../models/userModel');
@@ -496,10 +497,12 @@ module.exports = {
         let userId = req.session.userId;
         let profile = await addressModel.findOne({userId})
         const user = await userModel.findById({_id: userId})
-        const cart = await cartModel.findOne({userId}).populate('products.productId')
+        const cart = await cartModel.findOne({userId}).populate('products.productId').populate({path:'products.productId', populate: {path:'brand'}})
         const discount = cart.discount.percentage
         const carts = cart.products
+        console.log(carts);
         const cartTotal = cart.cartTotal
+        const grandTotal = cartTotal - discount
         if (profile != null) {
             profile = profile.address
             let num = profile.length - 1
@@ -511,6 +514,7 @@ module.exports = {
                 profile,
                 carts,
                 cart,
+                grandTotal,
                 cartTotal,
                 discount,
                 index: 1
@@ -677,7 +681,7 @@ module.exports = {
             instance.orders.create({
                 amount: cartTotal * 100,
                 currency: "INR",
-                // reciept: String(cartId)
+                // reciept: "" +cartId
 
             }, function (err, order) {
                 if (err) {
