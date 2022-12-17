@@ -1,58 +1,56 @@
-
-
 <%-include('../user/layout/user-header-layout.ejs') -%>
 
 
-<!-- Page Preloder -->
-<div id="preloder">
-    <div class="loader"></div>
-</div>
-
-<!-- Search model -->
-<div class="search-model">
-    <div class="h-100 d-flex align-items-center justify-content-center">
-        <div class="search-close-switch">+</div>
-        <form class="search-model-form">
-            <input type="text" id="search-input" placeholder="Search here.....">
-        </form>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
     </div>
-</div>
-<!-- Search model end -->
 
-<!-- Header Section Begin -->
+    <!-- Search model -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search model end -->
+
+    <!-- Header Section Begin -->
 
 
-<%-include('../user/layout/nav.ejs')-%>
-    <!-- Header Info Begin -->
-    <div class="header-info">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="header-item">
-                        <img src="img/icons/delivery.png" alt="">
-                        <p>Free shipping on orders over $30 in USA</p>
+    <%-include('../user/layout/nav.ejs')-%>
+        <!-- Header Info Begin -->
+        <div class="header-info">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="header-item">
+                            <img src="img/icons/delivery.png" alt="">
+                            <p>Free shipping on orders over $30 in USA</p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4 text-left text-lg-center">
-                    <div class="header-item">
-                        <img src="img/icons/voucher.png" alt="">
-                        <p>20% Student Discount</p>
+                    <div class="col-md-4 text-left text-lg-center">
+                        <div class="header-item">
+                            <img src="img/icons/voucher.png" alt="">
+                            <p>20% Student Discount</p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4 text-left text-xl-right">
-                    <div class="header-item">
-                        <img src="img/icons/sales.png" alt="">
-                        <p>30% off on Oppo phones. Use code: SAVE20 OFF</p>
+                    <div class="col-md-4 text-left text-xl-right">
+                        <div class="header-item">
+                            <img src="img/icons/sales.png" alt="">
+                            <p>30% off on Oppo phones. Use code: SAVE20 OFF</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Header Info End -->
-    <!-- Header End -->
+        <!-- Header Info End -->
+        <!-- Header End -->
 
-    <!-- Page Add Section Begin -->
-        <section class="page-add"> <div class="container">
+        <!-- Page Add Section Begin -->
+        <!-- <section class="page-add"> <div class="container">
             <div class="row">
                 <div class="col-lg-4">
                     
@@ -63,56 +61,175 @@
             </div>
         </div>
     </section>
-    <!-- Page Add Section End -->
+   <-- Page Add Section End -->
+        <!-- <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+        <div class="container-search-header">
+          <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
+            </button>
+    <div class="flex-w flex-c-m m-tb-10 ">
+        <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
+          <i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
+          <i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+          Filter
+        </div>
+        </div> -->
 
-    <!-- Categories Page Section Begin -->
-    <section class="categories-page spad">
-        <div class="container">
-            <div class="categories-controls">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="categories-filter">
-                            
-                           
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <% products.forEach(function(x) { %>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="single-product-item" >
-                            <figure>
-                                <div>
-                                    <img  src="/images/product_img/<%= x.image[0] %>" alt="">
+        <!-- <div class="dis-none panel-filter w-full p-t-10 ">
+        <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm ">
+          <div class="filter-col1 p-r-15 p-b-27">
+            <div class="mtext-102 cl2 p-b-15">Sort By</div>
+
+            <ul>
+              <li class="p-b-6">
+                <a href="sohp?sort=default" class="filter-link stext-106 trans-04">
+                  Default
+                </a>
+              </li>
+
+              <li class="p-b-6">
+                <a href="shop?sort=new" class="filter-link stext-106 trans-04 ">
+                  Newness
+                </a>
+              </li>
+
+              <li class="p-b-6">
+                <a href="shop?sort=ascending" class="filter-link stext-106 trans-04">
+                  Price: Low to High
+                </a>
+              </li>
+
+              <li class="p-b-6">
+                <a href="shop?sort=descending" class="filter-link stext-106 trans-04">
+                  Price: High to Low
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="filter-col2 p-r-15 p-b-27">
+            <div class="mtext-102 cl2 p-b-15">Price</div>
+
+            <ul>
+              <li class="p-b-6">
+                <a href="shop?sort=all" class="filter-link stext-106 trans-04 filter-link-active">
+                  All
+                </a>
+              </li>
+
+
+
+              <li class="p-b-6">
+                <a href="shop?sort=500-1000" class="filter-link stext-106 trans-04">
+                  ₹500 - ₹1000
+                </a>
+              </li>
+
+              <li class="p-b-6">
+                <a href="shop?sort=1000-50000" class="filter-link stext-106 trans-04">
+                  ₹1000 - ₹50000 -->
+        <!-- </a>
+              </li>
+
+              <li class="p-b-6">
+                <a href="shop?sort=50000-100000" class="filter-link stext-106 trans-04">
+                  ₹50000 - ₹100000
+                </a>
+              </li>
+
+              <li class="p-b-6">
+                <a href="shop?sort-100000" class="filter-link stext-106 trans-04">
+                  ₹100000+
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div> -->
+        <section class="categories-page spad">
+            <div class="container">
+                <div class="categories-controls">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="categories-filter">
+                                <div class="cf-left">
+                                    <form action="#">
+                                        <select class="sort">
+                                            <option value="">Filter</option>
+                                            <option value="">Orders</option>
+                                            <option value="">Newest</option>
+                                            <option value="">Price: low to high</option>
+                                        </select>
+                                    </form>
                                 </div>
-                                <div class="p-status"><a href="/add-to-wishlist/<%= x._id %>" style="text-decoration: none;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512" style="width: 25px;"><path d="M244 84L255.1 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 0 232.4 0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84C243.1 84 244 84.01 244 84L244 84zM255.1 163.9L210.1 117.1C188.4 96.28 157.6 86.4 127.3 91.44C81.55 99.07 48 138.7 48 185.1V190.9C48 219.1 59.71 246.1 80.34 265.3L256 429.3L431.7 265.3C452.3 246.1 464 219.1 464 190.9V185.1C464 138.7 430.4 99.07 384.7 91.44C354.4 86.4 323.6 96.28 301.9 117.1L255.1 163.9z"/></svg>
-                                </a></div>
-                               
-                            </figure>
-                            <div class="product-text">
-                                <a href="/single/<%= x._id %>">
-                                    <h6><%= x.brand.brand %>
-                                        <%= x.model %></h6>
-                                </a>
-                                <p>RS:
-                                    <%= x.price %></p>
                             </div>
                         </div>
                     </div>
-                <% }) %>
-            </div>
-
-            <div class="more-product">
-                <div class="row">
-                    <!-- <div class="col-lg-12 text-center">
-                        <a href="#" class="primary-btn">Load More</a>
-                    </div> -->
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
 
-    <%-include('../user/layout/user-footer-layout.ejs') -%>
+
+
+
+
+        <!-- Categories Page Section Begin -->
+        <section class="categories-page spad">
+            <div class="container">
+                <div class="categories-controls">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="categories-filter">
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <% products.forEach(function(x) { %>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="single-product-item">
+                                <figure>
+                                    <div>
+                                        <img src="/images/product_img/<%= x.image[0] %>" alt="">
+                                    </div>
+                                    <div class="p-status"><a href="/add-to-wishlist/<%= x._id %>"
+                                            style="text-decoration: none;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512"
+                                                style="width: 25px;">
+                                                <path
+                                                    d="M244 84L255.1 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 0 232.4 0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84C243.1 84 244 84.01 244 84L244 84zM255.1 163.9L210.1 117.1C188.4 96.28 157.6 86.4 127.3 91.44C81.55 99.07 48 138.7 48 185.1V190.9C48 219.1 59.71 246.1 80.34 265.3L256 429.3L431.7 265.3C452.3 246.1 464 219.1 464 190.9V185.1C464 138.7 430.4 99.07 384.7 91.44C354.4 86.4 323.6 96.28 301.9 117.1L255.1 163.9z" />
+                                            </svg>
+                                        </a></div>
+
+                                </figure>
+                                <div class="product-text">
+                                    <a href="/single/<%= x._id %>">
+                                        <h6>
+                                            <%= x.brand.brand %>
+                                                <%= x.model %>
+                                        </h6>
+                                    </a>
+                                    <p>RS:
+                                        <%= x.price %>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+
+                <div class="more-product">
+                    <div class="row">
+                        <!-- <div class="col-lg-12 text-center">
+                        <a href="#" class="primary-btn">Load More</a>
+                    </div> -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <%-include('../user/layout/user-footer-layout.ejs') -%>
