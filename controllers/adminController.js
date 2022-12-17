@@ -65,7 +65,15 @@ module.exports = {
 
     alluser: async (req, res) => {
         const users = await userModel.find({})
-        res.render('admin/viewuser', {users, index: 1})
+        const page = parseInt(req.query.page) || 1;
+        const items_per_page = 4;
+        const totalproducts = await productModel.find().countDocuments()
+        const products = await productModel.find({}).populate('brand').skip((page - 1) * items_per_page).limit(items_per_page)
+        res.render('admin/viewuser', {users, index: 1,page,
+            hasNextPage: items_per_page * page < totalproducts,
+            hasPreviousPage: page > 1,
+            PreviousPage: page - 1})
+
     },
 
 
@@ -130,7 +138,7 @@ module.exports = {
 
     viewproducts: async (req, res) => {
         const page = parseInt(req.query.page) || 1;
-        const items_per_page = 4;
+        const items_per_page = 8;
         const totalproducts = await productModel.find().countDocuments()
         const products = await productModel.find({}).populate('brand').skip((page - 1) * items_per_page).limit(items_per_page)
         res.render('admin/viewproducts', {products, index: 1,page,
@@ -266,8 +274,18 @@ module.exports = {
 
     viewBannerpage: async (req, res) => {
         const banners = await bannerModel.find({})
+        const users = await userModel.find({})
+        const page = parseInt(req.query.page) || 1;
+        const items_per_page = 4;
+        const totalproducts = await productModel.find().countDocuments()
+        const products = await productModel.find({}).populate('brand').skip((page - 1) * items_per_page).limit(items_per_page)
         console.log(banners)
-        res.render('admin/bannerview', {banners, index: 1})
+        res.render('admin/bannerview', {banners, index: 1,page,
+            hasNextPage: items_per_page * page < totalproducts,
+            hasPreviousPage: page > 1,
+            PreviousPage: page - 1
+        })
+
     },
 
     addbanner: async (req, res) => {
@@ -364,10 +382,17 @@ module.exports = {
     },
 
     manageOrder:async(req,res) => {
+        const page = parseInt(req.query.page) || 1;
+        const items_per_page = 4;
+        const totalproducts = await productModel.find().countDocuments()
+        const products = await productModel.find({}).populate('brand').skip((page - 1) * items_per_page).limit(items_per_page)
         const orders = await orderModel.find().populate('products.productId').populate({path:'products.productId', populate: {path:'brand'}})
         const days = parseInt((orders. deliveryDate?.getTime() - orders.date?.getTime()) / (1000 * 60 * 60 * 24))
         console.log(orders)
-        res.render('admin/orderManagement', { orders, days, moment })
+        res.render('admin/orderManagement', { orders, days, moment,page,
+            hasNextPage: items_per_page * page < totalproducts,
+            hasPreviousPage: page > 1,
+            PreviousPage: page - 1 })
 
 
     },

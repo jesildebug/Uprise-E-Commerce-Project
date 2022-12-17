@@ -21,138 +21,135 @@
 
 
     <%-include('../user/layout/nav.ejs')-%>
-    <!-- Header Info Begin -->
-    <div class="header-info">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="header-item">
-                        <img src="img/icons/delivery.png" alt="">
-                        <p>Free shipping on orders over $30 in USA</p>
-                    </div>
-                </div>
-                <div class="col-md-4 text-left text-lg-center">
-                    <div class="header-item">
-                        <img src="img/icons/voucher.png" alt="">
-                        <p>20% Discount</p>
-                    </div>
-                </div>
-                <div class="col-md-4 text-left text-xl-right">
-                    <div class="header-item">
-                        <img src="img/icons/sales.png" alt="">
-                        <p>30% off on Oppo phones. Use code: SAVE20 OFF</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Header Info End -->
-    <!-- Header End -->
-
-    <!-- Page Add Section Begin -->
-    <section class="page-add cart-page-add">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <img src="/public/images/product_img/" alt="">
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Page Add Section End -->
-
-    <!-- wishlist Section Begin -->
-    <div style="min-height: 100vh;">
-        <div class="cart-page">
-            <div class="container">
-                <div class="card">
-                    <% if (count==0) { %>
-                        <div class="col-12 text-center">
-                            <img src="https://ibellstore.com/images/no-item-found-here.png" alt="no order"
-                                style="width: 600px; height:400px ;">
+        <!-- Header Info Begin -->
+        <div class="header-info">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="header-item">
+                            <img src="img/icons/delivery.png" alt="">
+                            <p>Free shipping on orders over $30 in USA</p>
                         </div>
-                        <% } else { %>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th class="product-h">Product</th>
-                                        <th>Price</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-
-
-                                    <%for (let wishList of data.products){%>
-                                        <tr>
-                                            <td>
-                                                <div class="media">
-                                                    <div class="flex">
-                                                        <img src="/images/product_img/<%= wishList.image[0] %>"
-                                                            style="height: 80px;" alt="">
-                                                    </div>
-                                                    <!-- <div class="media-body"> -->
-                                                    <div class="product__cart__item__text mt-3">
-                                                        <a href="/single/<%= wishList._id %>">
-                                                            <h6>
-                                                                <%= wishList.brand.brand %>
-                                                                    <%= wishList.model %>
-                                                            </h6>
-                                                    </div>
-
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <h6>
-                                                    <%= wishList?.price %>
-                                                </h6>
-                                            </td>
-
-                                            <td class="text-center align-middle px-0">
-                                                <form action="/cart/<%= wishList._id %>" method="get">
-                                                    <button type="submit" class="btn btn-outline-secondary"
-                                                        data-mdb-ripple-color="dark">Add to cart</button>
-                                                </form>
-                                            </td>
-                                            <td class="text-center align-middle px-0">
-                                                <form action="/deleteWishlist/<%= wishList._id%>" method="post">
-                                                    <button type="submit" class="btn btn-danger" .
-                                                        style="
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        width: 100px;"
-                                                        onclick="return confirm ('Are you sure want to delete ?')">
-
-                                                        Remove
-                                                    </button>
-                                                </form>
-                                            </td>
-
-                                        </tr>
-                                        <% } %>
-
-
-                                </tbody>
-
-                            </table>
-
+                    </div>
+                    <div class="col-md-4 text-left text-lg-center">
+                        <div class="header-item">
+                            <img src="img/icons/voucher.png" alt="">
+                            <p>20% Discount</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-left text-xl-right">
+                        <div class="header-item">
+                            <img src="img/icons/sales.png" alt="">
+                            <p>30% off on Oppo phones. Use code: SAVE20 OFF</p>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
+        <!-- Header Info End -->
+        <!-- Header End -->
+
+        <!-- Page Add Section Begin -->
+        <section class="page-add cart-page-add">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <img src="/public/images/product_img/" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Page Add Section End -->
+
+        <!-- wishlist Section Begin -->
+        <div style="min-height: 100vh;">
+            <div class="cart-page">
+                <div class="container">
+                    <div class="card">
+                        <% if (count==0) { %>
+                            <div class="col-12 text-center">
+                                <img src="https://ibellstore.com/images/no-item-found-here.png" alt="no order"
+                                    style="width: 600px; height:400px ;">
+                            </div>
+                            <% } else { %>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="product-h">Product</th>
+                                            <th>Price</th>
+                                        </tr>
+
+                                    </thead>
+                                    <br>
+
+                                    <tbody>
+                                        <%for (let wishList of data.products){%>
+                                            <tr>
+                                                <td>
+                                                    <div class="media">
+                                                        <div class="flex">
+                                                            <img src="/images/product_img/<%= wishList.image[0] %>"
+                                                                style="height: 80px;" alt="">
+                                                        </div>
+                                                        <!-- <div class="media-body"> -->
+                                                        <div class="product__cart__item__text mt-3">
+                                                            <a href="/single/<%= wishList._id %>">
+                                                                <h6>
+                                                                    <%= wishList.brand.brand %>
+                                                                        <%= wishList.model %>
+                                                                </h6>
+                                                        </div>
+
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <h6>
+                                                        <%= wishList?.price %>
+                                                    </h6>
+                                                </td>
+
+                                                <td class="text-center align-middle px-0">
+                                                    <form action="/cart/<%= wishList._id %>" method="get">
+                                                        <button type="submit" class="btn btn-outline-secondary"
+                                                            data-mdb-ripple-color="dark">Add to cart</button>
+                                                    </form>
+                                                </td>
+                                                <td class="text-center align-middle px-0">
+                                                    <form action="/deleteWishlist/<%= wishList._id%>" method="post">
+                                                        <button type="submit" class="btn btn-danger" .
+                                                            style="
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        width: 100px;"
+                                                            onclick="return confirm ('Are you sure want to delete ?')">
+
+                                                            Remove
+                                                        </button>
+                                                    </form>
+                                                </td>
+
+                                            </tr>
+                                            <% } %>
 
 
-        </div>
-    </div>
-    </div>
-    </div>
+                                    </tbody>
 
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    <% } %>
+                                </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
         </div>
 
         </div>
         </div>
         </div>
-        <!-- wishlist Page Section End -->
-        <%-include('../user/layout/user-footer-layout.ejs')-%>
+        </div>
+        </div>
+        <% } %>
+            </div>
+
+            </div>
+            </div>
+            </div>
+            <!-- wishlist Page Section End -->
+            <%-include('../user/layout/user-footer-layout.ejs')-%>
