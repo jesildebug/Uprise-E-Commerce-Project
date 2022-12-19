@@ -108,7 +108,7 @@
                                             </div>
                                             <form action="/changeAddress" method="post">
                                                 <div class="modal-body">
-                                                    <% profile.forEach(function(add, indexs){ %>
+                                                    <% profile?.forEach(function(add, indexs){ %>
                                                         <div class="frb-group">
                                                             <div class="frb frb-default">
                                                                 <input type="radio" id="<%= indexs %>" class="radio-button" name="indexs" value="<%= indexs %>">
