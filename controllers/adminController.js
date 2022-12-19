@@ -220,7 +220,7 @@ module.exports = {
         let brand = await BrandModel.find()
 
         console.log(product)
-        res.render('admin/editproducts', {brand, product})
+        res.render('admin/editproducts', {brand, product, id})
     },
 
     // update products when edit

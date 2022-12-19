@@ -89,10 +89,7 @@
                                                         </span>
                                                         <%= product.quantity %></p>
                                                 </div>
-                                                <div class="col text-center d-flex justify-content-center align-items-center">
-                                                    <p class="text-muted mb-0 small">
-                                                        <%= product.total %></p>
-                                                </div>
+                                                
                                                 <div class="col text-center d-flex justify-content-center align-items-center">
                                                     <p class="text-muted mb-0 small">
                                                         <%= orders.address.fullName %>
@@ -105,6 +102,10 @@
                                                 <div class="col text-center d-flex justify-content-center align-items-center">
                                                     <p class="text-muted mb-0 small">
                                                         <%= moment(orders.deliveryDate).format('MMMM D') %></p>
+                                                </div>
+                                                <div class="col text-center d-flex justify-content-center align-items-center">
+                                                    <p class="text-muted mb-0 small">
+                                                        <%= product.total %></p>
                                                 </div>
                                                 <div class="col text-center d-flex justify-content-center align-items-center">
                                                     <p class="text-muted mb-0 small">
