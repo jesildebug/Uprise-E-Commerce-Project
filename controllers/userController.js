@@ -580,11 +580,12 @@ module.exports = {
         console.log(carts);
         const cartTotal = cart.cartTotal
         const grandTotal = cartTotal - discount
+        let addIndex = 0
         if (profile != null) {
             profile = profile.address
-            let num = profile.length - 1
-            const addIndex = req.body.indexs ? req.body.indexs : num
-            console.log(addIndex)
+            num = profile.length - 1
+             addIndex = req.body.indexs ? req.body.indexs : num
+            console.log(addIndex,'defrtgyhu6789')
             res.render('user/checkout', {
                 user,
                 addIndex,
@@ -597,7 +598,7 @@ module.exports = {
                 index: 1
             })
         } else {
-            res.render('user/checkout', { user, profile })
+            res.render('user/checkout', { user, profile , addIndex})
         }
 
 
