@@ -207,6 +207,11 @@ module.exports = {
         }
     },
 
+     search :async (req, res) => {
+        const products = await productModel.find();
+        res.render("user/search", { login: true, products });
+      },
+
     profile: async (req, res) => {
         let userId = req.session.userId;
         let brand = await brandModel.find();

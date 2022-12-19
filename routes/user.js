@@ -32,7 +32,10 @@ router
     .get(auth.userSession, controller.updateAddress)
     // .post(auth.userSession, controller.updateUserAddress)
 
-
+ 
+    router
+    .route("/search")
+    .get(auth.userSession, controller.search)
 
 
 
