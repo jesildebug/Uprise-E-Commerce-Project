@@ -46,120 +46,26 @@
                 </div>
             </div>
         </div>
-        <!-- Header Info End -->
-        <!-- Header End -->
 
-        <!-- Page Add Section Begin -->
-        <!-- <section class="page-add"> <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
-                    
-                </div>
-                <div class="col-lg-8">
-                    <img src="img/add.jpg" alt="">
-                </div>
-            </div>
-        </div>
-    </section>
-   <-- Page Add Section End -->
-        <!-- <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
-        <div class="container-search-header">
-          <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-            </button>
-    <div class="flex-w flex-c-m m-tb-10 ">
-        <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
-          <i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
-          <i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-          Filter
-        </div>
-        </div> -->
-
-        <!-- <div class="dis-none panel-filter w-full p-t-10 ">
-        <div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm ">
-          <div class="filter-col1 p-r-15 p-b-27">
-            <div class="mtext-102 cl2 p-b-15">Sort By</div>
-
-            <ul>
-              <li class="p-b-6">
-                <a href="sohp?sort=default" class="filter-link stext-106 trans-04">
-                  Default
-                </a>
-              </li>
-
-              <li class="p-b-6">
-                <a href="shop?sort=new" class="filter-link stext-106 trans-04 ">
-                  Newness
-                </a>
-              </li>
-
-              <li class="p-b-6">
-                <a href="shop?sort=ascending" class="filter-link stext-106 trans-04">
-                  Price: Low to High
-                </a>
-              </li>
-
-              <li class="p-b-6">
-                <a href="shop?sort=descending" class="filter-link stext-106 trans-04">
-                  Price: High to Low
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="filter-col2 p-r-15 p-b-27">
-            <div class="mtext-102 cl2 p-b-15">Price</div>
-
-            <ul>
-              <li class="p-b-6">
-                <a href="shop?sort=all" class="filter-link stext-106 trans-04 filter-link-active">
-                  All
-                </a>
-              </li>
-
-
-
-              <li class="p-b-6">
-                <a href="shop?sort=500-1000" class="filter-link stext-106 trans-04">
-                  ₹500 - ₹1000
-                </a>
-              </li>
-
-              <li class="p-b-6">
-                <a href="shop?sort=1000-50000" class="filter-link stext-106 trans-04">
-                  ₹1000 - ₹50000 -->
-        <!-- </a>
-              </li>
-
-              <li class="p-b-6">
-                <a href="shop?sort=50000-100000" class="filter-link stext-106 trans-04">
-                  ₹50000 - ₹100000
-                </a>
-              </li>
-
-              <li class="p-b-6">
-                <a href="shop?sort-100000" class="filter-link stext-106 trans-04">
-                  ₹100000+
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div> -->
         <section class="categories-page spad">
             <div class="container">
                 <div class="categories-controls">
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-6">
                             <div class="categories-filter">
                                 <div class="cf-left">
-                                    <form action="#">
-                                        <select class="sort">
-                                            <option value="">Filter</option>
-                                            <option value="">Orders</option>
-                                            <option value="">Newest</option>
-                                            <option value="">Price: low to high</option>
-                                            <option value="">Price: high to low</option>
+                                    <form action="">
+                                        <select class="sort" onchange="window.location.href=this.value">
+                                            <option value="">Sort By </option>
+                                            <option value="products?sort=default">Default</option>
+                                            <option value="products?sort=new">Newest</option>
+                                            <option value="products?sort=ascending" >Price: Low to High</option>
+                                            <option value="products?sort=descending">Price: high to low</option>
+                                            <option value="products?sort=all">All Price</option>
+                                            <option value="products?sort=15000-20000">₹15000 - ₹20000</option>
+                                            <option value="products?sort=20000-40000"> ₹20000 - ₹40000</option>
+                                            <option value="products?sort=40000-100000"> ₹40000 - ₹100000</option>
+                                            <option value="products?sort=100000">₹100000+</option>
                                         </select>
                                     </form>
                                 </div>
@@ -169,7 +75,6 @@
                 </div>
             </div>
         </section>
-
          <section class="categories-page spad">
             <div class="container">
                 <div class="categories-controls">
@@ -223,6 +128,24 @@
                     </div> -->
                     </div>
                 </div>
-             </div>
+            </div>
         </section>
- <%-include('../user/layout/user-footer-layout.ejs') -%>
+
+        <section class="d-flex justify-content-center mt-2">
+            <% for(let i=1;i<=pageNum; i++){ %>
+                <% if(page==i){ %>
+                    <a class="atag" href="/products?page=<%= i %>">
+                        <div class="page focus">
+                            <%= i %>
+                        </div>
+                    </a>
+                    <% }else{ %>
+                        <a class="atag" href="/products?page=<%= i %>">
+                            <div class="page">
+                                <%= i %>
+                            </div>
+                        </a>
+                        <% } %>
+                            <% } %>
+        </section>
+        <%-include('../user/layout/user-footer-layout.ejs') -%>

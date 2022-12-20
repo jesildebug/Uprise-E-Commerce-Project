@@ -99,7 +99,7 @@ module.exports = {
     products: async (req, res) => {
         try {
 
-            let brand = await brandModel.find();
+       
             const page = parseInt(req.query.page) || 1;
             const perPage = 4;
             const sort = req.query.sort;
@@ -162,7 +162,6 @@ module.exports = {
                     .limit(perPage);
             }
 
-            console.log(products, 'sdfghjkkj234567898765');
 
             res.render("user/products", {
                 login: req.session.login,
