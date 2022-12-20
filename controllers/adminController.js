@@ -138,7 +138,7 @@ module.exports = {
 
     viewproducts: async (req, res) => {
         const page = parseInt(req.query.page) || 1;
-        const items_per_page = 8;
+        const items_per_page = 4;
         const totalproducts = await productModel.find().countDocuments()
         const products = await productModel.find({}).populate('brand').skip((page - 1) * items_per_page).limit(items_per_page)
         res.render('admin/viewproducts', {products, index: 1,page,

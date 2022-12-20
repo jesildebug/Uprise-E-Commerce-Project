@@ -99,7 +99,7 @@
                       <td class="align-middle ">
                         <% product.orderStatus='Cancelled' %>
                           <form
-                            action="/admin/changeStatus/<%= order._id %>/<%= product.productId._id %>/<%= product.orderStatus %>"
+                            action="/admin/changeStatus/<%= order._id%>/<%= product.productId._id %>/<%= product.orderStatus %>"
                             method="post">
                             <button type="submit" class="btn btn-outline-primary text-white">Cancel</button>
                           </form>
