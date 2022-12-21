@@ -437,6 +437,26 @@ module.exports = {
         res.redirect("back");
     },
 
+    salesReport: async(req,res)=>{
+        const salesReport = await orderModel.aggregate(
+          [{
+            '$match' : { 'products.status' : { $ne: 'Cancelled'}}
+          },
+          {
+              $group : {
+                  _id : { month: { $month: "$date" }, day: { $dayOfMonth: "$date" }, year: { $year: "$date" } },
+                  totalPrice: { $sum:  "$cartTotal"  },
+                  products: { $sum :{$size: "$products"}},
+                  count: { $sum: 1 },
+                  
+                      }
+                  }
+          ])
+          console.log(salesReport)
+        const filterOrder = await orderModel.find({})
+        res.render('admin/salesreport',{salesReport})
+      },
+
     invoice:async(req,res)=> {
         const orderId = req.params.id
         const orders =  await orderModel.findOne({ _id:orderId}).populate('products.productId').populate({path:'products.productId', populate: {path:'brand'}}).populate({path:'products.productId', populate: {path:'model'}})

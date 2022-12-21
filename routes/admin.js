@@ -27,6 +27,9 @@ router.get("/bannerview",controller.viewBannerpage);
 
 router.get("/couponview",controller.viewCoupon);
 router.get('/addcoupon',controller. addCouponPage);
+router
+    .route('/sales-report')
+    .get(controller.salesReport)
 
    
    

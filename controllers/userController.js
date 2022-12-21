@@ -101,7 +101,7 @@ module.exports = {
 
        
             const page = parseInt(req.query.page) || 1;
-            const perPage = 4;
+            const perPage = 8;
             const sort = req.query.sort;
             const category = req.query.cat;
             let products;
