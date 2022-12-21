@@ -67,7 +67,7 @@ module.exports = {
         const userId = req.session.userId
         const brand = await brandModel.find()
         const banners = await BannerModel.find({ status: "List" })
-        const products = await productModel.find().populate('brand').sort({ date: -1 }).limit(8)
+        const products = await productModel.find().populate('brand').sort({ date: -1 }).limit(4)
         if (req.session.userLogin) {
 
 

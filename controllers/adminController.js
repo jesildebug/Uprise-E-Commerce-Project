@@ -387,9 +387,9 @@ module.exports = {
         const totalproducts = await productModel.find().countDocuments()
         const products = await productModel.find({}).populate('brand').skip((page - 1) * items_per_page).limit(items_per_page)
         const orders = await orderModel.find().populate('products.productId').populate({path:'products.productId', populate: {path:'brand'}})
-        const days = parseInt((orders. deliveryDate?.getTime() - orders.date?.getTime()) / (1000 * 60 * 60 * 24))
+        // const days = parseInt((orders. deliveryDate?.getTime() - orders.date?.getTime()) / (1000 * 60 * 60 * 24))
         console.log(orders)
-        res.render('admin/orderManagement', { orders, days, moment,page,
+        res.render('admin/orderManagement', { orders,  moment,page,
             hasNextPage: items_per_page * page < totalproducts,
             hasPreviousPage: page > 1,
             PreviousPage: page - 1 })
@@ -407,26 +407,31 @@ module.exports = {
             await orderModel.findOneAndUpdate({_id: orderId, 'products.productId': productId },
                 {
                     $set:
-                        { 'products.$.orderStatus': "Processed" }
+                        { 'products.$.orderStatus': "Processed" ,
+                        updateDate: Date.now()
+                    }
                 })
         } else if (orderStatus == "Processed") {
             await orderModel.findOneAndUpdate({_id: orderId, 'products.productId': productId },
                 {
                     $set:
-                        { 'products.$.orderStatus': "Shipped" }
+                        { 'products.$.orderStatus': "Shipped" ,
+                        updateDate: Date.now() }
                 })
         } else if (orderStatus == "Shipped") {
             await orderModel.findOneAndUpdate({_id: orderId, 'products.productId': productId },
                 {
                     $set:
-                        { 'products.$.orderStatus': "Delivered" }
+                        { 'products.$.orderStatus': "Delivered" ,
+                        updateDate: Date.now()}
                 })
         }
          else if(orderStatus == "Cancelled") {
             await orderModel.findOneAndUpdate({_id: orderId, 'products.productId': productId },
                 {
                     $set:
-                        { 'products.$.orderStatus': "Cancelled" }
+                        { 'products.$.orderStatus': "Cancelled" ,
+                        updateDate: Date.now()}
                 })
         }
         res.redirect("back");

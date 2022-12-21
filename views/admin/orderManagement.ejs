@@ -17,7 +17,7 @@
                   <th scope="col">Quantity</th>
                   <th scope="col">Price</th>
                   <th scope="col">Purchase Date</th>
-                  <th scope="col">Delivery Date</th>
+                  <th scope="col">Update Date</th>
                   <th scope="col">Order Status</th>
                   <th scope="col">Action</th>
                   <th scope="col">Invoice</th>
@@ -55,18 +55,18 @@
 
                       <td class="align-middle">
                         <span class="text-white text-xs font-weight-bold">
-                          <%= moment(orders?.date).format('LLL') %>
+                          <%= moment(order?.date).format('LLL') %>
                         </span>
                       </td>
                       <td class="align-middle">
                         <span class="text-white text-xs font-weight-bold">
-                          <%= moment(orders?.deliveryDate).format('LLL') %>
+                          <%= moment(order?.updateDate)?.format('LLL') %>
                         </span>
                       </td>
                       <td class="align-middle">
                         <% if(product.orderStatus=='Order Placed' ) { %>
                           <form
-                            action="/admin/changeStatus/<%= order?._id %>/<%= product?.productId._id %>/<%= product?.orderStatus %>"
+                            action="/admin/changeStatus/<%= order?._id %>/<%= product?.productId?._id %>/<%= product?.orderStatus %>"
                             method="post">
                             <button type="submit" class="btn btn-outline-success text-white">Order Placed</button>
                           </form>
@@ -99,7 +99,7 @@
                       <td class="align-middle ">
                         <% product.orderStatus='Cancelled' %>
                           <form
-                            action="/admin/changeStatus/<%= order._id%>/<%= product.productId._id %>/<%= product.orderStatus %>"
+                            action="/admin/changeStatus/<%= order?._id%>/<%= product.productId?._id %>/<%= product?.orderStatus %>"
                             method="post">
                             <button type="submit" class="btn btn-outline-primary text-white">Cancel</button>
                           </form>

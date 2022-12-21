@@ -66,6 +66,9 @@ const orderSchema = new mongoose.Schema ({
     date: {
         type: Date,
         default: Date.now()
+    },
+    updateDate: {
+        type:Date
     }
 })
 
