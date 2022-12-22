@@ -1,7 +1,57 @@
 <!-- Header Section Begin -->
 <%-include('../user/layout/user-header-layout.ejs') -%>
 
-<%-include('../user/layout/nav.ejs')-%>
+<!-- Header Section Begin -->
+<header class="header-section">
+    <div class="container-fluid">
+        <div class="inner-header">
+           
+                    <div
+                    class="logo"><a href="/"><img src="/public/images/ipro2.logo.webp" alt="" style="height: 30px;"></a>
+                    <span style="font-size:20px; color:rgb(76, 118, 95); font-family: Verdana, Geneva, Tahoma, sans-serif;">iPro</span>
+                </div>
+                    
+            <div class="header-right">
+               
+                <a href="/user/profile"><i class="fa fa-user-o"  style="color: black; margin-left: 26px;" ></i>
+                <a href="/wishList">
+                   <i class="fa fa-heart-o" style="color: black; margin-left: 26px;"></i>
+                <a href="/cart">
+                    <i class="fa fa-shopping-cart" style="color: black; margin-left: 26px;"></i>
+                    
+                </a>
+                <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- <a href="/search" class="btn btn-light" type="submit">
+        <i class="fa fa-search"></i>
+      </a> -->
+    </form>
+            </div>
+             <nav class="main-menu mobile-menu">
+                <ul>
+                    <li><a class="active" style="text-decoration: none;" href="/">Home</a></li>
+                    <li><a href="/products" style="text-decoration: none;">Shop</a>
+                        <ul class="sub-menu">
+                            
+                            <li><a href="/cart" style="text-decoration: none;">Shopping Card</a></li>
+                            <li><a href="/checkout" style="text-decoration: none;">Check out</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/contact" style="text-decoration: none;">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
 
 
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">

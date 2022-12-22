@@ -89,8 +89,8 @@
                 </div>
                 <div class="row">
                     <% products.forEach(function(x) { %>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="single-product-item">
+                        <div class="col-lg-4 ">
+                            <div class="single-product-item overflow hidden">
                                 <figure>
                                     <div>
                                         <img src="/images/product_img/<%= x.image[0] %>" alt="">
@@ -131,16 +131,16 @@
             </div>
         </section>
 
-        <section class="d-flex justify-content-center mt-2">
+        <section class="d-flex justify-content-center mt-2" >
             <% for(let i=1;i<=pageNum; i++){ %>
                 <% if(page==i){ %>
-                    <a class="atag" href="/products?page=<%= i %>">
+                    <a class="atag"  style="text-decoration: none;   padding: .5rem; margin:0 1rem; color: rgb(76, 118, 95); border: 1px solid whitesmoke;" href="/products?page=<%= i %>">
                         <div class="page focus">
                             <%= i %>
                         </div>
                     </a>
                     <% }else{ %>
-                        <a class="atag" href="/products?page=<%= i %>">
+                        <a class="atag"   style="text-decoration: none;   padding: .5rem; margin:0 1rem; color: rgb(76, 118, 95); border: 1px solid whitesmoke;" href="/products?page=<%= i %>">
                             <div class="page">
                                 <%= i %>
                             </div>
